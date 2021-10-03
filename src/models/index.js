@@ -26,5 +26,6 @@ const db = {};
 
 db.sequelize = dbClient;
 db.User = require("./user")(dbClient, DataTypes);
+db.Role = require("./role")(dbClient, DataTypes);
 
 module.exports = db;
