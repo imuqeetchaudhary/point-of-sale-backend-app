@@ -1,5 +1,24 @@
 {
+  "name": "point-of-sale-backend-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jazim-Abbas/point-of-sale-backend-app.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Jazim-Abbas/point-of-sale-backend-app/issues"
+  },
+  "homepage": "https://github.com/Jazim-Abbas/point-of-sale-backend-app#readme",
   "dependencies": {
-    "mysql2": "^2.3.0"
+    "mysql2": "^2.3.0",
+    "sequelize": "^6.6.5"
   }
 }
