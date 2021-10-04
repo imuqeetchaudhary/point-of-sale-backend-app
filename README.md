@@ -70,3 +70,19 @@
     parentId: Number,
 }
 ```
+
+### to get all menu
+
+- menu/get-all :get :protected
+
+### to update a new menu
+
+- menu/update/:id: :post :protected
+
+```js
+{
+    description: String,
+    link: String,
+    parentId: Number,
+}
+```
