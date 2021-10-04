@@ -1,7 +1,7 @@
 const { SQL_ERROR_CODE } = require("./error-code.utils");
 
-function isRecordFound(err) {
-  return role[0] === 0;
+function isRecordFound(record) {
+  return record[0] === 0;
 }
 
 function isRecordDuplicate(err) {
