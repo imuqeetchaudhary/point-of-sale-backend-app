@@ -2,10 +2,14 @@ const db = require("../models");
 const Exceptions = require("../utils/custom-exceptions");
 const { SQL_ERROR_CODE } = require("./error-code.utils");
 
+async function findById({ id }) {
+  return db.User.findByPk(id, _prop.hideFieldsCondition("password"));
+}
+
 async function findByEmail({ email }) {
   return db.User.findOne({
     where: { email },
-    attributes: { exclude: ["createdAt", "updatedAt", "authType", "email"] },
+    ..._prop.hideFieldsCondition(),
   });
 }
 
@@ -28,4 +32,11 @@ async function createUser({ email, password, displayName }) {
   }
 }
 
-module.exports = { findByEmail, createUser };
+module.exports = { findById, findByEmail, createUser };
+
+const _prop = {
+  HIDDEN_FIELDS: ["createdAt", "updatedAt", "authType", "email"],
+  hideFieldsCondition: function (...args) {
+    return { attributes: { exclude: [...this.HIDDEN_FIELDS, ...args] } };
+  },
+};
