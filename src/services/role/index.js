@@ -1,5 +1,6 @@
 const db = require("../../models");
 const roleUtils = require("./utils");
+const utils = require("../error-check.util");
 const Exceptions = require("../../utils/custom-exceptions");
 
 async function listAllRoles() {
@@ -29,7 +30,7 @@ async function updateRole({ roleId, description, updatedBy }) {
       { where: { roleId } }
     );
 
-    if (roleUtils.isRoleFound(role)) {
+    if (utils.isRecordFound(role)) {
       throw new Exceptions.NotFound({ message: "Role is not found" });
     }
   } catch (err) {
