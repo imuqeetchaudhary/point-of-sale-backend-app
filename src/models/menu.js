@@ -45,9 +45,8 @@ module.exports = (sequelize, DataTypes, { User }) => {
 
 // const { Sequelize, DataTypes } = require("sequelize");
 // const sequelize = new Sequelize();
-// const Menu = sequelize.define("Menu", {});
-// Menu.hasMany(Menu, {
-//   foreignKey: { name: "parent_id", allowNull: true },
-//   onUpdate: "CASCADE",
-//   onDelete: "NO ACTION",
-// });
+// const UserAccessRoles = sequelize.define(
+//   "UserAccessRoles",
+//   {},
+//   { underscored: true, tableName: "ad_user_access_roles" }
+// );

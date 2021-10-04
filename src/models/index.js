@@ -28,6 +28,10 @@ db.sequelize = dbClient;
 const User = require("./user")(dbClient, DataTypes);
 const Role = require("./role")(dbClient, DataTypes, { User });
 const Menu = require("./menu")(dbClient, DataTypes, { User });
+const UserAccessRoles = require("./user-access-roles")(dbClient, DataTypes, {
+  User,
+  Role,
+});
 
 // add relations with models
 Menu.hasMany(Menu, {
@@ -40,5 +44,6 @@ Menu.hasMany(Menu, {
 db.User = User;
 db.Role = Role;
 db.Menu = Menu;
+db.UserAccessRoles = UserAccessRoles;
 
 module.exports = db;
