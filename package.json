@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/Jazim-Abbas/point-of-sale-backend-app#readme",
   "dependencies": {
+    "config": "^3.3.6",
     "mysql2": "^2.3.0",
     "sequelize": "^6.6.5"
   }

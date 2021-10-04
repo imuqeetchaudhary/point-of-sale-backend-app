@@ -1,20 +1,8 @@
+const config = require("config");
 const { Sequelize, DataTypes } = require("sequelize");
 
 function init() {
-  const sequelize = new Sequelize({
-    username: "root",
-    password: "root",
-    database: "pos",
-    host: "localhost",
-    port: 3306,
-
-    dialect: "mysql",
-    logging: true,
-
-    define: {
-      freezeTableName: true,
-    },
-  });
+  const sequelize = new Sequelize({ ...config.get("db") });
 
   return () => sequelize;
 }
