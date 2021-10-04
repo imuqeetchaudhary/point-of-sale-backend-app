@@ -26,7 +26,7 @@ const db = {};
 
 db.sequelize = dbClient;
 const User = require("./user")(dbClient, DataTypes);
-const Role = require("./role")(dbClient, DataTypes);
+const Role = require("./role")(dbClient, DataTypes, { User });
 
 // add relations with models
 // User.hasMany(Role, { foreignKey})

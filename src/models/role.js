@@ -1,7 +1,7 @@
 // const { Sequelize, DataTypes } = require("sequelize");
 // const sequelize = new Sequelize();
 
-module.exports = (sequelize, DataTypes) => {
+module.exports = (sequelize, DataTypes, { User }) => {
   const Role = sequelize.define(
     "Role",
     {
@@ -18,7 +18,7 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.INTEGER.UNSIGNED,
         allowNull: false,
         references: {
-          model: "user",
+          model: User,
           key: "user_id",
         },
         onUpdate: "CASCADE",
@@ -28,7 +28,7 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.INTEGER.UNSIGNED,
         allowNull: false,
         references: {
-          model: "user",
+          model: User,
           key: "user_id",
         },
         onUpdate: "CASCADE",
@@ -65,7 +65,7 @@ module.exports = (sequelize, DataTypes) => {
 //       field: "fk_ad_role_created_by"
 //     },
 //   },
-//   { underscored: true, tableName: "ad_role" }
+//   { underscored: true, tableName: "ad_role",  },
 // );
 
 // Role.hasMany(null, { foreignKey: {} });
