@@ -42,3 +42,7 @@
     description: String,
 }
 ```
+
+### to get all role
+
+- role/get-all :get :protected

@@ -12,4 +12,6 @@ router.post(
   roleController.createRole
 );
 
+router.get("/get-all", authentication, roleController.getAllRoles);
+
 module.exports = router;

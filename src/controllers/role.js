@@ -9,3 +9,8 @@ exports.createRole = async (req, res) => {
 
   res.status(200).json({ message: "Successfully created new role", role });
 };
+
+exports.getAllRoles = async (req, res) => {
+  const role = await roleService.listAllRoles();
+  res.status(200).json({ role });
+};
