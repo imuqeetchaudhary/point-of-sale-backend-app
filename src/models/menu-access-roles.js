@@ -32,7 +32,7 @@ module.exports = (sequelize, DataTypes, { User, Role, Menu }) => {
         onUpdate: "CASCADE",
         onDelete: "NO ACTION",
       },
-      updateBy: {
+      updatedBy: {
         type: DataTypes.INTEGER.UNSIGNED,
         allowNull: false,
         references: {

@@ -1,12 +1,13 @@
 const express = require("express");
-const userService = require("../services/user");
+const roleService = require("../services/role");
 
 const router = express.Router();
 router.get("/", async (_, res) => {
-  const user = await userService.findById({
-    id: 1,
+  const role = await roleService.saveRole({
+    description: "Accountant",
+    createdBy: 1,
   });
-  res.send({ user });
+  res.send({ role });
 });
 
 module.exports = router;
