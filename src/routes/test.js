@@ -1,12 +1,12 @@
 const express = require("express");
-// const roleService = require("../services/role");
+const roleService = require("../services/role");
 const menuService = require("../services/menu");
 const roleMenuService = require("../services/menu-access-roles");
 const userRolesService = require("../services/user-access-roles");
 
 const router = express.Router();
 router.get("/", async (_, res) => {
-  await userRoles(res);
+  await roleMenus(res);
 });
 
 module.exports = router;
@@ -19,10 +19,12 @@ async function userRoles(res) {
 }
 
 async function roleMenus(res) {
-  const roleMenus = [{ roleId: 1, menuId: 1, createdBy: 1 }];
+  // const roleMenus = [{ roleId: 2, menuId: 3, createdBy: 1 }];
+  // const roleMenusInDb = await roleMenuService.saveRoleMenus({ roleMenus });
+  // res.send({ roleMenusInDb });
 
-  const roleMenusInDb = await roleMenuService.saveRoleMenus({ roleMenus });
-  res.send({ roleMenusInDb });
+  const roleMenus = await roleMenuService.listRoleMenus({ roleId: 1 });
+  res.send({ roleMenus });
 }
 
 async function role(res) {
@@ -38,7 +40,7 @@ async function menu(res) {
     description: "php",
     link: "/programming/php",
     createdBy: 1,
-    parentId: 1,
+    // parentId: 1,
   });
   res.send({ menu });
 }

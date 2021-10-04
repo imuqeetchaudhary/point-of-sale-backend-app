@@ -33,6 +33,32 @@ Menu.hasMany(Menu, {
   onDelete: "NO ACTION",
 });
 
+Role.belongsToMany(Menu, {
+  through: MenuAccessRoles,
+  foreignKey: "role_id",
+  otherKey: "menu_id",
+});
+Menu.belongsToMany(Role, {
+  through: MenuAccessRoles,
+  foreignKey: "menu_id",
+  otherKey: "role_id",
+});
+MenuAccessRoles.belongsTo(Role, { foreignKey: "role_id" });
+MenuAccessRoles.belongsTo(Menu, { foreignKey: "menu_id" });
+
+// Role.belongsToMany(Menu, {
+//   through: MenuAccessRoles,
+//   foreignKey: { name: "role_id", allowNull: false },
+//   otherKey: "menu_id",
+//   as: "menus",
+// });
+// Menu.belongsToMany(Role, {
+//   through: MenuAccessRoles,
+//   foreignKey: { name: "menu_id", allowNull: false },
+//   otherKey: "role_id",
+//   as: "roles",
+// });
+
 // assigns all models to db object
 db.User = User;
 db.Role = Role;
