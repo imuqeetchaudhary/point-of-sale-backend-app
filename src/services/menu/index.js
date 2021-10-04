@@ -3,6 +3,12 @@ const menuUtils = require("./util");
 const utils = require("../error-check.util");
 const Exceptions = require("../../utils/custom-exceptions");
 
+async function listAllMenus() {
+  return db.Menu.findAll({
+    attributes: ["menuId", "description", "link", "icon", "parentId"],
+  });
+}
+
 async function saveMenu({ description, link, parentId, createdBy }) {
   try {
     const menu = await db.Menu.create({
@@ -35,4 +41,4 @@ async function updateMenu({ menuId, description, link, parentId, updatedBy }) {
   }
 }
 
-module.exports = { saveMenu, updateMenu };
+module.exports = { listAllMenus, saveMenu, updateMenu };

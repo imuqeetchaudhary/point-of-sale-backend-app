@@ -17,6 +17,7 @@ module.exports = (sequelize, DataTypes, { User }) => {
         allowNull: false,
       },
       icon: DataTypes.STRING(500),
+      parentId: DataTypes.INTEGER.UNSIGNED,
       createdBy: {
         type: DataTypes.INTEGER.UNSIGNED,
         allowNull: false,
