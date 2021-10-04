@@ -2,6 +2,12 @@ const db = require("../../models");
 const roleUtils = require("./utils");
 const Exceptions = require("../../utils/custom-exceptions");
 
+async function listAllRoles() {
+  return db.Role.findAll({
+    attributes: ["roleId", "description"],
+  });
+}
+
 async function saveRole({ description, createdBy }) {
   try {
     const role = await db.Role.create({
@@ -32,4 +38,4 @@ async function updateRole({ roleId, description, updatedBy }) {
   }
 }
 
-module.exports = { saveRole, updateRole };
+module.exports = { listAllRoles, saveRole, updateRole };
