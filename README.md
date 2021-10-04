@@ -56,3 +56,17 @@
     description: String,
 }
 ```
+
+## Routes for Menu
+
+### to create a new menu
+
+- menu/create :post :protected
+
+```js
+{
+    description: String,
+    link: String,
+    parentId: Number,
+}
+```
