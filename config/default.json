@@ -7,10 +7,12 @@
     "port": 3306,
 
     "dialect": "mysql",
-    "logging": true,
+    "logging": false,
 
     "define": {
       "freezeTableName": true
-    }
+    },
+
+    "forceSync": false
   }
 }
