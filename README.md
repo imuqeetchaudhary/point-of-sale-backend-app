@@ -2,8 +2,6 @@
 
 ---
 
-## First of all make a .env file same as .env.example
-
 ## Routes for User Auth
 
 ### to register a user

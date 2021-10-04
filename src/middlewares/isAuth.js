@@ -1,4 +1,5 @@
 const jwt = require("jsonwebtoken");
+const config = require("config");
 const Exceptions = require("../utils/custom-exceptions");
 
 exports.authentication = async (req, res, next) => {
@@ -10,7 +11,7 @@ exports.authentication = async (req, res, next) => {
         message: "Auth Failed! Invalid Token",
       });
 
-    jwt.verify(token, process.env.SECRET_KEY, (err, user) => {
+    jwt.verify(token, config.get("jwt.secret"), (err, user) => {
       if (err)
         throw new Exceptions.AccessDenies({
           message: "Auth Failed! Invalid Token",

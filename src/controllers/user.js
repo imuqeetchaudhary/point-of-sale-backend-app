@@ -2,7 +2,7 @@ const userService = require("../services/user");
 const Exceptions = require("../utils/custom-exceptions");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-require("dotenv").config();
+const config = require("config")
 
 exports.register = async (req, res) => {
   const { email, password, displayName } = req.body;
@@ -44,7 +44,7 @@ exports.login = async (req, res) => {
       isAdmin: user.isAdmin,
       isSuperuser: user.isSuperuser,
     },
-    process.env.SECRET_KEY
+    config.get("jwt.secret")
   );
 
   res.status(200).json({
