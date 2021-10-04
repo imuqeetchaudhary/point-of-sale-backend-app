@@ -14,4 +14,11 @@ router.post(
 
 router.get("/get-all", authentication, roleController.getAllRoles);
 
+router.patch(
+  "/update/:id",
+  authentication,
+  validation(createRoleSchema),
+  roleController.updateRole
+);
+
 module.exports = router;

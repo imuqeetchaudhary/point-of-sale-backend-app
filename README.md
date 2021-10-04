@@ -46,3 +46,13 @@
 ### to get all role
 
 - role/get-all :get :protected
+
+### to update a role
+
+- role/update/:id: :post :protected
+
+```js
+{
+    description: String,
+}
+```
