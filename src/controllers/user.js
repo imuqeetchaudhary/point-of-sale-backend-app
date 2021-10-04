@@ -2,7 +2,7 @@ const userService = require("../services/user");
 const Exceptions = require("../utils/custom-exceptions");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const config = require("config")
+const config = require("config");
 
 exports.register = async (req, res) => {
   const { email, password, displayName } = req.body;
@@ -61,5 +61,7 @@ exports.login = async (req, res) => {
 exports.profile = async (req, res) => {
   const { id } = req.params;
 
-  res.status(200).json({ message: "User profile controller" });
+  const user = await userService.findById({ id });
+
+  res.status(200).json({ user });
 };
