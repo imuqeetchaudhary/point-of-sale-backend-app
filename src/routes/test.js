@@ -1,17 +1,25 @@
 const express = require("express");
-const menuService = require("../services/menu");
+// const roleService = require("../services/role");
+const roleMenuService = require("../services/menu-access-roles");
 
 const router = express.Router();
 router.get("/", async (_, res) => {
-  const menus = await menuService.listAllMenus();
-  res.send({ menus });
-
-  // const menu = await menuService.saveMenu({
-  //   description: "programming",
-  //   link: "/programming",
-  //   createdBy: 1,
-  // });
-  // res.send({ menu });
+  await roleMenus(res);
 });
 
 module.exports = router;
+
+async function roleMenus(res) {
+  const roleMenus = [{ roleId: 1, menuId: 1, createdBy: 1 }];
+
+  const roleMenusInDb = await roleMenuService.saveRoleMenus({ roleMenus });
+  res.send({ roleMenusInDb });
+}
+
+async function role(res) {
+  const role = await roleService.saveRole({
+    description: "Accountant",
+    createdBy: 1,
+  });
+  res.send({ role });
+}
