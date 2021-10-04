@@ -86,3 +86,16 @@
     parentId: Number,
 }
 ```
+
+## Routes for Menu Access Role
+
+### to create a menu access role
+
+- menu-access-role/create :post :protected
+
+```js
+{
+    roleId: Number,
+    menuIds: Number[],
+}
+```
