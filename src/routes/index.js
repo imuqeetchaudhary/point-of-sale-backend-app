@@ -3,13 +3,15 @@ const testRoutes = require("./test");
 const router = express.Router();
 
 const userRoute = require("../routes/user");
+const roleRoute = require("../routes/role");
+
+router.use("/test", testRoutes);
 
 router.get("/", (req, res) =>
   res.send({ message: "Point Of Sale Backend App RestApi" })
 );
 
-router.use("/test", testRoutes);
-
 router.use("/user", userRoute);
+router.use("/role", roleRoute);
 
 module.exports = router;
