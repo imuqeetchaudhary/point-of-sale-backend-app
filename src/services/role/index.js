@@ -11,15 +11,25 @@ async function saveRole({ description, createdBy }) {
     });
     return role;
   } catch (err) {
-    console.log("err: ", err);
-    if (roleUtils.isRoleExists(err)) {
-      throw new Exceptions.BadRequest({ message: "Role already exists" });
-    } else if (roleUtils.isUserExists(err)) {
-      throw new Exceptions.BadRequest({ message: "User is not exists" });
-    }
-
+    roleUtils.throwErrorWhenCreateOrUpdate(err);
     throw err;
   }
 }
 
-module.exports = { saveRole };
+async function updateRole({ roleId, description, updatedBy }) {
+  try {
+    const role = await db.Role.update(
+      { description, updatedBy },
+      { where: { roleId } }
+    );
+
+    if (roleUtils.isRoleFound(role)) {
+      throw new Exceptions.NotFound({ message: "Role is not found" });
+    }
+  } catch (err) {
+    roleUtils.throwErrorWhenCreateOrUpdate(err);
+    throw err;
+  }
+}
+
+module.exports = { saveRole, updateRole };
