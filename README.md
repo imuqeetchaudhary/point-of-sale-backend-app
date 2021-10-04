@@ -26,3 +26,7 @@
     password: String,
 }
 ```
+
+### to get user profile
+
+- user/profile/:id: :get :protected
