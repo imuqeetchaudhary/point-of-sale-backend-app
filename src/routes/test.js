@@ -2,13 +2,21 @@ const express = require("express");
 // const roleService = require("../services/role");
 const menuService = require("../services/menu");
 const roleMenuService = require("../services/menu-access-roles");
+const userRolesService = require("../services/user-access-roles");
 
 const router = express.Router();
 router.get("/", async (_, res) => {
-  await menu(res);
+  await userRoles(res);
 });
 
 module.exports = router;
+
+async function userRoles(res) {
+  const userRoles = [{ userId: 1, roleId: 1, createdBy: 1 }];
+
+  const userRolesInDb = await userRolesService.saveUserRoles({ userRoles });
+  res.send({ userRolesInDb });
+}
 
 async function roleMenus(res) {
   const roleMenus = [{ roleId: 1, menuId: 1, createdBy: 1 }];
