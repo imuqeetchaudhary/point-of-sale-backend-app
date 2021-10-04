@@ -1,11 +1,24 @@
 const userService = require("../services/user");
 const Exceptions = require("../utils/custom-exceptions");
-const { promise } = require("../middlewares/promise");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-require("dotenv").config();
+const config = require("config")
 
-exports.login = promise(async (req, res) => {
+exports.register = async (req, res) => {
+  const { email, password, displayName } = req.body;
+
+  const hashPassword = bcrypt.hashSync(password, 10);
+
+  const user = await userService.createUser({
+    displayName,
+    email,
+    password: hashPassword,
+  });
+
+  res.status(200).json({ message: "Successfully created new user", user });
+};
+
+exports.login = async (req, res) => {
   const { email, password } = req.body;
   const user = await userService.findByEmail({ email });
 
@@ -31,7 +44,7 @@ exports.login = promise(async (req, res) => {
       isAdmin: user.isAdmin,
       isSuperuser: user.isSuperuser,
     },
-    process.env.SECRET_KEY
+    config.get("jwt.secret")
   );
 
   res.status(200).json({
@@ -43,4 +56,10 @@ exports.login = promise(async (req, res) => {
     isAdmin: user.isAdmin,
     isSuperuser: user.isSuperuser,
   });
-});
+};
+
+exports.profile = async (req, res) => {
+  const { id } = req.params;
+
+  res.status(200).json({ message: "User profile controller" });
+};

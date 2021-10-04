@@ -2,9 +2,19 @@
 
 ---
 
-## First of all makw a .env file same as .env.example
-
 ## Routes for User Auth
+
+### to register a user
+
+- user/register :post
+
+```js
+{
+    email: String,
+    password: String,
+    displayName: String,
+}
+```
 
 ### to login a user
 
@@ -13,6 +23,10 @@
 ```js
 {
     email: String,
-    password: String
+    password: String,
 }
 ```
+
+### to get user profile
+
+- user/profile/:id: :get :protected

@@ -24,6 +24,7 @@ async function createUser({ email, password, displayName }) {
 
     return user;
   } catch (err) {
+    console.log("error", err);
     if (err.original.errno === SQL_ERROR_CODE.duplicateEntry) {
       throw new Exceptions.BadRequest({ message: "Email already exists" });
     }
