@@ -25,7 +25,14 @@ const dbClient = getDbClient();
 const db = {};
 
 db.sequelize = dbClient;
-db.User = require("./user")(dbClient, DataTypes);
-db.Role = require("./role")(dbClient, DataTypes);
+const User = require("./user")(dbClient, DataTypes);
+const Role = require("./role")(dbClient, DataTypes);
+
+// add relations with models
+// User.hasMany(Role, { foreignKey})
+
+// assigns all models to db object
+db.User = User;
+db.Role = Role;
 
 module.exports = db;
