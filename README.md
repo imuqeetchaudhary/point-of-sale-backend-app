@@ -70,3 +70,7 @@
     parentId: Number,
 }
 ```
+
+### to get all menu
+
+- menu/get-all :get :protected

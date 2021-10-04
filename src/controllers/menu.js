@@ -14,3 +14,8 @@ exports.createMenu = async (req, res) => {
 
   res.status(200).json({ message: "Successfully created new menu", menu });
 };
+
+exports.getAllMenu = async (req, res) => {
+  const menu = await menuService.listAllMenus();
+  res.status(200).json({ menu });
+};

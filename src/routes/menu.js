@@ -12,4 +12,6 @@ router.post(
   menuController.createMenu
 );
 
+router.get("/get-all", authentication, menuController.getAllMenu);
+
 module.exports = router;
