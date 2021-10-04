@@ -20,7 +20,7 @@ async function createUser({ email, password, displayName }) {
 
     return user;
   } catch (err) {
-    if (err.errno === SQL_ERROR_CODE.duplicateEntry) {
+    if (err.original.errno === SQL_ERROR_CODE.duplicateEntry) {
       throw new Exceptions.BadRequest({ message: "Email already exists" });
     }
 

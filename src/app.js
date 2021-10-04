@@ -1,6 +1,8 @@
 const express = require("express");
+require("express-async-errors");
 const morgan = require("morgan");
 const allRoutes = require("./routes");
+const catchUnhandleExceptions = require("./middlewares/exception-handling");
 
 const app = express();
 
@@ -10,5 +12,6 @@ if (app.get("env") === "development") {
 }
 
 app.use("/", allRoutes);
+app.use(catchUnhandleExceptions);
 
 module.exports = app;
