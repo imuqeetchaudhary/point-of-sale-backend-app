@@ -27,12 +27,18 @@ const db = {};
 db.sequelize = dbClient;
 const User = require("./user")(dbClient, DataTypes);
 const Role = require("./role")(dbClient, DataTypes, { User });
+const Menu = require("./menu")(dbClient, DataTypes, { User });
 
 // add relations with models
-// User.hasMany(Role, { foreignKey})
+Menu.hasMany(Menu, {
+  foreignKey: { name: "parent_id", allowNull: true },
+  onUpdate: "CASCADE",
+  onDelete: "NO ACTION",
+});
 
 // assigns all models to db object
 db.User = User;
 db.Role = Role;
+db.Menu = Menu;
 
 module.exports = db;
