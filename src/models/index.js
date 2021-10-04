@@ -32,6 +32,11 @@ const UserAccessRoles = require("./user-access-roles")(dbClient, DataTypes, {
   User,
   Role,
 });
+const MenuAccessRoles = require("./menu-access-roles")(dbClient, DataTypes, {
+  User,
+  Role,
+  Menu,
+});
 
 // add relations with models
 Menu.hasMany(Menu, {
@@ -45,5 +50,6 @@ db.User = User;
 db.Role = Role;
 db.Menu = Menu;
 db.UserAccessRoles = UserAccessRoles;
+db.MenuAccessRoles = MenuAccessRoles;
 
 module.exports = db;
