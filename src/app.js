@@ -1,10 +1,14 @@
 const express = require("express");
 require("express-async-errors");
+const bodyParser = require("body-parser");
 const morgan = require("morgan");
 const allRoutes = require("./routes");
 const catchUnhandleExceptions = require("./middlewares/exception-handling");
 
 const app = express();
+
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 if (app.get("env") === "development") {
   app.use(morgan("tiny"));
