@@ -13,6 +13,7 @@ module.exports = (sequelize, DataTypes, { User }) => {
       description: {
         type: DataTypes.STRING(55),
         allowNull: false,
+        unique: true,
       },
       createdBy: {
         type: DataTypes.INTEGER.UNSIGNED,
