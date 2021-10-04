@@ -5,3 +5,9 @@ exports.createMenuSchema = yup.object().shape({
   link: yup.string(),
   parentId: yup.number(),
 });
+
+exports.updateMenuSchema = yup.object().shape({
+  description: yup.string(),
+  link: yup.string(),
+  parentId: yup.number(),
+});
