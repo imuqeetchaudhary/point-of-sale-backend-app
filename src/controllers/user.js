@@ -57,3 +57,9 @@ exports.login = async (req, res) => {
     isSuperuser: user.isSuperuser,
   });
 };
+
+exports.profile = async (req, res) => {
+  const { id } = req.params;
+
+  res.status(200).json({ message: "User profile controller" });
+};
