@@ -30,3 +30,15 @@
 ### to get user profile
 
 - user/profile/:id: :get :protected
+
+## Routes for Role
+
+### to create a new role
+
+- role/create :post :protected
+
+```js
+{
+    description: String,
+}
+```
