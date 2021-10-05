@@ -16,12 +16,13 @@ db.sequelize = dbClient;
 // const user = require("./user");
 // const role = require("./role");
 // const menu = require("./menu");
-const menuAccessRoles = require("./menu-access-roles");
+// const menuAccessRoles = require("./menu-access-roles");
 const userAccessRoles = require("./user-access-roles");
 // const brand = require("./brand");
 const user = require("./user/index");
 const role = require("./role/index");
 const menu = require("./menu/index");
+const menuAccessRoles = require("./menu-access-roles/index");
 const brand = require("./brand/index");
 
 // make models
@@ -29,11 +30,11 @@ const brand = require("./brand/index");
 
 // const Role = role.makeModel(dbClient, DataTypes, modelSettings.role);
 // const Menu = menu.makeModel(dbClient, DataTypes, modelSettings.menu);
-const MenuAccessRoles = menuAccessRoles.makeModel(
-  dbClient,
-  DataTypes,
-  modelSettings.menuAccessRoles
-);
+// const MenuAccessRoles = menuAccessRoles.makeModel(
+//   dbClient,
+//   DataTypes,
+//   modelSettings.menuAccessRoles
+// );
 const UserAccessRoles = userAccessRoles.makeModel(
   dbClient,
   DataTypes,
@@ -43,6 +44,11 @@ const UserAccessRoles = userAccessRoles.makeModel(
 const User = user.init(dbClient, DataTypes);
 const Role = role.init(dbClient, DataTypes, { User });
 const Menu = menu.init(dbClient, DataTypes, { User });
+const MenuAccessRoles = menuAccessRoles.init(dbClient, DataTypes, {
+  User,
+  Role,
+  Menu,
+});
 const Brand = brand.init(dbClient, DataTypes, { User });
 
 // make relations
@@ -56,11 +62,11 @@ const Brand = brand.init(dbClient, DataTypes, { User });
 //   modelSettings.menu,
 //   modelSettings.userRelationWithModel
 // );
-menuAccessRoles.makeAssociations(
-  { Role, Menu, MenuAccessRoles, User },
-  modelSettings.menuAccessRoles,
-  modelSettings.userRelationWithModel
-);
+// menuAccessRoles.makeAssociations(
+//   { Role, Menu, MenuAccessRoles, User },
+//   modelSettings.menuAccessRoles,
+//   modelSettings.userRelationWithModel
+// );
 userAccessRoles.makeAssociations(
   { User, Role, UserAccessRoles },
   modelSettings.userAccessRoles,
