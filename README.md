@@ -88,5 +88,6 @@
 ```js
 {
     description: String,
+    menuIds: Number[],
 }
 ```
