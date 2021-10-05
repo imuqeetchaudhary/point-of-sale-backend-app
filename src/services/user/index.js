@@ -49,7 +49,39 @@ async function saveUser({ email, password, displayName, createdBy, roleIds }) {
   }
 }
 
-module.exports = { findById, findByEmail, saveUser };
+async function updateUser({ userId, email, displayName, updatedBy, roleIds }) {
+  const _deleteUserRoles = async (transaction) => {
+    await db.UserAccessRoles.destroy({ where: { userId } }, { transaction });
+  };
+  const _updateUser = async (transaction) => {
+    const user = await db.User.update(
+      { email, displayName },
+      { where: { userId } },
+      { transaction }
+    );
+    return user;
+  };
+  const _createUserRoles = async (transaction) => {
+    const _userRoles = roleIds.map((roleId) => {
+      return { userId, roleId, createdBy: updatedBy, updatedBy };
+    });
+    await db.UserAccessRoles.bulkCreate([..._userRoles], { transaction });
+  };
+
+  const trans = await db.sequelize.transaction();
+  try {
+    await _deleteUserRoles(trans);
+    await _updateUser(trans);
+    await _createUserRoles(trans);
+
+    await trans.commit();
+  } catch (err) {
+    trans.rollback();
+    throw err;
+  }
+}
+
+module.exports = { findById, findByEmail, saveUser, updateUser };
 
 const _prop = {
   HIDDEN_FIELDS: ["createdAt", "updatedAt", "authType", "email"],

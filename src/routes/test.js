@@ -13,14 +13,23 @@ router.get("/", async (_, res) => {
 module.exports = router;
 
 async function user(res) {
-  const user = await userService.saveUser({
-    email: "asad@gmail.com",
-    displayName: "asad",
-    password: "password",
-    createdBy: 1,
-    roleIds: [1],
+  const user = await userService.updateUser({
+    userId: 4,
+    // email: "asad@gmail.com",
+    displayName: "Hassan",
+    updatedBy: 1,
+    roleIds: [1, 2],
   });
   res.send({ user });
+
+  // const user = await userService.saveUser({
+  //   email: "hassan@gmail.com",
+  //   displayName: "hassan",
+  //   password: "password",
+  //   createdBy: 1,
+  //   roleIds: [2],
+  // });
+  // res.send({ user });
 }
 
 async function userRoles(res) {
