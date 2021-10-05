@@ -13,16 +13,18 @@ const db = {};
 db.sequelize = dbClient;
 
 // imports all models
-const user = require("./user");
+// const user = require("./user");
 const menuAccessRoles = require("./menu-access-roles");
 const role = require("./role");
 const menu = require("./menu");
 const userAccessRoles = require("./user-access-roles");
 // const brand = require("./brand");
+const user = require("./user/index");
 const brand = require("./brand/index");
 
 // make models
-const User = user.makeModel(dbClient, DataTypes, modelSettings.user);
+// const User = user.makeModel(dbClient, DataTypes, modelSettings.user);
+
 const Role = role.makeModel(dbClient, DataTypes, modelSettings.role);
 const Menu = menu.makeModel(dbClient, DataTypes, modelSettings.menu);
 const MenuAccessRoles = menuAccessRoles.makeModel(
@@ -36,6 +38,7 @@ const UserAccessRoles = userAccessRoles.makeModel(
   modelSettings.userAccessRoles
 );
 // const Brand = brand.makeModel(dbClient, DataTypes, modelSettings.brand);
+const User = user.init(dbClient, DataTypes);
 const Brand = brand.init(dbClient, DataTypes, { User });
 
 // make relations
