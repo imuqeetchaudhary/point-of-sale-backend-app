@@ -17,12 +17,13 @@ async function listAllMenusForRole({ roleId }) {
   );
 }
 
-async function saveMenu({ description, link, parentId, createdBy }) {
+async function saveMenu({ description, link, parentId, icon, createdBy }) {
   try {
     const menu = await db.Menu.create({
       description,
       link,
       parentId,
+      icon,
       createdBy,
       updatedBy: createdBy,
     });
