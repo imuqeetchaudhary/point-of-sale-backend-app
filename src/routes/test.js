@@ -33,18 +33,17 @@ async function role(res) {
   // });
   // res.send({ role });
 
-  // const roleMenus = [1, 3];
   // await roleService.updateRole({
-  //   roleId: 1,
+  //   roleId: 9,
   //   updatedBy: 1,
-  //   roleMenus,
+  //   menus: [1, 3],
   // });
 
-  const role = await roleService.saveRole({
-    description: "Gate Keepe",
-    createdBy: 1,
-    menus: [1],
-  });
+  // const role = await roleService.saveRole({
+  //   description: "Gate Keeper",
+  //   createdBy: 1,
+  //   menus: [1],
+  // });
 
   res.send({ role });
 }

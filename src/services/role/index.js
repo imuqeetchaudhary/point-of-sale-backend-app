@@ -10,27 +10,31 @@ async function listAllRoles() {
 }
 
 async function saveRole({ description, createdBy, menus }) {
-  const trans = await db.sequelize.transaction();
-
-  try {
+  const _createRole = async () => {
     const role = await db.Role.create({
       description,
       createdBy,
       updatedBy: createdBy,
     });
-
-    console.log("roleId: ", role.roleId);
-    const _roleMenus = menus.map((menu) => {
+    return role;
+  };
+  const _createRoleMenus = async (roleId) => {
+    const _roleMenus = menus.map((menuId) => {
       return {
-        menuId: menu,
-        roleId: role.roleId,
+        menuId,
+        roleId,
         createdBy,
         updatedBy: createdBy,
       };
     });
-    console.log(_roleMenus);
-
     await db.MenuAccessRoles.bulkCreate([..._roleMenus]);
+  };
+
+  const trans = await db.sequelize.transaction();
+
+  try {
+    const role = await _createRole();
+    await _createRoleMenus(role.roleId);
 
     await trans.commit();
     return role;
@@ -43,28 +47,37 @@ async function saveRole({ description, createdBy, menus }) {
 }
 
 async function updateRole({ roleId, description, updatedBy, menus }) {
-  const _roleMenus = menus.map((menu) => {
-    return {
-      menuId: menu,
-      roleId: roleId,
-      updatedBy,
-      createdBy: updatedBy,
-    };
-  });
-  const trans = await db.sequelize.transaction();
-
-  try {
+  const _deleteAllRoleMenus = async () => {
     await db.MenuAccessRoles.destroy({ where: { roleId } });
-
+  };
+  const _update = async () => {
     const role = await db.Role.update(
       { description, updatedBy },
       { where: { roleId } }
     );
-    if (utils.isRecordFound(role)) {
+    if (utils.isRecordFound(role))
       throw new Exceptions.NotFound({ message: "Role is not found" });
-    }
-
+    return role;
+  };
+  const _createRoleMenus = async () => {
+    const _roleMenus = menus.map((menu) => {
+      return {
+        menuId: menu,
+        roleId: roleId,
+        updatedBy,
+        createdBy: updatedBy,
+      };
+    });
     await db.MenuAccessRoles.bulkCreate([..._roleMenus]);
+  };
+
+  const trans = await db.sequelize.transaction();
+
+  try {
+    await _deleteAllRoleMenus();
+    await _update();
+    await _createRoleMenus();
+
     await trans.commit();
   } catch (err) {
     trans.rollback();
