@@ -48,7 +48,22 @@ function makeModel(sequelize, DataTypes, settings) {
   return Menu;
 }
 
-module.exports = { makeModel };
+function makeAssociations(
+  { User, Menu },
+  settings,
+  userAssociationWithOtherModel
+) {
+  Menu.hasMany(Menu, {
+    foreignKey: { name: "parent_id", allowNull: true },
+    onUpdate: "CASCADE",
+    onDelete: "NO ACTION",
+  });
+
+  userAssociationWithOtherModel(User, Menu, { isCreate: true });
+  userAssociationWithOtherModel(User, Menu, { isCreate: false });
+}
+
+module.exports = { makeModel, makeAssociations };
 
 // const { Sequelize, DataTypes } = require("sequelize");
 // const sequelize = new Sequelize();

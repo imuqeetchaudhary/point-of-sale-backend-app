@@ -34,15 +34,20 @@ const UserAccessRoles = require("./user-access-roles")(dbClient, DataTypes, {
 });
 
 // add relations with models
-Menu.hasMany(Menu, {
-  foreignKey: { name: "parent_id", allowNull: true },
-  onUpdate: "CASCADE",
-  onDelete: "NO ACTION",
-});
+// Menu.hasMany(Menu, {
+//   foreignKey: { name: "parent_id", allowNull: true },
+//   onUpdate: "CASCADE",
+//   onDelete: "NO ACTION",
+// });
 
 role.makeAssociations(
   { User, Role },
   null,
+  modelSettings.userRelationWithModel
+);
+menu.makeAssociations(
+  { User, Menu },
+  modelSettings.menu,
   modelSettings.userRelationWithModel
 );
 menuAccessRoles.makeAssociations(
