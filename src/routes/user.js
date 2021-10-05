@@ -5,7 +5,7 @@ const { validation } = require("../middlewares/validation");
 const { authentication } = require("../middlewares/isAuth");
 const { loginSchema, registerSchema } = require("../validations/user");
 
-router.post("/register", validation(registerSchema), userController.register);
+router.post("/register", authentication, validation(registerSchema), userController.register);
 
 router.post("/login", validation(loginSchema), userController.login);
 

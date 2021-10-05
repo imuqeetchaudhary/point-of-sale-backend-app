@@ -1,13 +1,26 @@
 const roleService = require("../services/role");
+const menuAccessRoleService = require("../services/menu-access-roles/index");
 const Exceptions = require("../utils/custom-exceptions");
 
 exports.createRole = async (req, res) => {
-  const { description } = req.body;
+  const { description, menuIds } = req.body;
   const createdBy = req.user.userId;
 
   const role = await roleService.saveRole({ description, createdBy });
 
-  res.status(200).json({ message: "Successfully created new role", role });
+  const roleId = role.roleId;
+
+  const roleMenus = menuIds.map((menuId) => {
+    return { roleId, menuId, createdBy };
+  });
+
+  const menu = await menuAccessRoleService.saveRoleMenus({ roleMenus });
+
+  res.status(200).json({
+    message: "Successfully created new role & menu access role",
+    role,
+    menu,
+  });
 };
 
 exports.getAllRoles = async (req, res) => {
