@@ -34,6 +34,12 @@ const userAccessRoles = {
   },
 };
 
+const brand = {
+  modelName: "Brand",
+  tableName: "brand",
+  alias: {},
+};
+
 function userRelationWithModel(User, AssociatedModel, { isCreate }) {
   User.hasMany(AssociatedModel, {
     // as: isCreate ? "createdBy" : "updatedBy",
@@ -52,5 +58,6 @@ module.exports = {
   menu,
   menuAccessRoles,
   userAccessRoles,
+  brand,
   userRelationWithModel,
 };

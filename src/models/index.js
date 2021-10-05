@@ -18,6 +18,7 @@ const menuAccessRoles = require("./menu-access-roles");
 const role = require("./role");
 const menu = require("./menu");
 const userAccessRoles = require("./user-access-roles");
+const brand = require("./brand");
 
 // make models
 const User = user.makeModel(dbClient, DataTypes, modelSettings.user);
@@ -33,6 +34,7 @@ const UserAccessRoles = userAccessRoles.makeModel(
   DataTypes,
   modelSettings.userAccessRoles
 );
+const Brand = brand.makeModel(dbClient, DataTypes, modelSettings.brand);
 
 // make relations
 role.makeAssociations(
@@ -55,6 +57,11 @@ userAccessRoles.makeAssociations(
   modelSettings.userAccessRoles,
   modelSettings.userRelationWithModel
 );
+brand.makeAssociations(
+  { User, Brand },
+  modelSettings.brand,
+  modelSettings.userRelationWithModel
+);
 
 // assigns all models to db object
 db.User = User;
@@ -62,5 +69,6 @@ db.Role = Role;
 db.Menu = Menu;
 db.UserAccessRoles = UserAccessRoles;
 db.MenuAccessRoles = MenuAccessRoles;
+db.Brand = Brand;
 
 module.exports = db;

@@ -33,7 +33,7 @@ function makeAssociations(
   userAssociationWithOtherModel
 ) {
   Menu.hasMany(Menu, {
-    foreignKey: { name: "parent_id", allowNull: true },
+    foreignKey: { name: "parentId", allowNull: true },
     onUpdate: "CASCADE",
     onDelete: "NO ACTION",
   });
