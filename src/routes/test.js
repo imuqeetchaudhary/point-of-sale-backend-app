@@ -7,21 +7,19 @@ const userRolesService = require("../services/user-access-roles");
 
 const router = express.Router();
 router.get("/", async (_, res) => {
-  await user(res);
+  await role(res);
 });
 
 module.exports = router;
 
 async function user(res) {
-  const user = await userService.updateUser({
-    userId: 4,
-    // email: "asad@gmail.com",
-    displayName: "Hassan",
-    updatedBy: 1,
-    roleIds: [1, 2],
-  });
-  res.send({ user });
-
+  // const user = await userService.updateUser({
+  //   userId: 4,
+  //   displayName: "Hassan",
+  //   updatedBy: 1,
+  //   roleIds: [1, 2],
+  // });
+  // res.send({ user });
   // const user = await userService.saveUser({
   //   email: "hassan@gmail.com",
   //   displayName: "hassan",
@@ -65,8 +63,10 @@ async function role(res) {
   //   createdBy: 1,
   //   menus: [1],
   // });
+  // res.send({ role });
 
-  res.send({ role });
+  const roles = await roleService.listAllRolesForUser({ userId: 1 });
+  res.send({ roles });
 }
 
 async function menu(res) {

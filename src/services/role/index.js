@@ -1,3 +1,4 @@
+const sequelize = require("sequelize");
 const db = require("../../models");
 const roleUtils = require("./utils");
 const utils = require("../error-check.util");
@@ -7,6 +8,13 @@ async function listAllRoles() {
   return db.Role.findAll({
     attributes: ["roleId", "description"],
   });
+}
+
+async function listAllRolesForUser({ userId }) {
+  return db.sequelize.query(
+    roleUtils.queryForGetAndCheckRoleExistsForUser(userId),
+    { type: sequelize.QueryTypes.SELECT }
+  );
 }
 
 async function saveRole({ description, createdBy, menus }) {
@@ -89,4 +97,4 @@ async function updateRole({ roleId, description, updatedBy, menus }) {
   }
 }
 
-module.exports = { listAllRoles, saveRole, updateRole };
+module.exports = { listAllRoles, listAllRolesForUser, saveRole, updateRole };
