@@ -24,4 +24,10 @@ router.patch(
   menuController.updateMenu
 );
 
+router.get(
+  "/get-all-for-role/:id",
+  authentication,
+  menuController.getMenuForSingleRole
+);
+
 module.exports = router;
