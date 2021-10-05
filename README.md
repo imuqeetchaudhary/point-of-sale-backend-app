@@ -68,6 +68,7 @@
     description: String,
     link: String,
     parentId: Number,
+    icon: Image("formdata"),
 }
 ```
 
@@ -84,6 +85,7 @@
     description: String,
     link: String,
     parentId: Number,
+    icon: Image("formdata"),
 }
 ```
 
