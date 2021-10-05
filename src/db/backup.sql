@@ -27,19 +27,20 @@ CREATE TABLE `ad_menu` (
   `description` varchar(55) NOT NULL,
   `link` varchar(255) NOT NULL,
   `icon` varchar(500) DEFAULT NULL,
+  `parent_id` int unsigned DEFAULT NULL,
   `created_by` int unsigned NOT NULL,
-  `update_by` int unsigned NOT NULL,
+  `updated_by` int unsigned NOT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
-  `parent_id` int unsigned DEFAULT NULL,
   PRIMARY KEY (`menu_id`),
-  KEY `created_by` (`created_by`),
-  KEY `update_by` (`update_by`),
+  UNIQUE KEY `description` (`description`),
   KEY `parent_id` (`parent_id`),
-  CONSTRAINT `ad_menu_ibfk_1` FOREIGN KEY (`created_by`) REFERENCES `user` (`user_id`) ON UPDATE CASCADE,
-  CONSTRAINT `ad_menu_ibfk_2` FOREIGN KEY (`update_by`) REFERENCES `user` (`user_id`) ON UPDATE CASCADE,
-  CONSTRAINT `ad_menu_ibfk_3` FOREIGN KEY (`parent_id`) REFERENCES `ad_menu` (`menu_id`) ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  KEY `created_by` (`created_by`),
+  KEY `updated_by` (`updated_by`),
+  CONSTRAINT `ad_menu_ibfk_1` FOREIGN KEY (`parent_id`) REFERENCES `ad_menu` (`menu_id`) ON UPDATE CASCADE,
+  CONSTRAINT `ad_menu_ibfk_2` FOREIGN KEY (`created_by`) REFERENCES `user` (`user_id`) ON UPDATE CASCADE,
+  CONSTRAINT `ad_menu_ibfk_3` FOREIGN KEY (`updated_by`) REFERENCES `user` (`user_id`) ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -53,17 +54,18 @@ CREATE TABLE `ad_menu_access_roles` (
   `menu_id` int unsigned NOT NULL,
   `role_id` int unsigned NOT NULL,
   `created_by` int unsigned NOT NULL,
-  `update_by` int unsigned NOT NULL,
+  `updated_by` int unsigned NOT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
   PRIMARY KEY (`menu_id`,`role_id`),
+  UNIQUE KEY `ad_menu_access_roles_menuId_roleId_unique` (`menu_id`,`role_id`),
   KEY `role_id` (`role_id`),
   KEY `created_by` (`created_by`),
-  KEY `update_by` (`update_by`),
+  KEY `updated_by` (`updated_by`),
   CONSTRAINT `ad_menu_access_roles_ibfk_1` FOREIGN KEY (`menu_id`) REFERENCES `ad_menu` (`menu_id`) ON UPDATE CASCADE,
   CONSTRAINT `ad_menu_access_roles_ibfk_2` FOREIGN KEY (`role_id`) REFERENCES `ad_role` (`role_id`) ON UPDATE CASCADE,
   CONSTRAINT `ad_menu_access_roles_ibfk_3` FOREIGN KEY (`created_by`) REFERENCES `user` (`user_id`) ON UPDATE CASCADE,
-  CONSTRAINT `ad_menu_access_roles_ibfk_4` FOREIGN KEY (`update_by`) REFERENCES `user` (`user_id`) ON UPDATE CASCADE
+  CONSTRAINT `ad_menu_access_roles_ibfk_4` FOREIGN KEY (`updated_by`) REFERENCES `user` (`user_id`) ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -78,15 +80,16 @@ CREATE TABLE `ad_role` (
   `role_id` int unsigned NOT NULL AUTO_INCREMENT,
   `description` varchar(55) NOT NULL,
   `created_by` int unsigned NOT NULL,
-  `update_by` int unsigned NOT NULL,
+  `updated_by` int unsigned NOT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
   PRIMARY KEY (`role_id`),
+  UNIQUE KEY `description` (`description`),
   KEY `created_by` (`created_by`),
-  KEY `update_by` (`update_by`),
+  KEY `updated_by` (`updated_by`),
   CONSTRAINT `ad_role_ibfk_1` FOREIGN KEY (`created_by`) REFERENCES `user` (`user_id`) ON UPDATE CASCADE,
-  CONSTRAINT `ad_role_ibfk_2` FOREIGN KEY (`update_by`) REFERENCES `user` (`user_id`) ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  CONSTRAINT `ad_role_ibfk_2` FOREIGN KEY (`updated_by`) REFERENCES `user` (`user_id`) ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -100,17 +103,17 @@ CREATE TABLE `ad_user_access_roles` (
   `user_id` int unsigned NOT NULL,
   `role_id` int unsigned NOT NULL,
   `created_by` int unsigned NOT NULL,
-  `update_by` int unsigned NOT NULL,
+  `updated_by` int unsigned NOT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
   PRIMARY KEY (`user_id`,`role_id`),
   KEY `role_id` (`role_id`),
   KEY `created_by` (`created_by`),
-  KEY `update_by` (`update_by`),
+  KEY `updated_by` (`updated_by`),
   CONSTRAINT `ad_user_access_roles_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON UPDATE CASCADE,
   CONSTRAINT `ad_user_access_roles_ibfk_2` FOREIGN KEY (`role_id`) REFERENCES `ad_role` (`role_id`) ON UPDATE CASCADE,
   CONSTRAINT `ad_user_access_roles_ibfk_3` FOREIGN KEY (`created_by`) REFERENCES `user` (`user_id`) ON UPDATE CASCADE,
-  CONSTRAINT `ad_user_access_roles_ibfk_4` FOREIGN KEY (`update_by`) REFERENCES `user` (`user_id`) ON UPDATE CASCADE
+  CONSTRAINT `ad_user_access_roles_ibfk_4` FOREIGN KEY (`updated_by`) REFERENCES `user` (`user_id`) ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -128,13 +131,14 @@ CREATE TABLE `user` (
   `display_name` varchar(255) NOT NULL,
   `email` varchar(255) DEFAULT NULL,
   `auth_type` varchar(55) NOT NULL DEFAULT 'email',
-  `is_active` tinyint(1) DEFAULT '0',
+  `is_active` tinyint(1) DEFAULT '1',
   `is_admin` tinyint(1) DEFAULT '0',
   `is_superuser` tinyint(1) DEFAULT '0',
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
-  PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  PRIMARY KEY (`user_id`),
+  UNIQUE KEY `username` (`username`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -154,4 +158,4 @@ CREATE TABLE `user` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-10-04  8:09:09
+-- Dump completed on 2021-10-05 16:45:29
