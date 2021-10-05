@@ -17,6 +17,7 @@ const user = require("./user");
 const menuAccessRoles = require("./menu-access-roles");
 const role = require("./role");
 const menu = require("./menu");
+const userAccessRoles = require("./user-access-roles");
 
 // make models
 const User = user.makeModel(dbClient, DataTypes, modelSettings.user);
@@ -27,11 +28,14 @@ const MenuAccessRoles = menuAccessRoles.makeModel(
   DataTypes,
   modelSettings.menuAccessRoles
 );
-// const Menu = require("./menu")(dbClient, DataTypes, { User });
-const UserAccessRoles = require("./user-access-roles")(dbClient, DataTypes, {
+const UserAccessRoles = userAccessRoles.makeModel(dbClient, DataTypes, {
   User,
   Role,
 });
+// const UserAccessRoles = require("./user-access-roles")(dbClient, DataTypes, {
+//   User,
+//   Role,
+// });
 
 // add relations with models
 // Menu.hasMany(Menu, {

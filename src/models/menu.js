@@ -20,27 +20,6 @@ function makeModel(sequelize, DataTypes, settings) {
       parentId: DataTypes.INTEGER.UNSIGNED,
       createdBy: DataTypes.INTEGER.UNSIGNED,
       updatedBy: DataTypes.INTEGER.UNSIGNED,
-
-      // createdBy: {
-      //   type: DataTypes.INTEGER.UNSIGNED,
-      //   allowNull: false,
-      //   references: {
-      //     model: User,
-      //     key: "user_id",
-      //   },
-      //   onUpdate: "CASCADE",
-      //   onDelete: "NO ACTION",
-      // },
-      // updatedBy: {
-      //   type: DataTypes.INTEGER.UNSIGNED,
-      //   allowNull: false,
-      //   references: {
-      //     model: User,
-      //     key: "user_id",
-      //   },
-      //   onUpdate: "CASCADE",
-      //   onDelete: "NO ACTION",
-      // },
     },
     { underscored: true, tableName: settings.tableName }
   );
