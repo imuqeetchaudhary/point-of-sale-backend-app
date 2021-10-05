@@ -23,17 +23,34 @@ async function saveRole({ description, createdBy }) {
   }
 }
 
-async function updateRole({ roleId, description, updatedBy }) {
+async function updateRole({ roleId, description, updatedBy, roleMenus }) {
+  const _roleMenus = roleMenus.map((menu) => {
+    return {
+      menuId: menu,
+      roleId: roleId,
+      updatedBy,
+      createdBy: updatedBy,
+    };
+  });
+  const trans = await db.sequelize.transaction();
+
   try {
+    await db.MenuAccessRoles.destroy({ where: { roleId } });
+
     const role = await db.Role.update(
       { description, updatedBy },
       { where: { roleId } }
     );
-
     if (utils.isRecordFound(role)) {
       throw new Exceptions.NotFound({ message: "Role is not found" });
     }
+
+    const record = await db.MenuAccessRoles.bulkCreate([..._roleMenus]);
+    console.log("record: ", record);
+    await trans.commit();
   } catch (err) {
+    trans.rollback();
+
     roleUtils.throwErrorWhenCreateOrUpdate(err);
     throw err;
   }

@@ -23,21 +23,21 @@ function makeAssociations(
   Role.belongsToMany(Menu, {
     through: MenuAccessRoles,
     as: settings.alias.asMenu,
-    foreignKey: "role_id",
-    otherKey: "menu_id",
+    foreignKey: "roleId",
+    otherKey: "menuId",
     onUpdate: "CASCADE",
     onDelete: "NO ACTION",
   });
   Menu.belongsToMany(Role, {
     through: MenuAccessRoles,
     as: settings.alias.asRole,
-    foreignKey: "menu_id",
-    otherKey: "role_id",
+    foreignKey: "menuId",
+    otherKey: "roleId",
     onUpdate: "CASCADE",
     onDelete: "NO ACTION",
   });
-  MenuAccessRoles.belongsTo(Role, { foreignKey: "role_id" });
-  MenuAccessRoles.belongsTo(Menu, { foreignKey: "menu_id" });
+  MenuAccessRoles.belongsTo(Role, { foreignKey: "roleId" });
+  MenuAccessRoles.belongsTo(Menu, { foreignKey: "menuId" });
 
   userAssociationWithOtherModel(User, MenuAccessRoles, { isCreate: true });
   userAssociationWithOtherModel(User, MenuAccessRoles, { isCreate: false });

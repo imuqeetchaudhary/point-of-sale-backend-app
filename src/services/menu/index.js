@@ -33,10 +33,17 @@ async function saveMenu({ description, link, parentId, createdBy }) {
   }
 }
 
-async function updateMenu({ menuId, description, link, parentId, updatedBy }) {
+async function updateMenu({
+  menuId,
+  description,
+  icon,
+  link,
+  parentId,
+  updatedBy,
+}) {
   try {
     const menu = await db.Menu.update(
-      { description, link, parentId, updatedBy },
+      { description, icon, link, parentId, updatedBy },
       { where: { menuId } }
     );
 
