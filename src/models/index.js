@@ -41,7 +41,7 @@ Menu.hasMany(Menu, {
   onDelete: "NO ACTION",
 });
 
-menuAccessRoles.makeAssociations({ Role, Menu, MenuAccessRoles });
+menuAccessRoles.makeAssociations({ Role, Menu, MenuAccessRoles, User });
 // Role.belongsToMany(Menu, {
 //   through: MenuAccessRoles,
 //   foreignKey: "role_id",

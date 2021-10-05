@@ -14,7 +14,7 @@ async function listRoleMenus({ roleId }) {
   //     },
   //   ],
   // });
-  return db.Role.findAll({ include: [{ model: db.Menu, as: "menus" }] });
+  return db.Role.findAll({ include: [{ model: db.Menu, as: "menu" }] });
 }
 
 async function saveRoleMenus({ roleMenus }) {
