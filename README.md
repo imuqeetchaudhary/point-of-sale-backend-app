@@ -33,13 +33,14 @@
 
 ## Routes for Role
 
-### to create a new role
+### to create a new role & menu access role
 
 - role/create :post :protected
 
 ```js
 {
     description: String,
+    menuIds: Number[],
 }
 ```
 
@@ -89,7 +90,7 @@
 }
 ```
 
-## Routes for Menu Access Role
+<!-- ## Routes for Menu Access Role
 
 ### to create a menu access role
 
@@ -100,4 +101,4 @@
     roleId: Number,
     menuIds: Number[],
 }
-```
+``` -->
