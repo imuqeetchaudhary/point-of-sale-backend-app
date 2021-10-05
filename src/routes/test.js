@@ -6,7 +6,7 @@ const userRolesService = require("../services/user-access-roles");
 
 const router = express.Router();
 router.get("/", async (_, res) => {
-  await roleMenus(res);
+  await menu(res);
 });
 
 module.exports = router;
@@ -36,11 +36,8 @@ async function role(res) {
 }
 
 async function menu(res) {
-  const menu = await menuService.saveMenu({
-    description: "php",
-    link: "/programming/php",
-    createdBy: 1,
-    // parentId: 1,
+  const menu = await menuService.listAllMenusForRole({
+    roleId: 2,
   });
   res.send({ menu });
 }

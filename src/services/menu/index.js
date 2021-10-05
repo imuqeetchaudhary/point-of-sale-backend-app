@@ -1,3 +1,4 @@
+const sequelize = require("sequelize");
 const db = require("../../models");
 const menuUtils = require("./util");
 const utils = require("../error-check.util");
@@ -7,6 +8,13 @@ async function listAllMenus() {
   return db.Menu.findAll({
     attributes: ["menuId", "description", "link", "icon", "parentId"],
   });
+}
+
+async function listAllMenusForRole({ roleId }) {
+  return db.sequelize.query(
+    menuUtils.queryForGetAndCheckMenuExistsForRole(roleId),
+    { type: sequelize.QueryTypes.SELECT }
+  );
 }
 
 async function saveMenu({ description, link, parentId, createdBy }) {
@@ -41,4 +49,4 @@ async function updateMenu({ menuId, description, link, parentId, updatedBy }) {
   }
 }
 
-module.exports = { listAllMenus, saveMenu, updateMenu };
+module.exports = { listAllMenus, listAllMenusForRole, saveMenu, updateMenu };
