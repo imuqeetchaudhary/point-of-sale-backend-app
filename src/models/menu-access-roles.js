@@ -1,4 +1,4 @@
-module.exports = (sequelize, DataTypes, { User, Role, Menu }) => {
+function makeModel(sequelize, DataTypes, { User, Role, Menu }) {
   const MenuAccessRoles = sequelize.define(
     "MenuAccessRoles",
     {
@@ -47,4 +47,27 @@ module.exports = (sequelize, DataTypes, { User, Role, Menu }) => {
   );
 
   return MenuAccessRoles;
-};
+}
+
+// module.exports = (sequelize, DataTypes, { User, Role, Menu }) => {};
+
+function makeAssociations({ Role, Menu, MenuAccessRoles }) {
+  Role.belongsToMany(Menu, {
+    through: MenuAccessRoles,
+    foreignKey: "role_id",
+    otherKey: "menu_id",
+    onUpdate: "CASCADE",
+    onDelete: "NO ACTION",
+  });
+  Menu.belongsToMany(Role, {
+    through: MenuAccessRoles,
+    foreignKey: "menu_id",
+    otherKey: "role_id",
+    onUpdate: "CASCADE",
+    onDelete: "NO ACTION",
+  });
+  MenuAccessRoles.belongsTo(Role, { foreignKey: "role_id" });
+  MenuAccessRoles.belongsTo(Menu, { foreignKey: "menu_id" });
+}
+
+module.exports = { makeModel, makeAssociations };

@@ -20,7 +20,15 @@ const UserAccessRoles = require("./user-access-roles")(dbClient, DataTypes, {
   User,
   Role,
 });
-const MenuAccessRoles = require("./menu-access-roles")(dbClient, DataTypes, {
+// const MenuAccessRoles = require("./menu-access-roles")(dbClient, DataTypes, {
+//   User,
+//   Role,
+//   Menu,
+// });
+const menuAccessRoles = require("./menu-access-roles");
+
+// make models
+const MenuAccessRoles = menuAccessRoles.makeModel(dbClient, DataTypes, {
   User,
   Role,
   Menu,
@@ -33,18 +41,19 @@ Menu.hasMany(Menu, {
   onDelete: "NO ACTION",
 });
 
-Role.belongsToMany(Menu, {
-  through: MenuAccessRoles,
-  foreignKey: "role_id",
-  otherKey: "menu_id",
-});
-Menu.belongsToMany(Role, {
-  through: MenuAccessRoles,
-  foreignKey: "menu_id",
-  otherKey: "role_id",
-});
-MenuAccessRoles.belongsTo(Role, { foreignKey: "role_id" });
-MenuAccessRoles.belongsTo(Menu, { foreignKey: "menu_id" });
+menuAccessRoles.makeAssociations({ Role, Menu, MenuAccessRoles });
+// Role.belongsToMany(Menu, {
+//   through: MenuAccessRoles,
+//   foreignKey: "role_id",
+//   otherKey: "menu_id",
+// });
+// Menu.belongsToMany(Role, {
+//   through: MenuAccessRoles,
+//   foreignKey: "menu_id",
+//   otherKey: "role_id",
+// });
+// MenuAccessRoles.belongsTo(Role, { foreignKey: "role_id" });
+// MenuAccessRoles.belongsTo(Menu, { foreignKey: "menu_id" });
 
 // Role.belongsToMany(Menu, {
 //   through: MenuAccessRoles,

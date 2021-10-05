@@ -13,7 +13,7 @@
       "freezeTableName": true
     },
 
-    "forceSync": false
+    "forceSync": true
   },
   "jwt": {
     "secret": "464ab77f2905092a4a31eb08386ac41be7113671ac8402f4fc2a34985e36944be5706421aa67d220997"
