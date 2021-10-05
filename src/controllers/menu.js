@@ -1,4 +1,4 @@
-const menuService = require("../services/menu");
+const menuService = require("../services/menu/index");
 const Exceptions = require("../utils/custom-exceptions");
 
 exports.createMenu = async (req, res) => {
@@ -38,4 +38,12 @@ exports.updateMenu = async (req, res) => {
   });
 
   res.status(200).json({ message: "Successfully updated menu" });
+};
+
+exports.getMenuForSingleRole = async (req, res) => {
+  const { id } = req.params;
+
+  const menu = await menuService.listAllMenusForRole({ roleId: id });
+
+  res.status(200).json({ menu });
 };

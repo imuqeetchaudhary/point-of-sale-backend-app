@@ -51,6 +51,10 @@
 
 - menu/get-all :get :protected
 
+### to get all menu for a specific role id
+
+- menu/get-all-for-role/:id :get :protected (where id stands for roleId)
+
 ### to update a new menu
 
 - menu/update/:id: :post :protected
@@ -88,5 +92,6 @@
 ```js
 {
     description: String,
+    menuIds: Number[],
 }
 ```
