@@ -1,4 +1,5 @@
 const express = require("express");
+const userService = require("../services/user");
 const roleService = require("../services/role");
 const menuService = require("../services/menu");
 const roleMenuService = require("../services/menu-access-roles");
@@ -6,10 +7,21 @@ const userRolesService = require("../services/user-access-roles");
 
 const router = express.Router();
 router.get("/", async (_, res) => {
-  await role(res);
+  await user(res);
 });
 
 module.exports = router;
+
+async function user(res) {
+  const user = await userService.saveUser({
+    email: "asad@gmail.com",
+    displayName: "asad",
+    password: "password",
+    createdBy: 1,
+    roleIds: [1],
+  });
+  res.send({ user });
+}
 
 async function userRoles(res) {
   const userRoles = [{ userId: 1, roleId: 1, createdBy: 1 }];

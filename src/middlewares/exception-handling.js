@@ -5,7 +5,7 @@ module.exports = async function (err, _, res, next) {
   let message = "Server error";
   let errors = [];
 
-  console.log("ex handling", err);
+  // console.log("ex handling", err);
 
   if (err instanceof Exceptions.HttpError) {
     if (err instanceof Exceptions.ValidationError) {

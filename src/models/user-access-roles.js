@@ -21,21 +21,21 @@ function makeAssociations(
   User.belongsToMany(Role, {
     through: UserAccessRoles,
     as: settings.alias.asRole,
-    foreignKey: "user_id",
-    otherKey: "role_id",
+    foreignKey: "userId",
+    otherKey: "roleId",
     onUpdate: "CASCADE",
     onDelete: "NO ACTION",
   });
   Role.belongsToMany(User, {
     through: UserAccessRoles,
     as: settings.alias.asUser,
-    foreignKey: "role_id",
-    otherKey: "user_id",
+    foreignKey: "roleId",
+    otherKey: "userId",
     onUpdate: "CASCADE",
     onDelete: "NO ACTION",
   });
-  UserAccessRoles.belongsTo(User, { foreignKey: "user_id" });
-  UserAccessRoles.belongsTo(Role, { foreignKey: "role_id" });
+  UserAccessRoles.belongsTo(User, { foreignKey: "userId" });
+  UserAccessRoles.belongsTo(Role, { foreignKey: "roleId" });
 
   userAssociationWithOtherModel(User, UserAccessRoles, { isCreate: true });
   userAssociationWithOtherModel(User, UserAccessRoles, { isCreate: false });
