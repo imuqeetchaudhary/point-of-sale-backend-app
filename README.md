@@ -6,13 +6,14 @@
 
 ### to register a user
 
-- user/register :post
+- user/register :post :protected
 
 ```js
 {
     email: String,
     password: String,
     displayName: String,
+    roleIds: Number[],
 }
 ```
 
@@ -30,33 +31,6 @@
 ### to get user profile
 
 - user/profile/:id: :get :protected
-
-## Routes for Role
-
-### to create a new role & menu access role
-
-- role/create :post :protected
-
-```js
-{
-    description: String,
-    menuIds: Number[],
-}
-```
-
-### to get all role
-
-- role/get-all :get :protected
-
-### to update a role
-
-- role/update/:id: :post :protected
-
-```js
-{
-    description: String,
-}
-```
 
 ## Routes for Menu
 
@@ -87,6 +61,33 @@
     link: String,
     parentId: Number,
     icon: Image("formdata"),
+}
+```
+
+## Routes for Role
+
+### to create a new role & menu access role
+
+- role/create :post :protected
+
+```js
+{
+    description: String,
+    menuIds: Number[],
+}
+```
+
+### to get all role
+
+- role/get-all :get :protected
+
+### to update a role
+
+- role/update/:id: :post :protected
+
+```js
+{
+    description: String,
 }
 ```
 
