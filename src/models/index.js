@@ -19,7 +19,7 @@ const user = require("./user");
 const menuAccessRoles = require("./menu-access-roles");
 
 // make models
-const User = user.makeModel(dbClient, DataTypes);
+const User = user.makeModel(dbClient, DataTypes, modelSettings.user);
 const MenuAccessRoles = menuAccessRoles.makeModel(
   dbClient,
   DataTypes,

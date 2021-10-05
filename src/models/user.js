@@ -1,6 +1,6 @@
 function makeModel(sequelize, DataTypes, settings) {
   const User = sequelize.define(
-    "User",
+    settings.modelName,
     {
       userId: {
         type: DataTypes.INTEGER.UNSIGNED,
@@ -43,7 +43,7 @@ function makeModel(sequelize, DataTypes, settings) {
         defaultValue: false,
       },
     },
-    { underscored: true, tableName: "user" }
+    { underscored: true, tableName: settings.tableName }
   );
 
   return User;
