@@ -10,6 +10,12 @@ const role = {
   alias: {},
 };
 
+const menu = {
+  modelName: "Menu",
+  tableName: "ad_menu",
+  alias: {},
+};
+
 const menuAccessRoles = {
   modelName: "MenuAccessRoles",
   tableName: "ad_menu_access_roles",
@@ -31,4 +37,4 @@ function userRelationWithModel(User, AssociatedModel, { isCreate }) {
   });
 }
 
-module.exports = { user, role, menuAccessRoles, userRelationWithModel };
+module.exports = { user, role, menu, menuAccessRoles, userRelationWithModel };

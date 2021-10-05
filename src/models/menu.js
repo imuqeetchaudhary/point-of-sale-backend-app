@@ -1,6 +1,6 @@
-function makeModel(sequelize, DataTypes, { User }) {
+function makeModel(sequelize, DataTypes, settings) {
   const Menu = sequelize.define(
-    "Menu",
+    settings.modelName,
     {
       menuId: {
         type: DataTypes.INTEGER.UNSIGNED,
@@ -18,28 +18,31 @@ function makeModel(sequelize, DataTypes, { User }) {
       },
       icon: DataTypes.STRING(500),
       parentId: DataTypes.INTEGER.UNSIGNED,
-      createdBy: {
-        type: DataTypes.INTEGER.UNSIGNED,
-        allowNull: false,
-        references: {
-          model: User,
-          key: "user_id",
-        },
-        onUpdate: "CASCADE",
-        onDelete: "NO ACTION",
-      },
-      updatedBy: {
-        type: DataTypes.INTEGER.UNSIGNED,
-        allowNull: false,
-        references: {
-          model: User,
-          key: "user_id",
-        },
-        onUpdate: "CASCADE",
-        onDelete: "NO ACTION",
-      },
+      createdBy: DataTypes.INTEGER.UNSIGNED,
+      updatedBy: DataTypes.INTEGER.UNSIGNED,
+
+      // createdBy: {
+      //   type: DataTypes.INTEGER.UNSIGNED,
+      //   allowNull: false,
+      //   references: {
+      //     model: User,
+      //     key: "user_id",
+      //   },
+      //   onUpdate: "CASCADE",
+      //   onDelete: "NO ACTION",
+      // },
+      // updatedBy: {
+      //   type: DataTypes.INTEGER.UNSIGNED,
+      //   allowNull: false,
+      //   references: {
+      //     model: User,
+      //     key: "user_id",
+      //   },
+      //   onUpdate: "CASCADE",
+      //   onDelete: "NO ACTION",
+      // },
     },
-    { underscored: true, tableName: "ad_menu" }
+    { underscored: true, tableName: settings.tableName }
   );
 
   return Menu;

@@ -21,7 +21,7 @@ const menu = require("./menu");
 // make models
 const User = user.makeModel(dbClient, DataTypes, modelSettings.user);
 const Role = role.makeModel(dbClient, DataTypes, modelSettings.role);
-const Menu = menu.makeModel(dbClient, DataTypes, { User });
+const Menu = menu.makeModel(dbClient, DataTypes, modelSettings.menu);
 const MenuAccessRoles = menuAccessRoles.makeModel(
   dbClient,
   DataTypes,
