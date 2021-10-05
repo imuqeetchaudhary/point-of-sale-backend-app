@@ -1,4 +1,4 @@
-module.exports = (sequelize, DataTypes, { User }) => {
+function makeModel(sequelize, DataTypes, { User }) {
   const Menu = sequelize.define(
     "Menu",
     {
@@ -43,7 +43,9 @@ module.exports = (sequelize, DataTypes, { User }) => {
   );
 
   return Menu;
-};
+}
+
+module.exports = { makeModel };
 
 // const { Sequelize, DataTypes } = require("sequelize");
 // const sequelize = new Sequelize();

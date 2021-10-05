@@ -16,16 +16,18 @@ db.sequelize = dbClient;
 const user = require("./user");
 const menuAccessRoles = require("./menu-access-roles");
 const role = require("./role");
+const menu = require("./menu");
 
 // make models
 const User = user.makeModel(dbClient, DataTypes, modelSettings.user);
 const Role = role.makeModel(dbClient, DataTypes, modelSettings.role);
+const Menu = menu.makeModel(dbClient, DataTypes, { User });
 const MenuAccessRoles = menuAccessRoles.makeModel(
   dbClient,
   DataTypes,
   modelSettings.menuAccessRoles
 );
-const Menu = require("./menu")(dbClient, DataTypes, { User });
+// const Menu = require("./menu")(dbClient, DataTypes, { User });
 const UserAccessRoles = require("./user-access-roles")(dbClient, DataTypes, {
   User,
   Role,
