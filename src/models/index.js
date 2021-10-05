@@ -28,10 +28,11 @@ const MenuAccessRoles = menuAccessRoles.makeModel(
   DataTypes,
   modelSettings.menuAccessRoles
 );
-const UserAccessRoles = userAccessRoles.makeModel(dbClient, DataTypes, {
-  User,
-  Role,
-});
+const UserAccessRoles = userAccessRoles.makeModel(
+  dbClient,
+  DataTypes,
+  modelSettings.userAccessRoles
+);
 // const UserAccessRoles = require("./user-access-roles")(dbClient, DataTypes, {
 //   User,
 //   Role,
