@@ -7,7 +7,7 @@ const menuAccessRoles = {
   },
 };
 
-function userRelationWithModel(User, AssociatedModel, isCreate = true) {
+function userRelationWithModel(User, AssociatedModel, { isCreate }) {
   User.hasMany(AssociatedModel, {
     as: isCreate ? "createdBy" : "updatedBy",
     foreignKey: {

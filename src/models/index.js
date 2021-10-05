@@ -1,5 +1,6 @@
 const config = require("config");
 const { Sequelize, DataTypes } = require("sequelize");
+const modelSettings = require("./settings.utils");
 
 function init() {
   const sequelize = new Sequelize({ ...config.get("db") });
@@ -28,11 +29,11 @@ const UserAccessRoles = require("./user-access-roles")(dbClient, DataTypes, {
 const menuAccessRoles = require("./menu-access-roles");
 
 // make models
-const MenuAccessRoles = menuAccessRoles.makeModel(dbClient, DataTypes, {
-  User,
-  Role,
-  Menu,
-});
+const MenuAccessRoles = menuAccessRoles.makeModel(
+  dbClient,
+  DataTypes,
+  modelSettings.menuAccessRoles
+);
 
 // add relations with models
 Menu.hasMany(Menu, {
@@ -41,7 +42,11 @@ Menu.hasMany(Menu, {
   onDelete: "NO ACTION",
 });
 
-menuAccessRoles.makeAssociations({ Role, Menu, MenuAccessRoles, User });
+menuAccessRoles.makeAssociations(
+  { Role, Menu, MenuAccessRoles, User },
+  modelSettings.menuAccessRoles,
+  modelSettings.userRelationWithModel
+);
 // Role.belongsToMany(Menu, {
 //   through: MenuAccessRoles,
 //   foreignKey: "role_id",
