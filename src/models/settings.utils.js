@@ -38,7 +38,7 @@ function userRelationWithModel(User, AssociatedModel, { isCreate }) {
   User.hasMany(AssociatedModel, {
     // as: isCreate ? "createdBy" : "updatedBy",
     foreignKey: {
-      name: isCreate ? "created_by" : "updated_by",
+      name: isCreate ? "createdBy" : "updatedBy",
       allowNull: false,
     },
     onUpdate: "CASCADE",

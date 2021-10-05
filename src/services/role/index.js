@@ -9,22 +9,41 @@ async function listAllRoles() {
   });
 }
 
-async function saveRole({ description, createdBy }) {
+async function saveRole({ description, createdBy, menus }) {
+  const trans = await db.sequelize.transaction();
+
   try {
     const role = await db.Role.create({
       description,
       createdBy,
       updatedBy: createdBy,
     });
+
+    console.log("roleId: ", role.roleId);
+    const _roleMenus = menus.map((menu) => {
+      return {
+        menuId: menu,
+        roleId: role.roleId,
+        createdBy,
+        updatedBy: createdBy,
+      };
+    });
+    console.log(_roleMenus);
+
+    await db.MenuAccessRoles.bulkCreate([..._roleMenus]);
+
+    await trans.commit();
     return role;
   } catch (err) {
+    await trans.rollback();
+
     roleUtils.throwErrorWhenCreateOrUpdate(err);
     throw err;
   }
 }
 
-async function updateRole({ roleId, description, updatedBy, roleMenus }) {
-  const _roleMenus = roleMenus.map((menu) => {
+async function updateRole({ roleId, description, updatedBy, menus }) {
+  const _roleMenus = menus.map((menu) => {
     return {
       menuId: menu,
       roleId: roleId,
@@ -45,8 +64,7 @@ async function updateRole({ roleId, description, updatedBy, roleMenus }) {
       throw new Exceptions.NotFound({ message: "Role is not found" });
     }
 
-    const record = await db.MenuAccessRoles.bulkCreate([..._roleMenus]);
-    console.log("record: ", record);
+    await db.MenuAccessRoles.bulkCreate([..._roleMenus]);
     await trans.commit();
   } catch (err) {
     trans.rollback();
