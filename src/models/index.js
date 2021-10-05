@@ -12,28 +12,25 @@ const getDbClient = init();
 const dbClient = getDbClient();
 
 const db = {};
-
 db.sequelize = dbClient;
-const User = require("./user")(dbClient, DataTypes);
+
+// imports all models
+const user = require("./user");
+const menuAccessRoles = require("./menu-access-roles");
+
+// make models
+const User = user.makeModel(dbClient, DataTypes);
+const MenuAccessRoles = menuAccessRoles.makeModel(
+  dbClient,
+  DataTypes,
+  modelSettings.menuAccessRoles
+);
 const Role = require("./role")(dbClient, DataTypes, { User });
 const Menu = require("./menu")(dbClient, DataTypes, { User });
 const UserAccessRoles = require("./user-access-roles")(dbClient, DataTypes, {
   User,
   Role,
 });
-// const MenuAccessRoles = require("./menu-access-roles")(dbClient, DataTypes, {
-//   User,
-//   Role,
-//   Menu,
-// });
-const menuAccessRoles = require("./menu-access-roles");
-
-// make models
-const MenuAccessRoles = menuAccessRoles.makeModel(
-  dbClient,
-  DataTypes,
-  modelSettings.menuAccessRoles
-);
 
 // add relations with models
 Menu.hasMany(Menu, {

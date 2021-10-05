@@ -1,4 +1,4 @@
-module.exports = (sequelize, DataTypes) => {
+function makeModel(sequelize, DataTypes, settings) {
   const User = sequelize.define(
     "User",
     {
@@ -47,4 +47,6 @@ module.exports = (sequelize, DataTypes) => {
   );
 
   return User;
-};
+}
+
+module.exports = { makeModel };
