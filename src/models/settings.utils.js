@@ -20,15 +20,18 @@ const menuAccessRoles = {
   modelName: "MenuAccessRoles",
   tableName: "ad_menu_access_roles",
   alias: {
-    asRole: "role",
-    asMenu: "menu",
+    asRole: "mar_role",
+    asMenu: "mar_menu",
   },
 };
 
 const userAccessRoles = {
   modelName: "UserAccessRoles",
   tableName: "ad_user_access_roles",
-  alias: {},
+  alias: {
+    asRole: "uar_role",
+    asUser: "uar:user",
+  },
 };
 
 function userRelationWithModel(User, AssociatedModel, { isCreate }) {
