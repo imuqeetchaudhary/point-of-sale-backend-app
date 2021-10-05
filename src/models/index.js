@@ -19,7 +19,7 @@ const role = require("./role");
 
 // make models
 const User = user.makeModel(dbClient, DataTypes, modelSettings.user);
-const Role = role.makeModel(dbClient, DataTypes, { User });
+const Role = role.makeModel(dbClient, DataTypes, modelSettings.role);
 const MenuAccessRoles = menuAccessRoles.makeModel(
   dbClient,
   DataTypes,
@@ -38,6 +38,11 @@ Menu.hasMany(Menu, {
   onDelete: "NO ACTION",
 });
 
+role.makeAssociations(
+  { User, Role },
+  null,
+  modelSettings.userRelationWithModel
+);
 menuAccessRoles.makeAssociations(
   { Role, Menu, MenuAccessRoles, User },
   modelSettings.menuAccessRoles,

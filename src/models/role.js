@@ -1,6 +1,6 @@
-function makeModel(sequelize, DataTypes, { User }) {
+function makeModel(sequelize, DataTypes, settings) {
   const Role = sequelize.define(
-    "Role",
+    settings.modelName,
     {
       roleId: {
         type: DataTypes.INTEGER.UNSIGNED,
@@ -12,31 +12,22 @@ function makeModel(sequelize, DataTypes, { User }) {
         allowNull: false,
         unique: true,
       },
-      createdBy: {
-        type: DataTypes.INTEGER.UNSIGNED,
-        allowNull: false,
-        references: {
-          model: User,
-          key: "user_id",
-        },
-        onUpdate: "CASCADE",
-        onDelete: "NO ACTION",
-      },
-      updatedBy: {
-        type: DataTypes.INTEGER.UNSIGNED,
-        allowNull: false,
-        references: {
-          model: User,
-          key: "user_id",
-        },
-        onUpdate: "CASCADE",
-        onDelete: "NO ACTION",
-      },
+      createdBy: DataTypes.INTEGER.UNSIGNED,
+      updatedBy: DataTypes.INTEGER.UNSIGNED,
     },
-    { underscored: true, tableName: "ad_role" }
+    { underscored: true, tableName: settings.tableName }
   );
 
   return Role;
 }
 
-module.exports = { makeModel };
+function makeAssociations(
+  { User, Role },
+  settings,
+  userAssociationWithOtherModel
+) {
+  userAssociationWithOtherModel(User, Role, { isCreate: true });
+  userAssociationWithOtherModel(User, Role, { isCreate: false });
+}
+
+module.exports = { makeModel, makeAssociations };
