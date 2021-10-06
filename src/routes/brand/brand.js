@@ -14,4 +14,6 @@ router.post(
 
 router.get("/get-all", authentication, brandController.getAllBrands);
 
+router.get("/get/:id", authentication, brandController.getSingleBrands);
+
 module.exports = router;

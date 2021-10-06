@@ -111,3 +111,7 @@
 ### to get all brands
 
 - brand/get-all :get :protected
+
+### to get single brand
+
+- brand/get/:id: :get :protected

@@ -13,3 +13,11 @@ exports.getAllBrands = async (req, res) => {
   const brand = await brandService.listAllBrands();
   res.status(200).json({ brand });
 };
+
+exports.getSingleBrands = async (req, res) => {
+  const { id } = req.params;
+  const brandId = id;
+  
+  const brand = await brandService.singleBrand({ brandId });
+  res.status(200).json({ brand });
+};
