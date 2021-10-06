@@ -17,7 +17,21 @@ exports.getAllBrands = async (req, res) => {
 exports.getSingleBrands = async (req, res) => {
   const { id } = req.params;
   const brandId = id;
-  
+
   const brand = await brandService.singleBrand({ brandId });
   res.status(200).json({ brand });
+};
+
+exports.updateBrand = async (req, res) => {
+  const { id } = req.params;
+  const { description } = req.body;
+  const brandId = id;
+  const actionPerformBy = req.user.userId;
+
+  const updateBrand = brandService.updateBrand({
+    brandId,
+    description,
+    actionPerformBy,
+  });
+  res.status(200).json({ message: "Successfully updated brand" });
 };

@@ -16,4 +16,11 @@ router.get("/get-all", authentication, brandController.getAllBrands);
 
 router.get("/get/:id", authentication, brandController.getSingleBrands);
 
+router.patch(
+  "/update/:id",
+  authentication,
+  validation(createBrandSchema),
+  brandController.updateBrand
+);
+
 module.exports = router;

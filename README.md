@@ -115,3 +115,13 @@
 ### to get single brand
 
 - brand/get/:id: :get :protected
+
+### to update a brand
+
+- brand/update/:id: :post :protected
+
+```js
+{
+    description: String,
+}
+```
