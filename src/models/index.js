@@ -17,12 +17,13 @@ db.sequelize = dbClient;
 // const role = require("./role");
 // const menu = require("./menu");
 // const menuAccessRoles = require("./menu-access-roles");
-const userAccessRoles = require("./user-access-roles");
+// const userAccessRoles = require("./user-access-roles");
 // const brand = require("./brand");
 const user = require("./user/index");
 const role = require("./role/index");
 const menu = require("./menu/index");
 const menuAccessRoles = require("./menu-access-roles/index");
+const userAccessRoles = require("./user-access-roles/index");
 const brand = require("./brand/index");
 
 // make models
@@ -35,11 +36,11 @@ const brand = require("./brand/index");
 //   DataTypes,
 //   modelSettings.menuAccessRoles
 // );
-const UserAccessRoles = userAccessRoles.makeModel(
-  dbClient,
-  DataTypes,
-  modelSettings.userAccessRoles
-);
+// const UserAccessRoles = userAccessRoles.makeModel(
+//   dbClient,
+//   DataTypes,
+//   modelSettings.userAccessRoles
+// );
 // const Brand = brand.makeModel(dbClient, DataTypes, modelSettings.brand);
 const User = user.init(dbClient, DataTypes);
 const Role = role.init(dbClient, DataTypes, { User });
@@ -48,6 +49,10 @@ const MenuAccessRoles = menuAccessRoles.init(dbClient, DataTypes, {
   User,
   Role,
   Menu,
+});
+const UserAccessRoles = userAccessRoles.init(dbClient, DataTypes, {
+  User,
+  Role,
 });
 const Brand = brand.init(dbClient, DataTypes, { User });
 
@@ -67,11 +72,11 @@ const Brand = brand.init(dbClient, DataTypes, { User });
 //   modelSettings.menuAccessRoles,
 //   modelSettings.userRelationWithModel
 // );
-userAccessRoles.makeAssociations(
-  { User, Role, UserAccessRoles },
-  modelSettings.userAccessRoles,
-  modelSettings.userRelationWithModel
-);
+// userAccessRoles.makeAssociations(
+//   { User, Role, UserAccessRoles },
+//   modelSettings.userAccessRoles,
+//   modelSettings.userRelationWithModel
+// );
 // brand.makeAssociations(
 //   { User, Brand },
 //   modelSettings.brand,
@@ -82,8 +87,8 @@ userAccessRoles.makeAssociations(
 db.User = User;
 db.Role = Role;
 db.Menu = Menu;
-db.UserAccessRoles = UserAccessRoles;
 db.MenuAccessRoles = MenuAccessRoles;
+db.UserAccessRoles = UserAccessRoles;
 db.Brand = Brand;
 
 module.exports = db;
