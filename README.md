@@ -118,10 +118,14 @@
 
 ### to update a brand
 
-- brand/update/:id: :post :protected
+- brand/update/:id: :patch :protected
 
 ```js
 {
     description: String,
 }
 ```
+
+### t0 delete a brand
+
+- brand/delete/:id: :delete :protected

@@ -35,3 +35,11 @@ exports.updateBrand = async (req, res) => {
   });
   res.status(200).json({ message: "Successfully updated brand" });
 };
+
+exports.deleteBrand = async (req, res) => {
+  const { id } = req.params;
+  const brandId = id;
+
+  const deleteBrand = await brandService.deleteBrand({ brandId });
+  res.status(200).json({ message: "Successfully deleted brand" });
+};

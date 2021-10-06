@@ -23,4 +23,6 @@ router.patch(
   brandController.updateBrand
 );
 
+router.delete("/delete/:id", authentication, brandController.deleteBrand);
+
 module.exports = router;
