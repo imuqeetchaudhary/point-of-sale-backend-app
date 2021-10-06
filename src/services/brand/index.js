@@ -2,6 +2,10 @@ const db = require("../../models");
 const dbUtils = require("../error-check.util");
 const Exceptions = require("../../utils/custom-exceptions");
 
+async function listAllBrands() {
+  return db.Brand.findAll({ attributes: ["brandId", "description"] });
+}
+
 async function saveBrand({ description, actionPerformBy }) {
   const brand = {
     description,
@@ -40,4 +44,4 @@ async function updateBrand({ brandId, description, actionPerformBy }) {
   }
 }
 
-module.exports = { saveBrand, updateBrand };
+module.exports = { listAllBrands, saveBrand, updateBrand };

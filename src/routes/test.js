@@ -14,12 +14,15 @@ router.get("/", async (_, res) => {
 module.exports = router;
 
 async function brand(res) {
-  const brand = await brandService.updateBrand({
-    brandId: 4,
-    description: "Sony TV",
-    actionPerformBy: 1,
-  });
-  res.send({ brand });
+  // const brand = await brandService.updateBrand({
+  //   brandId: 4,
+  //   description: "Sony TV",
+  //   actionPerformBy: 1,
+  // });
+  // res.send({ brand });
+
+  const brands = await brandService.listAllBrands();
+  res.send({ brands });
 }
 
 async function user(res) {
