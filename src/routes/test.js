@@ -24,8 +24,10 @@ async function itemCategory(res) {
   // });
   // res.send({ itemCategory });
 
-  const itemCategories = await itemCategoryService.listAllItemCategories();
-  res.send({ itemCategories });
+  const itemCategory = await itemCategoryService.singleItemCategory({
+    categoryId: 6,
+  });
+  res.send({ itemCategory });
 }
 
 async function brand(res) {

@@ -9,6 +9,12 @@ async function listAllItemCategories() {
   });
 }
 
+async function singleItemCategory({ categoryId }) {
+  return db.ItemCategory.findByPk(categoryId, {
+    attributes: categoryUtils.INCLUDED_FIELDS,
+  });
+}
+
 async function saveItemCategory({
   description,
   categoryCode,
@@ -69,6 +75,7 @@ async function updateItemCategory({
 
 module.exports = {
   listAllItemCategories,
+  singleItemCategory,
   saveItemCategory,
   updateItemCategory,
 };
