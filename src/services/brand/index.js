@@ -19,4 +19,25 @@ async function saveBrand({ description, actionPerformBy }) {
   }
 }
 
-module.exports = { saveBrand };
+async function updateBrand({ brandId, description, actionPerformBy }) {
+  const brand = {
+    description,
+    updatedBy: actionPerformBy,
+  };
+
+  try {
+    const updatedBrand = await db.Brand.update(
+      { ...brand },
+      { where: { brandId } }
+    );
+
+    if (dbUtils.isRecordFound(updatedBrand))
+      throw new Exceptions.NotFound({ message: "Brand not found" });
+  } catch (err) {
+    if (dbUtils.isRecordDuplicate(err))
+      throw new Exceptions.BadRequest({ message: "Brand already exists" });
+    throw err;
+  }
+}
+
+module.exports = { saveBrand, updateBrand };
