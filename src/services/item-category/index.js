@@ -35,4 +35,29 @@ async function saveItemCategory({
   }
 }
 
-module.exports = { saveItemCategory };
+async function updateItemCategory({
+  categoryId,
+  description,
+  parentId,
+  actionPerformBy,
+}) {
+  const itemCategory = { description, parentId, updatedBy: actionPerformBy };
+
+  try {
+    const updatedCategory = await db.ItemCategory.update(itemCategory, {
+      where: { categoryId },
+    });
+
+    if (dbUtils.isRecordFound(updatedCategory))
+      throw new Exceptions.NotFound({ message: "Item category is not found" });
+  } catch (err) {
+    if (dbUtils.isFkFailed(err))
+      throw new Exceptions.BadRequest({
+        message: "The user who perform this action not found",
+      });
+
+    throw err;
+  }
+}
+
+module.exports = { saveItemCategory, updateItemCategory };
