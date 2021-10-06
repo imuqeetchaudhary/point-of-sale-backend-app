@@ -12,4 +12,6 @@ router.post(
   brandController.createBrand
 );
 
+router.get("/get-all", authentication, brandController.getAllBrands);
+
 module.exports = router;

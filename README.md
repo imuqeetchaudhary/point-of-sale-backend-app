@@ -107,3 +107,7 @@
     description: String,
 }
 ```
+
+### to get all brands
+
+- brand/get-all :get :protected

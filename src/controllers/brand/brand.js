@@ -8,3 +8,8 @@ exports.createBrand = async (req, res) => {
   const brand = await brandService.saveBrand({ description, actionPerformBy });
   res.status(200).json({ message: "Successfully created brand", brand });
 };
+
+exports.getAllBrands = async (req, res) => {
+  const brand = await brandService.listAllBrands();
+  res.status(200).json({ brand });
+};
