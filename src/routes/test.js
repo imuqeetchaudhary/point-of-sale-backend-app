@@ -15,14 +15,17 @@ router.get("/", async (_, res) => {
 module.exports = router;
 
 async function itemCategory(res) {
-  const itemCategory = await itemCategoryService.updateItemCategory({
-    description: "Video Games",
-    // categoryCode: "02-01",
-    actionPerformBy: 1,
-    parentId: 5,
-    categoryId: 6,
-  });
-  res.send({ itemCategory });
+  // const itemCategory = await itemCategoryService.updateItemCategory({
+  //   description: "Video Games",
+  //   // categoryCode: "02-01",
+  //   actionPerformBy: 1,
+  //   parentId: 5,
+  //   categoryId: 6,
+  // });
+  // res.send({ itemCategory });
+
+  const itemCategories = await itemCategoryService.listAllItemCategories();
+  res.send({ itemCategories });
 }
 
 async function brand(res) {

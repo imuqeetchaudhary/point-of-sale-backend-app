@@ -1,6 +1,13 @@
 const db = require("../../models");
+const categoryUtils = require("./utils");
 const dbUtils = require("../error-check.util");
 const Exceptions = require("../../utils/custom-exceptions");
+
+async function listAllItemCategories() {
+  return db.ItemCategory.findAll({
+    attributes: categoryUtils.INCLUDED_FIELDS,
+  });
+}
 
 async function saveItemCategory({
   description,
@@ -60,4 +67,8 @@ async function updateItemCategory({
   }
 }
 
-module.exports = { saveItemCategory, updateItemCategory };
+module.exports = {
+  listAllItemCategories,
+  saveItemCategory,
+  updateItemCategory,
+};
