@@ -40,6 +40,12 @@ const brand = {
   alias: {},
 };
 
+const itemCategory = {
+  modelName: "ItemCategory",
+  tableName: "item_category",
+  alias: {},
+};
+
 function userRelationWithModel(User, AssociatedModel, { isCreate }) {
   User.hasMany(AssociatedModel, {
     // as: isCreate ? "createdBy" : "updatedBy",
@@ -59,5 +65,6 @@ module.exports = {
   menuAccessRoles,
   userAccessRoles,
   brand,
+  itemCategory,
   userRelationWithModel,
 };

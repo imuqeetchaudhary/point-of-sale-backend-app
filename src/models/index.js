@@ -11,12 +11,13 @@ const dbClient = getDbClient();
 const db = {};
 db.sequelize = dbClient;
 
-const user = require("./user/index");
-const role = require("./role/index");
-const menu = require("./menu/index");
-const menuAccessRoles = require("./menu-access-roles/index");
-const userAccessRoles = require("./user-access-roles/index");
-const brand = require("./brand/index");
+const user = require("./user");
+const role = require("./role");
+const menu = require("./menu");
+const menuAccessRoles = require("./menu-access-roles");
+const userAccessRoles = require("./user-access-roles");
+const brand = require("./brand");
+const itemCategory = require("./item-category");
 
 const User = user.init(dbClient, DataTypes);
 const Role = role.init(dbClient, DataTypes, { User });
@@ -31,6 +32,7 @@ const UserAccessRoles = userAccessRoles.init(dbClient, DataTypes, {
   Role,
 });
 const Brand = brand.init(dbClient, DataTypes, { User });
+const ItemCategory = itemCategory.init(dbClient, DataTypes, { User });
 
 db.User = User;
 db.Role = Role;
@@ -38,5 +40,6 @@ db.Menu = Menu;
 db.MenuAccessRoles = MenuAccessRoles;
 db.UserAccessRoles = UserAccessRoles;
 db.Brand = Brand;
+db.ItemCategory = ItemCategory;
 
 module.exports = db;
