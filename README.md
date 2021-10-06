@@ -129,3 +129,18 @@
 ### t0 delete a brand
 
 - brand/delete/:id: :delete :protected
+
+## Routes for Item Category
+
+### to create a new item category
+
+- item-category/create :post :protected
+
+```js
+{
+    description: String,
+    categoryCode: String,
+    customCode: String,
+    parentId: Number,
+}
+```
