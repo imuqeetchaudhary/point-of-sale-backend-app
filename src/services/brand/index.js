@@ -6,6 +6,10 @@ async function listAllBrands() {
   return db.Brand.findAll({ attributes: ["brandId", "description"] });
 }
 
+async function singleBrand({ brandId }) {
+  return db.Brand.findByPk(brandId, { attributes: ["brandId", "description"] });
+}
+
 async function saveBrand({ description, actionPerformBy }) {
   const brand = {
     description,
@@ -44,4 +48,4 @@ async function updateBrand({ brandId, description, actionPerformBy }) {
   }
 }
 
-module.exports = { listAllBrands, saveBrand, updateBrand };
+module.exports = { listAllBrands, singleBrand, saveBrand, updateBrand };

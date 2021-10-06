@@ -21,8 +21,8 @@ async function brand(res) {
   // });
   // res.send({ brand });
 
-  const brands = await brandService.listAllBrands();
-  res.send({ brands });
+  const brand = await brandService.singleBrand({ brandId: 4 });
+  res.send({ brand });
 }
 
 async function user(res) {
