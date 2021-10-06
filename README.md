@@ -95,3 +95,15 @@
     menuIds: Number[],
 }
 ```
+
+## Routes for Brand
+
+### to create a new brand
+
+- brand/create :post :protected
+
+```js
+{
+    description: String,
+}
+```
