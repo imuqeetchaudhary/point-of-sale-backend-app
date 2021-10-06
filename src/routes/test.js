@@ -5,13 +5,23 @@ const menuService = require("../services/menu");
 const roleMenuService = require("../services/menu-access-roles");
 const userRolesService = require("../services/user-access-roles");
 const brandService = require("../services/brand");
+const itemCategoryService = require("../services/item-category");
 
 const router = express.Router();
 router.get("/", async (_, res) => {
-  await brand(res);
+  await itemCategory(res);
 });
 
 module.exports = router;
+
+async function itemCategory(res) {
+  const itemCategory = await itemCategoryService.saveItemCategory({
+    description: "Toys",
+    categoryCode: "02",
+    actionPerformBy: 1,
+  });
+  res.send({ itemCategory });
+}
 
 async function brand(res) {
   // const brand = await brandService.updateBrand({
