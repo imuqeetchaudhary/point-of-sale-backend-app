@@ -43,8 +43,8 @@ async function saveRole({ description, createdBy, menus }) {
 
   const trans = await db.sequelize.transaction();
   try {
-    const role = await _createRole(transaction);
-    await _createRoleMenus(role.roleId, transaction);
+    const role = await _createRole(trans);
+    await _createRoleMenus(role.roleId, trans);
 
     await trans.commit();
     return role;
