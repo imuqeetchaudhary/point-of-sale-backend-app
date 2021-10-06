@@ -22,3 +22,12 @@ exports.getAllItemCategory = async (req, res) => {
   const itemCategory = await itemCategoryService.listAllItemCategories();
   res.status(200).json({ itemCategory });
 };
+
+exports.getSingleItemCategory = async (req, res) => {
+  const { id } = req.params;
+  const categoryId = id;
+  const itemCategory = await itemCategoryService.singleItemCategory({
+    categoryId,
+  });
+  res.status(200).json({ itemCategory });
+};

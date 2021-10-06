@@ -20,4 +20,10 @@ router.get(
   itemCategoryController.getAllItemCategory
 );
 
+router.get(
+  "/get/:id",
+  authentication,
+  itemCategoryController.getSingleItemCategory
+);
+
 module.exports = router;

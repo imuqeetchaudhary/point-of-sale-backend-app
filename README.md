@@ -148,3 +148,7 @@
 ### to get all item category
 
 - item-category/get-all :get :protected
+
+### to get a single item category
+
+- item-category/get/:id: :get :protected
