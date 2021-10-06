@@ -5,6 +5,7 @@ const { validation } = require("../../middlewares/validation");
 const { authentication } = require("../../middlewares/isAuth");
 const {
   createItemCategorySchema,
+  updateItemCategorySchema,
 } = require("../../validations/item-category/item-category");
 
 router.post(
@@ -24,6 +25,13 @@ router.get(
   "/get/:id",
   authentication,
   itemCategoryController.getSingleItemCategory
+);
+
+router.patch(
+  "/update/:id",
+  authentication,
+  validation(updateItemCategorySchema),
+  itemCategoryController.updateItemCategory
 );
 
 module.exports = router;

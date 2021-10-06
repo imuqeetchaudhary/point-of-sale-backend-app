@@ -152,3 +152,16 @@
 ### to get a single item category
 
 - item-category/get/:id: :get :protected
+
+### to update a item category
+
+- item-category/update/:id: :patch :protected
+
+```js
+{
+    description: String,
+    categoryCode: String,
+    customCode: String,
+    parentId: Number,
+}
+```
