@@ -144,3 +144,7 @@
     parentId: Number,
 }
 ```
+
+### to get all item category
+
+- item-category/get-all :get :protected

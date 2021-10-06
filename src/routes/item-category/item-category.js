@@ -14,4 +14,10 @@ router.post(
   itemCategoryController.createItemCategory
 );
 
+router.get(
+  "/get-all",
+  authentication,
+  itemCategoryController.getAllItemCategory
+);
+
 module.exports = router;

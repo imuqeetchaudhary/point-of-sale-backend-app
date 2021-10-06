@@ -17,3 +17,8 @@ exports.createItemCategory = async (req, res) => {
     .status(200)
     .json({ message: "Successfully created item category", itemCategory });
 };
+
+exports.getAllItemCategory = async (req, res) => {
+  const itemCategory = await itemCategoryService.listAllItemCategories();
+  res.status(200).json({ itemCategory });
+};
