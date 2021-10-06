@@ -23,3 +23,7 @@ values
     (2, 1, 1, 1, now(), now()),
     (2, 2, 1, 1, now(), now());
      (2, 3, 1, 1, now(), now())
+
+insert into 
+brand(description, created_by, updated_by, created_at, updated_at)
+values('Not Applicable (NA)', 1, 1, now(), now())

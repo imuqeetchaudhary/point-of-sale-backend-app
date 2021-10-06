@@ -4,13 +4,22 @@ const roleService = require("../services/role");
 const menuService = require("../services/menu");
 const roleMenuService = require("../services/menu-access-roles");
 const userRolesService = require("../services/user-access-roles");
+const brandService = require("../services/brand");
 
 const router = express.Router();
 router.get("/", async (_, res) => {
-  await role(res);
+  await brand(res);
 });
 
 module.exports = router;
+
+async function brand(res) {
+  const brand = await brandService.saveBrand({
+    description: "Sony",
+    actionPerformBy: 1,
+  });
+  res.send({ brand });
+}
 
 async function user(res) {
   // const user = await userService.updateUser({
