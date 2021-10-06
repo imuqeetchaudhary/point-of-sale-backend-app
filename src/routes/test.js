@@ -21,7 +21,7 @@ async function brand(res) {
   // });
   // res.send({ brand });
 
-  const brand = await brandService.singleBrand({ brandId: 4 });
+  const brand = await brandService.deleteBrand({ brandId: 1 });
   res.send({ brand });
 }
 

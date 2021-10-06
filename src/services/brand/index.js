@@ -48,4 +48,25 @@ async function updateBrand({ brandId, description, actionPerformBy }) {
   }
 }
 
-module.exports = { listAllBrands, singleBrand, saveBrand, updateBrand };
+async function deleteBrand({ brandId }) {
+  try {
+    const deletedCount = await db.Brand.destroy({ where: { brandId } });
+
+    if (!dbUtils.isRecordDeleted(deletedCount))
+      throw new Exceptions.NotFound({ message: "Brand not found" });
+  } catch (err) {
+    if (dbUtils.isFkFailed(err))
+      throw new Exceptions.BadRequest({
+        message: "Cann't delete brand unless delete all its reference",
+      });
+    throw err;
+  }
+}
+
+module.exports = {
+  listAllBrands,
+  singleBrand,
+  saveBrand,
+  updateBrand,
+  deleteBrand,
+};
