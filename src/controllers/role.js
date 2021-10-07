@@ -1,7 +1,8 @@
 const roleService = require("../services/role");
+const { promise } = require("../middlewares/promise");
 const Exceptions = require("../utils/custom-exceptions");
 
-exports.createRole = async (req, res) => {
+exports.createRole = promise(async (req, res) => {
   const { description, menuIds } = req.body;
   const createdBy = req.user.userId;
   const menus = menuIds;
@@ -16,14 +17,14 @@ exports.createRole = async (req, res) => {
     message: "Successfully created new role",
     role,
   });
-};
+});
 
-exports.getAllRoles = async (req, res) => {
+exports.getAllRoles = promise(async (req, res) => {
   const role = await roleService.listAllRoles();
   res.status(200).json({ role });
-};
+});
 
-exports.updateRole = async (req, res) => {
+exports.updateRole = promise(async (req, res) => {
   const roleId = req.params.id;
   const { description, menuIds } = req.body;
   const updatedBy = req.user.userId;
@@ -37,4 +38,4 @@ exports.updateRole = async (req, res) => {
   });
 
   res.status(200).json({ message: "Successfully updated role" });
-};
+});

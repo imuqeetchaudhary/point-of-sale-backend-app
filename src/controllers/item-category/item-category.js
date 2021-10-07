@@ -1,7 +1,8 @@
 const itemCategoryService = require("../../services/item-category/index");
+const { promise } = require("../../middlewares/promise");
 const Exceptions = require("../../utils/custom-exceptions");
 
-exports.createItemCategory = async (req, res) => {
+exports.createItemCategory = promise(async (req, res) => {
   const { description, categoryCode, customCode, parentId } = req.body;
   const actionPerformBy = req.user.userId;
 
@@ -16,23 +17,23 @@ exports.createItemCategory = async (req, res) => {
   res
     .status(200)
     .json({ message: "Successfully created item category", itemCategory });
-};
+});
 
-exports.getAllItemCategory = async (req, res) => {
+exports.getAllItemCategory = promise(async (req, res) => {
   const itemCategory = await itemCategoryService.listAllItemCategories();
   res.status(200).json({ itemCategory });
-};
+});
 
-exports.getSingleItemCategory = async (req, res) => {
+exports.getSingleItemCategory = promise(async (req, res) => {
   const { id } = req.params;
   const categoryId = id;
   const itemCategory = await itemCategoryService.singleItemCategory({
     categoryId,
   });
   res.status(200).json({ itemCategory });
-};
+});
 
-exports.updateItemCategory = async (req, res) => {
+exports.updateItemCategory = promise(async (req, res) => {
   const { id } = req.params;
   const categoryId = id;
   const { description, parentId } = req.body;
@@ -46,4 +47,4 @@ exports.updateItemCategory = async (req, res) => {
   });
 
   res.status(200).json({ message: "Successfully updated item category" });
-};
+});
