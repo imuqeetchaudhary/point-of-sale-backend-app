@@ -2,4 +2,4 @@
 
 package-lock.json
 
-/src/routes/test.js
+src/routes/test.js
