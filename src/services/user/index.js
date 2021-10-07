@@ -27,9 +27,17 @@ async function saveUser({ email, password, displayName, createdBy, roleIds }) {
     return user;
   };
   const _createUserRoles = async (userId, transaction) => {
-    const _userRoles = roleIds.map((roleId) => {
-      return { userId, roleId, createdBy, updatedBy: createdBy };
-    });
+    let _userRoles;
+    if (roleIds && roleIds.length > 0) {
+      _userRoles = roleIds.map((roleId) => {
+        return { userId, roleId, createdBy, updatedBy: createdBy };
+      });
+    } else {
+      const defaultRole = 1;
+      _userRoles = [
+        { userId, roleId: defaultRole, createdBy, updatedBy: createdBy },
+      ];
+    }
     await db.UserAccessRoles.bulkCreate([..._userRoles], { transaction });
   };
 
