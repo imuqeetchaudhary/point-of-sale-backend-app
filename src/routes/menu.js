@@ -10,7 +10,7 @@ router.post(
   "/create",
   authentication,
   validation(createMenuSchema),
-  upload.single("icon"),
+  // upload.single("icon"),
   menuController.createMenu
 );
 
@@ -20,7 +20,7 @@ router.patch(
   "/update/:id",
   authentication,
   validation(createMenuSchema),
-  upload.single("icon"),
+  // upload.single("icon"),
   menuController.updateMenu
 );
 

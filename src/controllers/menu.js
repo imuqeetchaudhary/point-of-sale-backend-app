@@ -2,9 +2,9 @@ const menuService = require("../services/menu/index");
 const Exceptions = require("../utils/custom-exceptions");
 
 exports.createMenu = async (req, res) => {
-  const { description, link, parentId } = req.body;
+  const { description, link, parentId, icon } = req.body;
   const createdBy = req.user.userId;
-  const icon = req.file.filename;
+  // const icon = req.file.filename;
 
   const menu = await menuService.saveMenu({
     description,
@@ -24,9 +24,9 @@ exports.getAllMenu = async (req, res) => {
 
 exports.updateMenu = async (req, res) => {
   const menuId = req.params.id;
-  const { description, link, parentId } = req.body;
+  const { description, link, parentId, icon } = req.body;
   const updatedBy = req.user.userId;
-  const icon = req.file.filename;
+  // const icon = req.file.filename;
 
   const updateMenu = await menuService.updateMenu({
     menuId,
