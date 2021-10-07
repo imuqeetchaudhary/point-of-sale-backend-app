@@ -40,6 +40,18 @@
 
 - user/profile/:id: :get :protected
 
+### to update a user
+
+- user/update/:id: :patch :protected
+
+```js
+{
+    email: String,
+    displayName: String,
+    roleIds: Number[],
+}
+```
+
 ## Routes for Menu
 
 ### to create a new menu

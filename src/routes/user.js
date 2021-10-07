@@ -3,7 +3,11 @@ const router = express.Router();
 const userController = require("../controllers/user");
 const { validation } = require("../middlewares/validation");
 const { authentication } = require("../middlewares/isAuth");
-const { loginSchema, registerSchema } = require("../validations/user");
+const {
+  loginSchema,
+  registerSchema,
+  updateSchema,
+} = require("../validations/user");
 
 router.post(
   "/register",
@@ -19,5 +23,12 @@ router.get("/profile/:id", authentication, userController.profile);
 router.get("/get-all", authentication, userController.getAllUsers);
 
 router.get("/role/:id", authentication, userController.getSingleUserRoles);
+
+router.patch(
+  "/update/:id",
+  authentication,
+  validation(updateSchema),
+  userController.updateUser
+);
 
 module.exports = router;

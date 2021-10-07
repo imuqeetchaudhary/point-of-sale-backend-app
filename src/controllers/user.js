@@ -85,3 +85,20 @@ exports.getSingleUserRoles = promise(async (req, res) => {
   const role = await userService.listUserRoles({ userId });
   res.status(200).json({ role });
 });
+
+exports.updateUser = promise(async (req, res) => {
+  const { id } = req.params;
+  const userId = id;
+  const { email, displayName, roleIds } = req.body;
+  const updatedBy = req.user.userId;
+
+  const updateUser = await userService.updateUser({
+    userId,
+    email,
+    displayName,
+    updatedBy,
+    roleIds,
+  });
+
+  res.status(200).json({ message: "Successfully updated user" });
+});

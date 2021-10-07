@@ -89,7 +89,7 @@ async function updateUser({ userId, email, displayName, updatedBy, roleIds }) {
     );
     return user;
   };
-  const _createUserRoles = async (userId, transaction) => {
+  const _createUserRoles = async (transaction) => {
     let _userRoles = {};
     const defaultRole = 1;
 
@@ -100,7 +100,12 @@ async function updateUser({ userId, email, displayName, updatedBy, roleIds }) {
       updatedBy,
     };
     roleIds.forEach((roleId) => {
-      const role = { userId, roleId, createdBy, updatedBy: createdBy };
+      const role = {
+        userId,
+        roleId,
+        createdBy: updatedBy,
+        updatedBy,
+      };
       _userRoles[role.roleId] = role;
     });
 

@@ -11,3 +11,9 @@ exports.loginSchema = yup.object().shape({
   email: yup.string().email().required(),
   password: yup.string().required(),
 });
+
+exports.updateSchema = yup.object().shape({
+  email: yup.string().email(),
+  displayName: yup.string(),
+  roleIds: yup.number(),
+});
