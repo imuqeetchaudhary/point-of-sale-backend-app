@@ -9,13 +9,16 @@ router.get("/", async (_, res) => {
 
 async function user(res) {
   const user = await userSservice.saveUser({
-    email: "usama@gmail.com",
-    displayName: "Usama",
+    email: "asad@gmail.com",
+    displayName: "Asad",
     password: "password",
     createdBy: 1,
     roleIds: [2, 3],
   });
   res.send({ user });
+
+  // const userRoles = await userSservice.listUserRoles({ userId: 5 });
+  // res.send({ userRoles });
 }
 
 async function menu(res) {

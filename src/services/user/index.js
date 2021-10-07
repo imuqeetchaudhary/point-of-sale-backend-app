@@ -1,6 +1,14 @@
+const sequelize = require("sequelize");
 const db = require("../../models");
+const userUtils = require("./utils");
 const utils = require("../error-check.util");
 const Exceptions = require("../../utils/custom-exceptions");
+
+async function listUserRoles({ userId }) {
+  return db.sequelize.query(userUtils.queryForGettingAllUserRoles(userId), {
+    type: sequelize.QueryTypes.SELECT,
+  });
+}
 
 async function findById({ id }) {
   return db.User.findByPk(id, _prop.hideFieldsCondition("password"));
@@ -89,7 +97,7 @@ async function updateUser({ userId, email, displayName, updatedBy, roleIds }) {
   }
 }
 
-module.exports = { findById, findByEmail, saveUser, updateUser };
+module.exports = { listUserRoles, findById, findByEmail, saveUser, updateUser };
 
 const _prop = {
   HIDDEN_FIELDS: ["createdAt", "updatedAt", "authType", "email"],
