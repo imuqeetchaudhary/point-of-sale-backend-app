@@ -4,6 +4,13 @@ const userUtils = require("./utils");
 const utils = require("../error-check.util");
 const Exceptions = require("../../utils/custom-exceptions");
 
+async function listAllUsers() {
+  return db.User.findAll({
+    where: { isSuperuser: false },
+    ..._prop.hideFieldsCondition(),
+  });
+}
+
 async function listUserRoles({ userId }) {
   return db.sequelize.query(userUtils.queryForGettingAllUserRoles(userId), {
     type: sequelize.QueryTypes.SELECT,
@@ -115,7 +122,14 @@ async function updateUser({ userId, email, displayName, updatedBy, roleIds }) {
   }
 }
 
-module.exports = { listUserRoles, findById, findByEmail, saveUser, updateUser };
+module.exports = {
+  listUserRoles,
+  listAllUsers,
+  findById,
+  findByEmail,
+  saveUser,
+  updateUser,
+};
 
 const _prop = {
   HIDDEN_FIELDS: ["createdAt", "updatedAt", "authType", "email"],
