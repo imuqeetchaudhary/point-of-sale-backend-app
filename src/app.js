@@ -1,4 +1,4 @@
-const cors = require("cors")
+const cors = require("cors");
 require("express-async-errors");
 const morgan = require("morgan");
 const express = require("express");
@@ -8,11 +8,10 @@ const catchUnhandleExceptions = require("./middlewares/exception-handling");
 
 const app = express();
 
-app.use(cors({ origin: "*"}));
-app.use(express.static(__dirname + "/uploads"));
+app.use(cors({ origin: "*" }));
+app.use(express.static(__dirname + "/../uploads"));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-
 
 if (app.get("env") === "development") {
   app.use(morgan("tiny"));
