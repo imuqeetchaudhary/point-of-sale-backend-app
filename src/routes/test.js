@@ -8,17 +8,20 @@ router.get("/", async (_, res) => {
 });
 
 async function user(res) {
-  const user = await userSservice.saveUser({
-    email: "jazim@gmail.com",
-    displayName: "Jazim",
-    password: "password",
-    createdBy: 1,
-    roleIds: [1, 2, 3],
-  });
-  res.send({ user });
+  // const user = await userSservice.saveUser({
+  //   email: "jazim@gmail.com",
+  //   displayName: "Jazim",
+  //   password: "password",
+  //   createdBy: 1,
+  //   roleIds: [1, 2, 3],
+  // });
+  // res.send({ user });
 
   // const userRoles = await userSservice.listUserRoles({ userId: 5 });
   // res.send({ userRoles });
+
+  const users = await userSservice.listAllUsers();
+  res.send({ users });
 }
 
 async function menu(res) {
