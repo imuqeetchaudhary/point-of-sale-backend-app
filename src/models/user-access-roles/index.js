@@ -13,6 +13,8 @@ function init(sequelize, DataTypes, { User, Role }) {
     modelSettings.userAccessRoles,
     modelSettings.userRelationWithModel
   );
+
+  return UserAccessRoles;
 }
 
 module.exports = { init };

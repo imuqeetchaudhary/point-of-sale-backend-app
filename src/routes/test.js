@@ -9,7 +9,7 @@ const itemCategoryService = require("../services/item-category");
 
 const router = express.Router();
 router.get("/", async (_, res) => {
-  await itemCategory(res);
+  await user(res);
 });
 
 module.exports = router;
@@ -50,14 +50,14 @@ async function user(res) {
   //   roleIds: [1, 2],
   // });
   // res.send({ user });
-  // const user = await userService.saveUser({
-  //   email: "hassan@gmail.com",
-  //   displayName: "hassan",
-  //   password: "password",
-  //   createdBy: 1,
-  //   roleIds: [2],
-  // });
-  // res.send({ user });
+  const user = await userService.saveUser({
+    email: "hassan@gmail.com",
+    displayName: "hassan",
+    password: "password",
+    createdBy: 1,
+    roleIds: [1, 3],
+  });
+  res.send({ user });
 }
 
 async function userRoles(res) {
