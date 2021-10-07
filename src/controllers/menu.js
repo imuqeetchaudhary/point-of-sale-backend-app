@@ -3,9 +3,13 @@ const { promise } = require("../middlewares/promise");
 const Exceptions = require("../utils/custom-exceptions");
 
 exports.createMenu = promise(async (req, res) => {
-  const { description, link, parentId, icon } = req.body;
+  var { description, link, parentId, icon } = req.body;
   const createdBy = req.user.userId;
   // const icon = req.file.filename;
+
+  if (parentId == 0) {
+    parentId = null;
+  }
 
   const menu = await menuService.saveMenu({
     description,
