@@ -6,7 +6,7 @@ const Exceptions = require("../../utils/custom-exceptions");
 
 async function listAllMenus() {
   return db.Menu.findAll({
-    attributes: ["menuId", "description", "link", "icon", "parentId"],
+    attributes: menuUtils.INCLUDED_FIELDS,
   });
 }
 
@@ -15,6 +15,10 @@ async function listAllMenusForRole({ roleId }) {
     menuUtils.queryForGetAndCheckMenuExistsForRole(roleId),
     { type: sequelize.QueryTypes.SELECT }
   );
+}
+
+async function findById({ menuId }) {
+  return db.Menu.findByPk(menuId, { attributes: menuUtils.INCLUDED_FIELDS });
 }
 
 async function saveMenu({ description, link, parentId, icon, createdBy }) {
@@ -57,4 +61,10 @@ async function updateMenu({
   }
 }
 
-module.exports = { listAllMenus, listAllMenusForRole, saveMenu, updateMenu };
+module.exports = {
+  listAllMenus,
+  listAllMenusForRole,
+  findById,
+  saveMenu,
+  updateMenu,
+};

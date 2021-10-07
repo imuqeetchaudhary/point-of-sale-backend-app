@@ -1,6 +1,8 @@
 const Exceptions = require("../../utils/custom-exceptions");
 const utils = require("../error-check.util");
 
+const INCLUDED_FIELDS = ["menuId", "description", "link", "icon", "parentId"];
+
 function queryForGetAndCheckMenuExistsForRole(roleId) {
   return `
       SELECT 
@@ -26,6 +28,7 @@ function throwErrorWhenCreateOrUpdate(err) {
 }
 
 module.exports = {
+  INCLUDED_FIELDS,
   queryForGetAndCheckMenuExistsForRole,
   throwErrorWhenCreateOrUpdate,
 };
