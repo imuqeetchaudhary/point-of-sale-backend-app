@@ -55,6 +55,10 @@
 
 - menu/get/:id: :get :protected
 
+### to get single user roles
+
+- user/role/:id: :get :protected (where id stands for userId)
+
 ### to get all menu for a specific role id
 
 - menu/get-all-for-role/:id :get :protected (where id stands for roleId)

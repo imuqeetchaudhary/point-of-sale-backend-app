@@ -5,10 +5,17 @@ const { validation } = require("../middlewares/validation");
 const { authentication } = require("../middlewares/isAuth");
 const { loginSchema, registerSchema } = require("../validations/user");
 
-router.post("/register", authentication, validation(registerSchema), userController.register);
+router.post(
+  "/register",
+  authentication,
+  validation(registerSchema),
+  userController.register
+);
 
 router.post("/login", validation(loginSchema), userController.login);
 
 router.get("/profile/:id", authentication, userController.profile);
+
+router.get("/role/:id", authentication, userController.getSingleUserRoles);
 
 module.exports = router;

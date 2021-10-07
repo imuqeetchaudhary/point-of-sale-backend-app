@@ -72,3 +72,11 @@ exports.profile = promise(async (req, res) => {
 
   res.status(200).json({ user });
 });
+
+exports.getSingleUserRoles = promise(async (req, res) => {
+  const { id } = req.params;
+  const userId = id;
+
+  const role = await userService.listUserRoles({ userId });
+  res.status(200).json({ role });
+});
