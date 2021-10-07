@@ -1,3 +1,5 @@
+const DEFAULT_ROLE = 1;
+
 function queryForGettingAllUserRoles(userId) {
   return `
         SELECT 
@@ -9,4 +11,4 @@ function queryForGettingAllUserRoles(userId) {
     `;
 }
 
-module.exports = { queryForGettingAllUserRoles };
+module.exports = { DEFAULT_ROLE, queryForGettingAllUserRoles };

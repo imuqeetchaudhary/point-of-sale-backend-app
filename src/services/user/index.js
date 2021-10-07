@@ -35,18 +35,23 @@ async function saveUser({ email, password, displayName, createdBy, roleIds }) {
     return user;
   };
   const _createUserRoles = async (userId, transaction) => {
-    let _userRoles;
-    if (roleIds && roleIds.length > 0) {
-      _userRoles = roleIds.map((roleId) => {
-        return { userId, roleId, createdBy, updatedBy: createdBy };
-      });
-    } else {
-      const defaultRole = 1;
-      _userRoles = [
-        { userId, roleId: defaultRole, createdBy, updatedBy: createdBy },
-      ];
-    }
-    await db.UserAccessRoles.bulkCreate([..._userRoles], { transaction });
+    let _userRoles = {};
+    const defaultRole = userUtils.DEFAULT_ROLE;
+
+    _userRoles[defaultRole] = {
+      userId,
+      roleId: defaultRole,
+      createdBy,
+      updatedBy: createdBy,
+    };
+    roleIds.forEach((roleId) => {
+      const role = { userId, roleId, createdBy, updatedBy: createdBy };
+      _userRoles[role.roleId] = role;
+    });
+
+    await db.UserAccessRoles.bulkCreate(Object.values(_userRoles), {
+      transaction,
+    });
   };
 
   const trans = await db.sequelize.transaction();
@@ -77,11 +82,24 @@ async function updateUser({ userId, email, displayName, updatedBy, roleIds }) {
     );
     return user;
   };
-  const _createUserRoles = async (transaction) => {
-    const _userRoles = roleIds.map((roleId) => {
-      return { userId, roleId, createdBy: updatedBy, updatedBy };
+  const _createUserRoles = async (userId, transaction) => {
+    let _userRoles = {};
+    const defaultRole = 1;
+
+    _userRoles[defaultRole] = {
+      userId,
+      roleId: defaultRole,
+      createdBy: updatedBy,
+      updatedBy,
+    };
+    roleIds.forEach((roleId) => {
+      const role = { userId, roleId, createdBy, updatedBy: createdBy };
+      _userRoles[role.roleId] = role;
     });
-    await db.UserAccessRoles.bulkCreate([..._userRoles], { transaction });
+
+    await db.UserAccessRoles.bulkCreate(Object.values(_userRoles), {
+      transaction,
+    });
   };
 
   const trans = await db.sequelize.transaction();

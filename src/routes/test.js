@@ -9,11 +9,11 @@ router.get("/", async (_, res) => {
 
 async function user(res) {
   const user = await userSservice.saveUser({
-    email: "asad@gmail.com",
-    displayName: "Asad",
+    email: "jazim@gmail.com",
+    displayName: "Jazim",
     password: "password",
     createdBy: 1,
-    roleIds: [2, 3],
+    roleIds: [1, 2, 3],
   });
   res.send({ user });
 
