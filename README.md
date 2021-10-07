@@ -95,3 +95,73 @@
     menuIds: Number[],
 }
 ```
+
+## Routes for Brand
+
+### to create a new brand
+
+- brand/create :post :protected
+
+```js
+{
+    description: String,
+}
+```
+
+### to get all brands
+
+- brand/get-all :get :protected
+
+### to get single brand
+
+- brand/get/:id: :get :protected
+
+### to update a brand
+
+- brand/update/:id: :patch :protected
+
+```js
+{
+    description: String,
+}
+```
+
+### t0 delete a brand
+
+- brand/delete/:id: :delete :protected
+
+## Routes for Item Category
+
+### to create a new item category
+
+- item-category/create :post :protected
+
+```js
+{
+    description: String,
+    categoryCode: String,
+    customCode: String,
+    parentId: Number,
+}
+```
+
+### to get all item category
+
+- item-category/get-all :get :protected
+
+### to get a single item category
+
+- item-category/get/:id: :get :protected
+
+### to update a item category
+
+- item-category/update/:id: :patch :protected
+
+```js
+{
+    description: String,
+    categoryCode: String,
+    customCode: String,
+    parentId: Number,
+}
+```
