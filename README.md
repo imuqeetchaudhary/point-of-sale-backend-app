@@ -28,6 +28,14 @@
 }
 ```
 
+### to get all users
+
+- user/get-all :get :protected
+
+### to get single user roles
+
+- user/role/:id: :get :protected (where id stands for userId)
+
 ### to get user profile
 
 - user/profile/:id: :get :protected
@@ -54,10 +62,6 @@
 ### to get a single menu
 
 - menu/get/:id: :get :protected
-
-### to get single user roles
-
-- user/role/:id: :get :protected (where id stands for userId)
 
 ### to get all menu for a specific role id
 

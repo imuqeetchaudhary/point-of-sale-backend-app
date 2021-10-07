@@ -16,6 +16,8 @@ router.post("/login", validation(loginSchema), userController.login);
 
 router.get("/profile/:id", authentication, userController.profile);
 
+router.get("/get-all", authentication, userController.getAllUsers);
+
 router.get("/role/:id", authentication, userController.getSingleUserRoles);
 
 module.exports = router;
