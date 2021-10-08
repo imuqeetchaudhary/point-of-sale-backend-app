@@ -19,6 +19,7 @@ const userAccessRoles = require("./user-access-roles");
 const brand = require("./brand");
 const itemCategory = require("./item-category");
 const bloodgroup = require("./blood-group");
+const currency = require("./currency");
 
 const User = user.init(dbClient, DataTypes);
 const Role = role.init(dbClient, DataTypes, { User });
@@ -35,6 +36,7 @@ const UserAccessRoles = userAccessRoles.init(dbClient, DataTypes, {
 const Brand = brand.init(dbClient, DataTypes, { User });
 const ItemCategory = itemCategory.init(dbClient, DataTypes, { User });
 const BloodGroup = bloodgroup.init(dbClient, DataTypes);
+const Currency = currency.init(dbClient, DataTypes);
 
 db.User = User;
 db.Role = Role;
@@ -44,5 +46,6 @@ db.UserAccessRoles = UserAccessRoles;
 db.Brand = Brand;
 db.ItemCategory = ItemCategory;
 db.BloodGroup = BloodGroup;
+db.Currency = Currency;
 
 module.exports = db;
