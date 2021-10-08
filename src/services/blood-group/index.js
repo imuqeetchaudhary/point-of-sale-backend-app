@@ -28,6 +28,10 @@ exports.listAllBloodGroups = async () => {
   });
 };
 
+exports.findById = ({ id }) => {
+  return db.BloodGroup.findByPk(id, _prop.hideFieldsCondition());
+};
+
 const _prop = {
   HIDDEN_FIELDS: ["createdAt", "updatedAt"],
   hideFieldsCondition: function (...args) {

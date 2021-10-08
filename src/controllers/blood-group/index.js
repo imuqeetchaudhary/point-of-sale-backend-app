@@ -21,3 +21,10 @@ exports.getAllBloodGroup = promise(async (req, res) => {
   const bloodGroup = await bloodGroupService.listAllBloodGroups();
   res.status(200).json({ bloodGroup });
 });
+
+exports.getSingleBloodGroup = promise(async (req, res) => {
+  const { id } = req.params;
+
+  const bloodGroup = await bloodGroupService.findById({ id });
+  res.status(200).json({ bloodGroup });
+});

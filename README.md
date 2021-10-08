@@ -206,3 +206,7 @@
 ### to get all blood groups
 
 - blood-group/get-all :get :protected
+
+### to get single blood group
+
+- blood-group/get/:id: :get :protected
