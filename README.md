@@ -189,3 +189,16 @@
     parentId: Number,
 }
 ```
+
+## Routes for Blood Group
+
+### to create a new blood group
+
+- blood-group/create :post :protected
+
+```js
+{
+    description: String,
+    alias: String,
+}
+```

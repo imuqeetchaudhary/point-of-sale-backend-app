@@ -19,11 +19,11 @@ function init(sequelize, DataTypes) {
       },
       isDefault: {
         type: DataTypes.BOOLEAN,
-        allowNull: false,
+        defaultValue: true,
       },
       isActive: {
         type: DataTypes.BOOLEAN,
-        allowNull: false,
+        defaultValue: true,
       },
       createdBy: {
         type: DataTypes.INTEGER.UNSIGNED,
