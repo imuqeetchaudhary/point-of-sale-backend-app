@@ -16,3 +16,8 @@ exports.createBloodGroup = promise(async (req, res) => {
     .status(200)
     .json({ message: "Successfully created blood group", bloodGroup });
 });
+
+exports.getAllBloodGroup = promise(async (req, res) => {
+  const bloodGroup = await bloodGroupService.listAllBloodGroups();
+  res.status(200).json({ bloodGroup });
+});

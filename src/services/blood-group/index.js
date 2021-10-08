@@ -2,7 +2,7 @@ const db = require("../../models");
 const dbUtils = require("../error-check.util");
 const Exceptions = require("../../utils/custom-exceptions");
 
-exports.saveBloodGroup = async({ description, alias, actionperformedBy }) => {
+exports.saveBloodGroup = async ({ description, alias, actionperformedBy }) => {
   const bloodgroup = {
     description,
     alias,
@@ -15,7 +15,22 @@ exports.saveBloodGroup = async({ description, alias, actionperformedBy }) => {
     return newBloodGroup;
   } catch (err) {
     if (dbUtils.isRecordDuplicate(err))
-      throw new Exceptions.BadRequest({ message: "Blood Group already exists" });
+      throw new Exceptions.BadRequest({
+        message: "Blood Group already exists",
+      });
     throw err;
   }
+};
+
+exports.listAllBloodGroups = async () => {
+  return db.BloodGroup.findAll({
+    ..._prop.hideFieldsCondition(),
+  });
+};
+
+const _prop = {
+  HIDDEN_FIELDS: ["createdAt", "updatedAt"],
+  hideFieldsCondition: function (...args) {
+    return { attributes: { exclude: [...this.HIDDEN_FIELDS, ...args] } };
+  },
 };

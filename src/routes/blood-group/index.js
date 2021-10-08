@@ -12,4 +12,6 @@ router.post(
   bloodGroupController.createBloodGroup
 );
 
+router.get("/get-all", authentication, bloodGroupController.getAllBloodGroup);
+
 module.exports = router;

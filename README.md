@@ -202,3 +202,7 @@
     alias: String,
 }
 ```
+
+### to get all blood groups
+
+- blood-group/get-all :get :protected
