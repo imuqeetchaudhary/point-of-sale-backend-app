@@ -18,6 +18,7 @@ const menuAccessRoles = require("./menu-access-roles");
 const userAccessRoles = require("./user-access-roles");
 const brand = require("./brand");
 const itemCategory = require("./item-category");
+const bloodgroup = require("./blood-group");
 
 const User = user.init(dbClient, DataTypes);
 const Role = role.init(dbClient, DataTypes, { User });
@@ -33,6 +34,7 @@ const UserAccessRoles = userAccessRoles.init(dbClient, DataTypes, {
 });
 const Brand = brand.init(dbClient, DataTypes, { User });
 const ItemCategory = itemCategory.init(dbClient, DataTypes, { User });
+const BloodGroup = bloodgroup.init(dbClient, DataTypes);
 
 db.User = User;
 db.Role = Role;
@@ -41,5 +43,6 @@ db.MenuAccessRoles = MenuAccessRoles;
 db.UserAccessRoles = UserAccessRoles;
 db.Brand = Brand;
 db.ItemCategory = ItemCategory;
+db.BloodGroup = BloodGroup;
 
 module.exports = db;
