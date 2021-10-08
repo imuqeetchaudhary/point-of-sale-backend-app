@@ -210,3 +210,17 @@
 ### to get single blood group
 
 - blood-group/get/:id: :get :protected
+
+## Routes for Currency
+
+### to create a new currency
+
+- currency/create :post :protected
+
+```js
+{
+    description: String,
+    alias: String,
+    symbol: String,
+}
+```
