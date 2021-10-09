@@ -215,6 +215,17 @@
 
 - blood-group/get/:id: :get :protected
 
+### to update a blood group
+
+- blood-group/update/:id :patch :protected
+
+```js
+{
+    description: String,
+    alias: String,
+}
+```
+
 ## Routes for Currency
 
 ### to create a new currency

@@ -28,3 +28,19 @@ exports.getSingleBloodGroup = promise(async (req, res) => {
   const bloodGroup = await bloodGroupService.findById({ id });
   res.status(200).json({ bloodGroup });
 });
+
+exports.updateBloodGroup = promise(async (req, res) => {
+  const { id } = req.params;
+  const bloodgroupId = id;
+  const { description, alias } = req.body;
+  const actionperformedBy = req.user.userId;
+
+  const updateBloodGroup = await bloodGroupService.updateBloodGroup({
+    bloodgroupId,
+    description,
+    alias,
+    actionperformedBy,
+  });
+
+  res.status(200).json({ message: "Successfully updated blood group" });
+});

@@ -3,7 +3,10 @@ const router = express.Router();
 const bloodGroupController = require("../../controllers/blood-group");
 const { validation } = require("../../middlewares/validation");
 const { authentication } = require("../../middlewares/isAuth");
-const { createBloodGroupSchema } = require("../../validations/blood-group");
+const {
+  createBloodGroupSchema,
+  updateBloodGroupSchema,
+} = require("../../validations/blood-group");
 
 router.post(
   "/create",
@@ -14,6 +17,17 @@ router.post(
 
 router.get("/get-all", authentication, bloodGroupController.getAllBloodGroup);
 
-router.get("/get/:id", authentication, bloodGroupController.getSingleBloodGroup);
+router.get(
+  "/get/:id",
+  authentication,
+  bloodGroupController.getSingleBloodGroup
+);
+
+router.patch(
+  "/update/:id",
+  authentication,
+  validation(updateBloodGroupSchema),
+  bloodGroupController.updateBloodGroup
+);
 
 module.exports = router;
