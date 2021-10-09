@@ -318,3 +318,7 @@
 ### to get all relation type
 
 - relation-type/get-all :get :protected
+
+### to get single relation type
+
+- relation-type/get/:id :get :protected

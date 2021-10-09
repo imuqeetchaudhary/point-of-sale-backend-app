@@ -18,4 +18,10 @@ router.get(
   relationTypeController.getAllRelationType
 );
 
+router.get(
+  "/get/:id",
+  authentication,
+  relationTypeController.getSingleRelationType
+);
+
 module.exports = router;

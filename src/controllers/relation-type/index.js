@@ -21,3 +21,10 @@ exports.getAllRelationType = promise(async (req, res) => {
   const relationType = await relationTypeService.listAllRelationType();
   res.status(200).json({ relationType });
 });
+
+exports.getSingleRelationType = promise(async (req, res) => {
+  const { id } = req.params;
+
+  const relationType = await relationTypeService.findById({ id });
+  res.status(200).json({ relationType });
+});
