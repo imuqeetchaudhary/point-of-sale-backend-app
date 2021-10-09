@@ -26,4 +26,6 @@ router.patch(
   religionController.updateReligion
 );
 
+router.delete("/delete/:id", authentication, religionController.deleteReligion);
+
 module.exports = router;

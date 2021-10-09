@@ -299,3 +299,7 @@
     alias: String,
 }
 ```
+
+### to delete a religion
+
+- religion/delete/:id :delete :protected

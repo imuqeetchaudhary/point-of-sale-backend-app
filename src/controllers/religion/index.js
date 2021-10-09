@@ -41,3 +41,11 @@ exports.updateReligion = promise(async (req, res) => {
 
   res.status(200).json({ message: "Successfully updated religion" });
 });
+
+exports.deleteReligion = promise(async (req, res) => {
+  const { id } = req.params;
+  const religionId = id;
+
+  const deleteReligion = await religionService.deleteReligion({ religionId });
+  res.status(200).json({ message: "Successfully deleted religion" });
+});

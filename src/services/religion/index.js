@@ -54,6 +54,22 @@ exports.updateReligion = async ({
   }
 };
 
+exports.deleteReligion = async ({ religionId }) => {
+  try {
+    const deleteReligion = await db.Religion.destroy({ where: { religionId } });
+    if (dbUtils.isRecordFound(deleteReligion)) {
+      throw new Exceptions.NotFound({ message: "Religion not found" });
+    }
+  } catch (err) {
+    if (dbUtils.isFkFailed(err)) {
+      throw new Exceptions.BadRequest({
+        message: "Cann't delete religion unless delete all its reference",
+      });
+    }
+    throw err;
+  }
+};
+
 const _prop = {
   HIDDEN_FIELDS: ["createdAt", "updatedAt"],
   hideFieldsCondition: function (...args) {
