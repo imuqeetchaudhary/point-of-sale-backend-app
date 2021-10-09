@@ -43,3 +43,11 @@ exports.updateCurrency = promise(async (req, res) => {
 
   res.status(200).json({ message: "Successfully updated currency" });
 });
+
+exports.deleteCurrency = promise(async (req, res) => {
+  const { id } = req.params;
+  const currencyId = id;
+
+  const deleteCurrency = await currencyService.deleteCurrency({ currencyId });
+  res.status(200).json({ message: "Successfully deleted currency" });
+});

@@ -26,4 +26,10 @@ router.patch(
   currencyController.updateCurrency
 );
 
+router.delete(
+  "/delete/:id",
+  authentication,
+  currencyController.deleteCurrency
+);
+
 module.exports = router;

@@ -248,3 +248,7 @@
     symbol: String,
 }
 ```
+
+### to delete a currency
+
+- currency/delete/:id :delete :protected

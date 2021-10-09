@@ -27,15 +27,15 @@ exports.saveCurrency = async ({
   }
 };
 
-exports.listAllCurrencies = async() => {
+exports.listAllCurrencies = async () => {
   return db.Currency.findAll({ ..._prop.hideFieldsCondition() });
 };
 
-exports.findByPk = async({ id }) => {
+exports.findByPk = async ({ id }) => {
   return db.Currency.findByPk(id, _prop.hideFieldsCondition());
 };
 
-exports.updateCurrency = async({
+exports.updateCurrency = async ({
   currencyId,
   description,
   alias,
@@ -61,6 +61,22 @@ exports.updateCurrency = async({
   } catch (err) {
     if (dbUtils.isRecordDuplicate(err)) {
       throw new Exceptions.BadRequest({ message: "Currency Already Exists" });
+    }
+    throw err;
+  }
+};
+
+exports.deleteCurrency = async ({ currencyId }) => {
+  try {
+    const deleteCurrency = await db.Currency.destroy({ where: { currencyId } });
+    if (dbUtils.isRecordFound(deleteCurrency)) {
+      throw new Exceptions.NotFound({ message: "Currency not found" });
+    }
+  } catch (err) {
+    if (dbUtils.isFkFailed(err)) {
+      throw new Exceptions.BadRequest({
+        message: "Cann't delete currency unless delete all its reference",
+      });
     }
     throw err;
   }
