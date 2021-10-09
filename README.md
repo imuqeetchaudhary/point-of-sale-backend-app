@@ -288,3 +288,14 @@
 ### to get a single religion
 
 - religion/get/:id :get :protected
+
+### to update a religion
+
+- religion/update/:id :patch :protected
+
+```js
+{
+    description: String,
+    alias: String,
+}
+```

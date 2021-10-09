@@ -29,6 +29,31 @@ exports.findByPk = async ({ id }) => {
   return db.Religion.findByPk(id, _prop.hideFieldsCondition());
 };
 
+exports.updateReligion = async ({
+  religionId,
+  description,
+  alias,
+  actionperformedBy,
+}) => {
+  const religion = {
+    description,
+    alias,
+    updatedBy: actionperformedBy,
+  };
+
+  try {
+    const updateReligion = await db.Religion.update(
+      { ...religion },
+      { where: { religionId } }
+    );
+  } catch (err) {
+    if (dbUtils.isRecordDuplicate(err)) {
+      throw new Exceptions.BadRequest({ message: "Religion Already Exists" });
+    }
+    throw err;
+  }
+};
+
 const _prop = {
   HIDDEN_FIELDS: ["createdAt", "updatedAt"],
   hideFieldsCondition: function (...args) {

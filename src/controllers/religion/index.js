@@ -25,3 +25,19 @@ exports.getSingleReligion = promise(async (req, res) => {
   const religion = await religionService.findByPk({ id });
   res.status(200).json({ religion });
 });
+
+exports.updateReligion = promise(async (req, res) => {
+  const { id } = req.params;
+  const religionId = id;
+  const { description, alias } = req.body;
+  const actionperformedBy = req.user.userId;
+
+  const updateReligion = await religionService.updateReligion({
+    religionId,
+    description,
+    alias,
+    actionperformedBy,
+  });
+
+  res.status(200).json({ message: "Successfully updated religion" });
+});
