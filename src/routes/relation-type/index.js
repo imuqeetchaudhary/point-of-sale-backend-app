@@ -34,4 +34,10 @@ router.patch(
   relationTypeController.updateRelationType
 );
 
+router.delete(
+  "/delete/:id",
+  authentication,
+  relationTypeController.deleteRelationType
+);
+
 module.exports = router;

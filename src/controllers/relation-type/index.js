@@ -44,3 +44,13 @@ exports.updateRelationType = promise(async (req, res) => {
 
   res.status(200).json({ message: "Successfully updated relation type" });
 });
+
+exports.deleteRelationType = promise(async (req, res) => {
+  const { id } = req.params;
+  const relationTypeId = id;
+
+  const deleteRelationType = await relationTypeService.deleteRelationType({
+    relationTypeId,
+  });
+  res.status(200).json({ message: "Successfully deleted relation type" });
+});

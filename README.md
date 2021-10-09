@@ -335,3 +335,7 @@
     alias: String,
 }
 ```
+
+### to delete a relation type
+
+- relation-type/delete/:id :delete :protected

@@ -67,6 +67,21 @@ exports.updateRelationType = async ({
   }
 };
 
+exports.deleteRelationType = async ({ relationTypeId }) => {
+  try {
+    const deleteRelationType = await db.RelationType.destroy({
+      where: { relationTypeId },
+    });
+  } catch (err) {
+    if (dbUtils.isFkFailed(err)) {
+      throw new Exceptions.BadRequest({
+        message: "Can't delete relation type unless delete all its reference",
+      });
+    }
+    throw err;
+  }
+};
+
 const _prop = {
   HIDDEN_FIELDS: ["createdAt", "updatedAt"],
   hideFieldsCondition: function (...args) {
