@@ -28,3 +28,19 @@ exports.getSingleRelationType = promise(async (req, res) => {
   const relationType = await relationTypeService.findById({ id });
   res.status(200).json({ relationType });
 });
+
+exports.updateRelationType = promise(async (req, res) => {
+  const { id } = req.params;
+  const relationTypeId = id;
+  const { description, alias } = req.body;
+  const actionperformedBy = req.user.userId;
+
+  const updateRelationType = await relationTypeService.updateRelationType({
+    relationTypeId,
+    description,
+    alias,
+    actionperformedBy,
+  });
+
+  res.status(200).json({ message: "Successfully updated relation type" });
+});

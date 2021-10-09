@@ -306,6 +306,8 @@
 
 ## Routes for Relation Type
 
+### to create a new relation type
+
 - relation-type/create :post :protected
 
 ```js
@@ -322,3 +324,14 @@
 ### to get single relation type
 
 - relation-type/get/:id :get :protected
+
+### to update a relation type
+
+- relation-type/update/:id :patch :protected
+
+```js
+{
+    description: String,
+    alias: String,
+}
+```

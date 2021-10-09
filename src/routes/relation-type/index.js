@@ -3,7 +3,10 @@ const router = express.Router();
 const relationTypeController = require("../../controllers/relation-type");
 const { validation } = require("../../middlewares/validation");
 const { authentication } = require("../../middlewares/isAuth");
-const { createRelationTypeSchema } = require("../../validations/relation-type");
+const {
+  createRelationTypeSchema,
+  updateRelationTypeSchema,
+} = require("../../validations/relation-type");
 
 router.post(
   "/create",
@@ -22,6 +25,13 @@ router.get(
   "/get/:id",
   authentication,
   relationTypeController.getSingleRelationType
+);
+
+router.patch(
+  "/update/:id",
+  authentication,
+  validation(updateRelationTypeSchema),
+  relationTypeController.updateRelationType
 );
 
 module.exports = router;
