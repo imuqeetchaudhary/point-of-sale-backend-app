@@ -25,6 +25,10 @@ exports.listAllReligion = async () => {
   return db.Religion.findAll({ ..._prop.hideFieldsCondition() });
 };
 
+exports.findByPk = async ({ id }) => {
+  return db.Religion.findByPk(id, _prop.hideFieldsCondition());
+};
+
 const _prop = {
   HIDDEN_FIELDS: ["createdAt", "updatedAt"],
   hideFieldsCondition: function (...args) {

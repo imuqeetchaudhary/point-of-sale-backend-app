@@ -18,3 +18,10 @@ exports.getAllReligion = promise(async (req, res) => {
   const religion = await religionService.listAllReligion();
   res.status(200).json({ religion });
 });
+
+exports.getSingleReligion = promise(async (req, res) => {
+  const { id } = req.params;
+
+  const religion = await religionService.findByPk({ id });
+  res.status(200).json({ religion });
+});

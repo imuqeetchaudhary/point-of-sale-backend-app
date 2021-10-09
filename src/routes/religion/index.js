@@ -14,4 +14,6 @@ router.post(
 
 router.get("/get-all", authentication, religionController.getAllReligion);
 
+router.get("/get/:id", authentication, religionController.getSingleReligion);
+
 module.exports = router;

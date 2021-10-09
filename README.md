@@ -284,3 +284,7 @@
 ### to get all religion
 
 - religion/get-all :get :protected
+
+### to get a single religion
+
+- religion/get/:id :get :protected
