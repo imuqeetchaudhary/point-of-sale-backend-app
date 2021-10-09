@@ -21,6 +21,7 @@ const itemCategory = require("./item-category");
 const bloodgroup = require("./blood-group");
 const currency = require("./currency");
 const religion = require("./religion");
+const relationType = require("./relation-type");
 
 const User = user.init(dbClient, DataTypes);
 const Role = role.init(dbClient, DataTypes, { User });
@@ -39,6 +40,7 @@ const ItemCategory = itemCategory.init(dbClient, DataTypes, { User });
 const BloodGroup = bloodgroup.init(dbClient, DataTypes);
 const Currency = currency.init(dbClient, DataTypes);
 const Religion = religion.init(dbClient, DataTypes);
+const RelationType = relationType.init(dbClient, DataTypes);
 
 db.User = User;
 db.Role = Role;
@@ -50,5 +52,6 @@ db.ItemCategory = ItemCategory;
 db.BloodGroup = BloodGroup;
 db.Currency = Currency;
 db.Religion = Religion;
+db.RelationType = RelationType;
 
 module.exports = db;
