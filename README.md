@@ -267,3 +267,16 @@
 ### to delete a currency
 
 - currency/delete/:id :delete :protected
+
+## Routes for Religion
+
+### to create a religion
+
+- religion/create :post :protected
+
+```js
+{
+    description: String,
+    alias: String,
+}
+```
