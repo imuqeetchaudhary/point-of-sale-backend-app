@@ -3,7 +3,10 @@ const router = express.Router();
 const currencyController = require("../../controllers/currency");
 const { validation } = require("../../middlewares/validation");
 const { authentication } = require("../../middlewares/isAuth");
-const { createCurrencySchema } = require("../../validations/currency");
+const {
+  createCurrencySchema,
+  updateCurrencySchema,
+} = require("../../validations/currency");
 
 router.post(
   "/create",
@@ -15,5 +18,12 @@ router.post(
 router.get("/get-all", authentication, currencyController.getAllCurrencies);
 
 router.get("/get/:id", authentication, currencyController.getSingleCurrencies);
+
+router.patch(
+  "/update/:id",
+  authentication,
+  validation(updateCurrencySchema),
+  currencyController.updateCurrency
+);
 
 module.exports = router;

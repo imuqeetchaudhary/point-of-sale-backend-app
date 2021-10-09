@@ -236,3 +236,15 @@
 ### to get single currency
 
 - currency/get/:id :get :protected
+
+### to update a currency
+
+- currency/update/:id :patch :protected
+
+```js
+{
+    description: String,
+    alias: String,
+    symbol: String,
+}
+```

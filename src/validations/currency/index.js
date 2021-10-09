@@ -5,3 +5,9 @@ exports.createCurrencySchema = yup.object({
   alias: yup.string(),
   symbol: yup.string(),
 });
+
+exports.updateCurrencySchema = yup.object({
+  description: yup.string(),
+  alias: yup.string(),
+  symbol: yup.string(),
+});
