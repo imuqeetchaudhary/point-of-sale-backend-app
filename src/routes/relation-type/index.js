@@ -12,4 +12,10 @@ router.post(
   relationTypeController.createRelationType
 );
 
+router.get(
+  "/get-all",
+  authentication,
+  relationTypeController.getAllRelationType
+);
+
 module.exports = router;

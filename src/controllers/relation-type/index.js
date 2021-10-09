@@ -16,3 +16,8 @@ exports.createRelationType = promise(async (req, res) => {
     .status(200)
     .json({ message: "Successfully created blood group", relationType });
 });
+
+exports.getAllRelationType = promise(async (req, res) => {
+  const relationType = await relationTypeService.listAllRelationType();
+  res.status(200).json({ relationType });
+});

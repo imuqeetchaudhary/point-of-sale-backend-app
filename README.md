@@ -314,3 +314,7 @@
     alias: String,
 }
 ```
+
+### to get all relation type
+
+- relation-type/get-all :get :protected

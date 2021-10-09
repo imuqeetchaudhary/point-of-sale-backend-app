@@ -25,3 +25,16 @@ exports.saveRelationType = async ({
     throw err;
   }
 };
+
+exports.listAllRelationType = async () => {
+  return db.RelationType.findAll({
+    ..._prop.hideFieldsCondition(),
+  });
+};
+
+const _prop = {
+  HIDDEN_FIELDS: ["createdAt", "updatedAt"],
+  hideFieldsCondition: function (...args) {
+    return { attributes: { exclude: [...this.HIDDEN_FIELDS, ...args] } };
+  },
+};
