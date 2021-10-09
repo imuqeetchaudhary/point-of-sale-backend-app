@@ -39,3 +39,11 @@ exports.updateRole = promise(async (req, res) => {
 
   res.status(200).json({ message: "Successfully updated role" });
 });
+
+exports.getUserRoles = promise(async (req, res) => {
+  const { id } = req.params;
+  const userId = id;
+
+  const roles = await roleService.listAllRolesForUser({ userId });
+  res.status(200).json({ roles });
+});

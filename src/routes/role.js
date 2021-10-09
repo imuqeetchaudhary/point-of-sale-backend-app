@@ -21,4 +21,6 @@ router.patch(
   roleController.updateRole
 );
 
+router.get("/user/:id", authentication, roleController.getUserRoles);
+
 module.exports = router;

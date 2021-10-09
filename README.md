@@ -109,6 +109,10 @@
 
 - role/get-all :get :protected
 
+### to get all roles for single user
+
+- role/user/:id :get :protected (where id stands for userId)
+
 ### to update a role
 
 - role/update/:id: :post :protected
