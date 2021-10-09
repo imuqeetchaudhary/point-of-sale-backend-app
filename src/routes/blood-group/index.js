@@ -30,4 +30,10 @@ router.patch(
   bloodGroupController.updateBloodGroup
 );
 
+router.delete(
+  "/delete/:id",
+  authentication,
+  bloodGroupController.deleteBloodGroup
+);
+
 module.exports = router;

@@ -32,7 +32,7 @@ exports.findById = ({ id }) => {
   return db.BloodGroup.findByPk(id, _prop.hideFieldsCondition());
 };
 
-exports.updateBloodGroup = async({
+exports.updateBloodGroup = async ({
   bloodgroupId,
   description,
   alias,
@@ -57,6 +57,21 @@ exports.updateBloodGroup = async({
     if (dbUtils.isRecordDuplicate(err)) {
       throw new Exceptions.BadRequest({
         message: "Blood Group Already Exists",
+      });
+    }
+    throw err;
+  }
+};
+
+exports.deleteBloodGroup = async ({ bloodgroupId }) => {
+  try {
+    const deleteBloodGroup = await db.BloodGroup.destroy({
+      where: { bloodgroupId },
+    });
+  } catch (err) {
+    if (dbUtils.isFkFailed(err)) {
+      throw new Exceptions.BadRequest({
+        message: "Cann't delete blood group unless delete all its reference",
       });
     }
     throw err;

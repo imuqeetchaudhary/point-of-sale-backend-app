@@ -226,6 +226,10 @@
 }
 ```
 
+### to delete a blood group
+
+- blood-group/delete/:id :delete :protected
+
 ## Routes for Currency
 
 ### to create a new currency
