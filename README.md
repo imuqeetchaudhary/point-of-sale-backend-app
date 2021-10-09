@@ -303,3 +303,14 @@
 ### to delete a religion
 
 - religion/delete/:id :delete :protected
+
+## Routes for Relation Type
+
+- relation-type/create :post :protected
+
+```js
+{
+    description: String,
+    alias: String,
+}
+```
