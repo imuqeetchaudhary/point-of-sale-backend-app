@@ -228,3 +228,7 @@
     symbol: String,
 }
 ```
+
+### to get all currency
+
+- currency/get-all :get :protected

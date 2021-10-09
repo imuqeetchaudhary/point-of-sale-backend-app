@@ -26,3 +26,14 @@ exports.saveCurrency = async ({
     throw err;
   }
 };
+
+exports.listAllCurrencies = () => {
+  return db.Currency.findAll({ ..._prop.hideFieldsCondition() });
+};
+
+const _prop = {
+  HIDDEN_FIELDS: ["createdAt", "updatedAt"],
+  hideFieldsCondition: function (...args) {
+    return { attributes: { exclude: [...this.HIDDEN_FIELDS, ...args] } };
+  },
+};

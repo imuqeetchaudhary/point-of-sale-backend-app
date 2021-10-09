@@ -14,3 +14,8 @@ exports.createCurrency = promise(async (req, res) => {
   });
   res.status(200).json({ message: "Successfully created currency", currency });
 });
+
+exports.getAllCurrencies = promise(async (req, res) => {
+  const currency = await currencyService.listAllCurrencies();
+  res.status(200).json({ currency });
+});
