@@ -2,11 +2,7 @@ const db = require("../../models");
 const dbUtils = require("../error-check.util");
 const Exceptions = require("../../utils/custom-exceptions");
 
-exports.saveReligion = async ({
-  description,
-  alias,
-  actionperformedBy,
-}) => {
+exports.saveReligion = async ({ description, alias, actionperformedBy }) => {
   const religion = {
     description,
     alias,
@@ -23,4 +19,15 @@ exports.saveReligion = async ({
     }
     throw err;
   }
+};
+
+exports.listAllReligion = async () => {
+  return db.Religion.findAll({ ..._prop.hideFieldsCondition() });
+};
+
+const _prop = {
+  HIDDEN_FIELDS: ["createdAt", "updatedAt"],
+  hideFieldsCondition: function (...args) {
+    return { attributes: { exclude: [...this.HIDDEN_FIELDS, ...args] } };
+  },
 };

@@ -280,3 +280,7 @@
     alias: String,
 }
 ```
+
+### to get all religion
+
+- religion/get-all :get :protected

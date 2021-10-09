@@ -13,3 +13,8 @@ exports.createReligion = promise(async (req, res) => {
   });
   res.status(200).json({ message: "Successfully created religion", religion });
 });
+
+exports.getAllReligion = promise(async (req, res) => {
+  const religion = await religionService.listAllReligion();
+  res.status(200).json({ religion });
+});
