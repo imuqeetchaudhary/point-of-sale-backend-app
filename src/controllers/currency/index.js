@@ -19,3 +19,10 @@ exports.getAllCurrencies = promise(async (req, res) => {
   const currency = await currencyService.listAllCurrencies();
   res.status(200).json({ currency });
 });
+
+exports.getSingleCurrencies = promise(async (req, res) => {
+  const { id } = req.params;
+
+  const currency = await currencyService.findByPk({ id });
+  res.status(200).json({ currency });
+});

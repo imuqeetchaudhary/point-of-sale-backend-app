@@ -232,3 +232,7 @@
 ### to get all currency
 
 - currency/get-all :get :protected
+
+### to get single currency
+
+- currency/get/:id :get :protected

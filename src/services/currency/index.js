@@ -31,6 +31,10 @@ exports.listAllCurrencies = () => {
   return db.Currency.findAll({ ..._prop.hideFieldsCondition() });
 };
 
+exports.findByPk = ({ id }) => {
+  return db.Currency.findByPk(id, _prop.hideFieldsCondition())
+};
+
 const _prop = {
   HIDDEN_FIELDS: ["createdAt", "updatedAt"],
   hideFieldsCondition: function (...args) {

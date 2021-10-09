@@ -14,4 +14,6 @@ router.post(
 
 router.get("/get-all", authentication, currencyController.getAllCurrencies);
 
+router.get("/get/:id", authentication, currencyController.getSingleCurrencies);
+
 module.exports = router;
