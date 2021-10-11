@@ -22,3 +22,10 @@ exports.getAllCountry = promise(async (req, res) => {
   const country = await countryService.listAllCountries();
   res.status(200).json({ country });
 });
+
+exports.getSingleCountry = promise(async (req, res) => {
+  const { id } = req.params;
+
+  const country = await countryService.findById({ id });
+  res.status(200).json({ country });
+});

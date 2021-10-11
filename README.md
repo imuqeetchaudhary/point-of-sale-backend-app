@@ -357,3 +357,7 @@
 ### to get all countries
 
 - country/get-all :get :protected
+
+### to get a single country
+
+- country/get/:id: :get :protected

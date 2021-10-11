@@ -14,4 +14,6 @@ router.post(
 
 router.get("/get-all", authentication, countryController.getAllCountry);
 
+router.get("/get/:id", authentication, countryController.getSingleCountry);
+
 module.exports = router;

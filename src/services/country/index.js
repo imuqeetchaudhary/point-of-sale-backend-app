@@ -37,6 +37,10 @@ exports.listAllCountries = async () => {
   });
 };
 
+exports.findById = ({ id }) => {
+  return db.Country.findByPk(id, _prop.hideFieldsCondition());
+};
+
 const _prop = {
   HIDDEN_FIELDS: ["createdAt", "updatedAt"],
   hideFieldsCondition: function (...args) {
