@@ -12,6 +12,7 @@ const currencyRoute = require("../routes/currency");
 const religionRoute = require("../routes/religion");
 const relationTypeRoute = require("../routes/relation-type");
 const countryRoute = require("../routes/country");
+const cityRoute = require("../routes/city");
 
 router.get("/", (req, res) =>
   res.send({ message: "Point Of Sale Backend App RestApi" })
@@ -28,5 +29,6 @@ router.use("/currency", currencyRoute);
 router.use("/religion", religionRoute);
 router.use("/relation-type", relationTypeRoute);
 router.use("/country", countryRoute);
+router.use("/city", cityRoute);
 
 module.exports = router;

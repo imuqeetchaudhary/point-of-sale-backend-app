@@ -377,3 +377,17 @@
 ### to delete a country
 
 - country/delete/:id: :delete :protected
+
+## Routes for City
+
+### to create a new city
+
+- city/create :post :protected
+
+```js
+    countryId: Number,
+    description: String,
+    alias: String,
+    province: String,
+    dailCode: String,
+```
