@@ -26,4 +26,6 @@ router.patch(
   cityController.updateCity
 );
 
+router.delete("/delete/:id", authentication, cityController.deleteCity);
+
 module.exports = router;

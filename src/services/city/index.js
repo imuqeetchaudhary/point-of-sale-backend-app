@@ -73,6 +73,21 @@ exports.updateCity = async ({
   }
 };
 
+exports.deleteCity = async ({ cityId }) => {
+  try {
+    const deleteCity = await db.City.destroy({
+      where: { cityId },
+    });
+  } catch (err) {
+    if (dbUtils.isFkFailed(err)) {
+      throw new Exceptions.BadRequest({
+        message: "Can't delete city unless delete all its reference",
+      });
+    }
+    throw err;
+  }
+};
+
 const _prop = {
   HIDDEN_FIELDS: ["createdAt", "updatedAt"],
   hideFieldsCondition: function (...args) {

@@ -411,3 +411,7 @@
     province: String,
     dailCode: String,
 ```
+
+### to delete a city
+
+- city/delete/:id :delete :protected
