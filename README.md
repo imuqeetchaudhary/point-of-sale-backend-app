@@ -391,3 +391,7 @@
     province: String,
     dailCode: String,
 ```
+
+### to get all cities
+
+- city/get-all :get :protected

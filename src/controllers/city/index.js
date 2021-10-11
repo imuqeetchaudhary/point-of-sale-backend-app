@@ -17,3 +17,8 @@ exports.createCity = promise(async (req, res) => {
 
   res.status(200).json({ message: "Successfully created city", city });
 });
+
+exports.getAllCities = promise(async (req, res) => {
+  const city = await cityService.listAllCities();
+  res.status(200).json({ city });
+});

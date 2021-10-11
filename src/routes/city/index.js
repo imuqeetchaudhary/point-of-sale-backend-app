@@ -12,4 +12,6 @@ router.post(
   cityController.createCity
 );
 
+router.get("/get-all", authentication, cityController.getAllCities);
+
 module.exports = router;
