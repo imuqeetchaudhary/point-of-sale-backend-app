@@ -29,3 +29,22 @@ exports.getSingleCity = promise(async (req, res) => {
   const city = await cityService.findById({ id });
   res.status(200).json({ city });
 });
+
+exports.updateCity = promise(async (req, res) => {
+  const { id } = req.params;
+  const cityId = id;
+  const { countryId, description, alias, province, dailCode } = req.body;
+  const actionperformedBy = req.user.userId;
+
+  const updatecity = await cityService.updateCity({
+    cityId,
+    countryId,
+    description,
+    alias,
+    province,
+    dailCode,
+    actionperformedBy,
+  });
+
+  res.status(200).json({ message: "Successfully updated city" });
+});

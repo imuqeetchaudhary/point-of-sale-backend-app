@@ -399,3 +399,15 @@
 ### to get single city
 
 - city/get/:id: :get :protected
+
+### to update a city
+
+- city/update/:id: :patch :protected
+
+```js
+    countryId: Number,
+    description: String,
+    alias: String,
+    province: String,
+    dailCode: String,
+```

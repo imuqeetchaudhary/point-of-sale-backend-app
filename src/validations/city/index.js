@@ -7,3 +7,11 @@ exports.createCitySchema = yup.object({
   province: yup.string().required(),
   dailCode: yup.string().required(),
 });
+
+exports.updateCitySchema = yup.object({
+  countryId: yup.number().min(1),
+  description: yup.string(),
+  alias: yup.string(),
+  province: yup.string(),
+  dailCode: yup.string(),
+});

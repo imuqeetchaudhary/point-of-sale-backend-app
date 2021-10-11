@@ -41,6 +41,38 @@ exports.findById = ({ id }) => {
   return db.City.findByPk(id, _prop.hideFieldsCondition());
 };
 
+exports.updateCity = async ({
+  cityId,
+  countryId,
+  description,
+  alias,
+  province,
+  dailCode,
+  actionperformedBy,
+}) => {
+  const city = {
+    countryId,
+    description,
+    alias,
+    province,
+    dailCode,
+    updatedBy: actionperformedBy,
+  };
+
+  try {
+    const updateCity = await db.City.update({ ...city }, { where: { cityId } });
+
+    if (dbUtils.isRecordFound(updateCity)) {
+      throw new Exceptions.NotFound({ message: "City Not Found" });
+    }
+  } catch (err) {
+    if (dbUtils.isRecordDuplicate(err)) {
+      throw new Exceptions.BadRequest({ message: "City Already Exists" });
+    }
+    throw err;
+  }
+};
+
 const _prop = {
   HIDDEN_FIELDS: ["createdAt", "updatedAt"],
   hideFieldsCondition: function (...args) {
