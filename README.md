@@ -339,3 +339,17 @@
 ### to delete a relation type
 
 - relation-type/delete/:id :delete :protected
+
+## Routes for Country
+
+### to create a new country
+
+- country/create :post :protected
+
+```js
+    currencyId: Number,
+    description: String,
+    alias: String,
+    capital: String,
+    dailCode: String,
+```
