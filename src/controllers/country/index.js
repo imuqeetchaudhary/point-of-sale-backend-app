@@ -17,3 +17,8 @@ exports.createCountry = promise(async (req, res) => {
 
   res.status(200).json({ message: "Successfully created country", country });
 });
+
+exports.getAllCountry = promise(async (req, res) => {
+  const country = await countryService.listAllCountries();
+  res.status(200).json({ country });
+});

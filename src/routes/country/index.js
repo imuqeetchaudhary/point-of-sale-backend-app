@@ -12,4 +12,6 @@ router.post(
   countryController.createCountry
 );
 
+router.get("/get-all", authentication, countryController.getAllCountry);
+
 module.exports = router;

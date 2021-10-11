@@ -353,3 +353,7 @@
     capital: String,
     dailCode: String,
 ```
+
+### to get all countries
+
+- country/get-all :get :protected
