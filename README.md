@@ -361,3 +361,15 @@
 ### to get a single country
 
 - country/get/:id: :get :protected
+
+### to update a country
+
+- country/update/:id: :patch :protected
+
+```js
+    currencyId: Number,
+    description: String,
+    alias: String,
+    capital: String,
+    dailCode: String,
+```
