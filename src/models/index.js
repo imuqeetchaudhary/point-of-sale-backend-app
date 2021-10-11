@@ -22,6 +22,7 @@ const bloodgroup = require("./blood-group");
 const currency = require("./currency");
 const religion = require("./religion");
 const relationType = require("./relation-type");
+const country = require("./country");
 
 const User = user.init(dbClient, DataTypes);
 const Role = role.init(dbClient, DataTypes, { User });
@@ -41,6 +42,7 @@ const BloodGroup = bloodgroup.init(dbClient, DataTypes);
 const Currency = currency.init(dbClient, DataTypes);
 const Religion = religion.init(dbClient, DataTypes);
 const RelationType = relationType.init(dbClient, DataTypes);
+const Country = country.init(dbClient, DataTypes);
 
 db.User = User;
 db.Role = Role;
@@ -53,5 +55,6 @@ db.BloodGroup = BloodGroup;
 db.Currency = Currency;
 db.Religion = Religion;
 db.RelationType = RelationType;
+db.Country = Country;
 
-module.exports = db;
+module.exports = db, Currency;
