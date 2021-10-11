@@ -37,6 +37,10 @@ exports.listAllCities = async () => {
   });
 };
 
+exports.findById = ({ id }) => {
+  return db.City.findByPk(id, _prop.hideFieldsCondition());
+};
+
 const _prop = {
   HIDDEN_FIELDS: ["createdAt", "updatedAt"],
   hideFieldsCondition: function (...args) {

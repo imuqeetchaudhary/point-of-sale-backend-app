@@ -22,3 +22,10 @@ exports.getAllCities = promise(async (req, res) => {
   const city = await cityService.listAllCities();
   res.status(200).json({ city });
 });
+
+exports.getSingleCity = promise(async (req, res) => {
+  const { id } = req.params;
+
+  const city = await cityService.findById({ id });
+  res.status(200).json({ city });
+});

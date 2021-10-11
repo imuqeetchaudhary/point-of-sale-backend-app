@@ -14,4 +14,6 @@ router.post(
 
 router.get("/get-all", authentication, cityController.getAllCities);
 
+router.get("/get/:id", authentication, cityController.getSingleCity);
+
 module.exports = router;

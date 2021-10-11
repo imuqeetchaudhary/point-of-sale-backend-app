@@ -395,3 +395,7 @@
 ### to get all cities
 
 - city/get-all :get :protected
+
+### to get single city
+
+- city/get/:id: :get :protected
