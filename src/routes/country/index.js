@@ -26,4 +26,6 @@ router.patch(
   countryController.updateCountry
 );
 
+router.delete("/delete/:id", authentication, countryController.deleteCountry);
+
 module.exports = router;

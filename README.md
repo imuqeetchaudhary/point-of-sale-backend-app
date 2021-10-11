@@ -373,3 +373,7 @@
     capital: String,
     dailCode: String,
 ```
+
+### to delete a country
+
+- country/delete/:id: :delete :protected

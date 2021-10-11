@@ -78,6 +78,21 @@ exports.updateCountry = async ({
   }
 };
 
+exports.deleteCountry = async ({ countryId }) => {
+  try {
+    const deleteCountry = await db.Country.destroy({
+      where: { countryId },
+    });
+  } catch (err) {
+    if (dbUtils.isFkFailed(err)) {
+      throw new Exceptions.BadRequest({
+        message: "Can't delete country unless delete all its reference",
+      });
+    }
+    throw err;
+  }
+};
+
 const _prop = {
   HIDDEN_FIELDS: ["createdAt", "updatedAt"],
   hideFieldsCondition: function (...args) {
