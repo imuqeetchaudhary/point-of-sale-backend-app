@@ -25,6 +25,7 @@ const relationType = require("./relation-type");
 const country = require("./country");
 const city = require("./city");
 const qua_levels = require("./qua-levels");
+const qualification = require("./qualification");
 
 const User = user.init(dbClient, DataTypes);
 const Role = role.init(dbClient, DataTypes, { User });
@@ -47,6 +48,7 @@ const RelationType = relationType.init(dbClient, DataTypes);
 const Country = country.init(dbClient, DataTypes);
 const City = city.init(dbClient, DataTypes);
 const QUALevels = qua_levels.init(dbClient, DataTypes);
+const Qualification = qualification.init(dbClient, DataTypes);
 
 db.User = User;
 db.Role = Role;
@@ -62,5 +64,6 @@ db.RelationType = RelationType;
 db.Country = Country;
 db.City = City;
 db.QUALevels = QUALevels;
+db.Qualification = Qualification;
 
 module.exports = db;
