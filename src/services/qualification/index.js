@@ -74,6 +74,21 @@ exports.updateQualification = async ({
   }
 };
 
+exports.deleteQualification = async ({ qualificationId }) => {
+  try {
+    const deleteQualification = await db.Qualification.destroy({
+      where: { qualificationId },
+    });
+  } catch (err) {
+    if (dbUtils.isFkFailed(err)) {
+      throw new Exceptions.BadRequest({
+        message: "Can't delete qualification unless delete all its reference",
+      });
+    }
+    throw err;
+  }
+};
+
 const _prop = {
   HIDDEN_FIELDS: ["createdAt", "updatedAt"],
   hideFieldsCondition: function (...args) {

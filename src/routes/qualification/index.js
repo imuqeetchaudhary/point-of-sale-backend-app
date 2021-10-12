@@ -34,4 +34,10 @@ router.patch(
   qualificationController.updateQualification
 );
 
+router.delete(
+  "/delete/:id",
+  authentication,
+  qualificationController.deleteQualification
+);
+
 module.exports = router;

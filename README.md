@@ -489,3 +489,7 @@
     alias: String,
 }
 ```
+
+### to delete a qualification
+
+- qualification/delete/:id: :delete :protected
