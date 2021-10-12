@@ -5,6 +5,7 @@ const { validation } = require("../../middlewares/validation");
 const { authentication } = require("../../middlewares/isAuth");
 const {
   createQualificationSchema,
+  updateQualificationSchema,
 } = require("../../validations/qualification");
 
 router.post(
@@ -24,6 +25,13 @@ router.get(
   "/get/:id",
   authentication,
   qualificationController.getSingleQualification
+);
+
+router.patch(
+  "/update/:id",
+  authentication,
+  validation(updateQualificationSchema),
+  qualificationController.updateQualification
 );
 
 module.exports = router;

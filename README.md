@@ -477,3 +477,15 @@
 ### to get a single qualification
 
 - qualification/get/:id: :get :protected
+
+### to update a qualification
+
+- qualification/update/:id: :patch :protected
+
+```js
+{
+    quaLevelsId: Number,
+    description: String,
+    alias: String,
+}
+```

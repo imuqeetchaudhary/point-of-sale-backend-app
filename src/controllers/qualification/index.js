@@ -29,3 +29,20 @@ exports.getSingleQualification = promise(async (req, res) => {
   const qualification = await qualificationService.findById({ id });
   res.status(200).json({ qualification });
 });
+
+exports.updateQualification = promise(async (req, res) => {
+  const { id } = req.params;
+  const qualificationId = id;
+  const { quaLevelsId, description, alias } = req.body;
+  const actionperformedBy = req.user.userId;
+
+  const updateQualification = await qualificationService.updateQualification({
+    qualificationId,
+    quaLevelsId,
+    description,
+    alias,
+    actionperformedBy,
+  });
+
+  res.status(200).json({ message: "Successfully updated qualification" });
+});
