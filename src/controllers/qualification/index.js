@@ -13,5 +13,12 @@ exports.createQualification = promise(async (req, res) => {
     actionperformedBy,
   });
 
-  res.status(200).json({ message: "Successfully created qualification", qualification });
+  res
+    .status(200)
+    .json({ message: "Successfully created qualification", qualification });
+});
+
+exports.getAllQualifications = promise(async (req, res) => {
+  const qualification = await qualificationService.listAllQualifications();
+  res.status(200).json({ qualification });
 });

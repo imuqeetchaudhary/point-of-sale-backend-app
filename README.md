@@ -469,3 +469,7 @@
     alias: String,
 }
 ```
+
+### to get all qualifications
+
+- qualification/get-all :get :protected
