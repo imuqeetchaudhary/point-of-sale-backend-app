@@ -473,3 +473,7 @@
 ### to get all qualifications
 
 - qualification/get-all :get :protected
+
+### to get a single qualification
+
+- qualification/get/:id: :get :protected

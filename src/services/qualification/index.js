@@ -37,6 +37,10 @@ exports.listAllQualifications = async () => {
   });
 };
 
+exports.findById = ({ id }) => {
+  return db.Qualification.findByPk(id, _prop.hideFieldsCondition());
+};
+
 const _prop = {
   HIDDEN_FIELDS: ["createdAt", "updatedAt"],
   hideFieldsCondition: function (...args) {

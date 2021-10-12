@@ -20,4 +20,10 @@ router.get(
   qualificationController.getAllQualifications
 );
 
+router.get(
+  "/get/:id",
+  authentication,
+  qualificationController.getSingleQualification
+);
+
 module.exports = router;

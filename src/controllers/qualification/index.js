@@ -22,3 +22,10 @@ exports.getAllQualifications = promise(async (req, res) => {
   const qualification = await qualificationService.listAllQualifications();
   res.status(200).json({ qualification });
 });
+
+exports.getSingleQualification = promise(async (req, res) => {
+  const { id } = req.params;
+
+  const qualification = await qualificationService.findById({ id });
+  res.status(200).json({ qualification });
+});
