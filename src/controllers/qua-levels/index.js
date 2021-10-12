@@ -17,3 +17,8 @@ exports.createQUALevels = promise(async (req, res) => {
     .status(200)
     .json({ message: "Successfully created quaLevels", quaLevels });
 });
+
+exports.getAllQUALevels = promise(async (req, res) => {
+  const quaLevels = await quaLevelsService.listAllQUALevels();
+  res.status(200).json({ quaLevels });
+});

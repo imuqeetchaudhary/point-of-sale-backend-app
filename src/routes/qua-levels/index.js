@@ -12,4 +12,6 @@ router.post(
   quaLevelsController.createQUALevels
 );
 
+router.get("/get-all", authentication, quaLevelsController.getAllQUALevels);
+
 module.exports = router;

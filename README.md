@@ -430,3 +430,7 @@
     level: String
 }
 ```
+
+### to get all qua levels
+
+- qua-levels/get-all :get :protected

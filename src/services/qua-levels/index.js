@@ -28,3 +28,14 @@ exports.saveQUALevels = async ({
     throw err;
   }
 };
+
+exports.listAllQUALevels = async () => {
+  return db.QUALevels.findAll({ ..._prop.hideFieldsCondition() });
+};
+
+const _prop = {
+  HIDDEN_FIELDS: ["createdAt", "updatedAt"],
+  hideFieldsCondition: function (...args) {
+    return { attributes: { exclude: [...this.HIDDEN_FIELDS, ...args] } };
+  },
+};
