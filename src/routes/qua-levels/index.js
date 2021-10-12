@@ -14,4 +14,6 @@ router.post(
 
 router.get("/get-all", authentication, quaLevelsController.getAllQUALevels);
 
+router.get("/get/:id", authentication, quaLevelsController.getSingleQUALevel);
+
 module.exports = router;

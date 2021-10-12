@@ -33,6 +33,10 @@ exports.listAllQUALevels = async () => {
   return db.QUALevels.findAll({ ..._prop.hideFieldsCondition() });
 };
 
+exports.findByPk = async ({ id }) => {
+  return db.QUALevels.findByPk(id, _prop.hideFieldsCondition());
+};
+
 const _prop = {
   HIDDEN_FIELDS: ["createdAt", "updatedAt"],
   hideFieldsCondition: function (...args) {

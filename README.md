@@ -434,3 +434,7 @@
 ### to get all qua levels
 
 - qua-levels/get-all :get :protected
+
+### to get a single qua level
+
+- qua-levels/get/:id: :get :protected

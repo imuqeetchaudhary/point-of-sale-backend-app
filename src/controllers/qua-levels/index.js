@@ -22,3 +22,10 @@ exports.getAllQUALevels = promise(async (req, res) => {
   const quaLevels = await quaLevelsService.listAllQUALevels();
   res.status(200).json({ quaLevels });
 });
+
+exports.getSingleQUALevel = promise(async (req, res) => {
+  const { id } = req.params;
+
+  const quaLevel = await quaLevelsService.findByPk({ id });
+  res.status(200).json({ quaLevel });
+});
