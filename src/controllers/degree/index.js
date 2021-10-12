@@ -26,3 +26,20 @@ exports.getSingleDegree = promise(async (req, res) => {
   const degree = await degreeService.findById({ id });
   res.status(200).json({ degree });
 });
+
+exports.updateDegree = promise(async (req, res) => {
+  const { id } = req.params;
+  const degreeId = id;
+  const { qualificationId, description, alias } = req.body;
+  const actionperformedBy = req.user.userId;
+
+  const updateDegree = await degreeService.updateDegree({
+    degreeId,
+    qualificationId,
+    description,
+    alias,
+    actionperformedBy,
+  });
+
+  res.status(200).json({ message: "Successfully updated degree" });
+});

@@ -498,6 +498,8 @@
 
 ### to create a new degree
 
+- degree/create :post :protected
+
 ```js
 {
     qualificationId: Number,
@@ -513,3 +515,15 @@
 ### to get a single degree
 
 - degree/get/:id: :get :protected
+
+### to update a degree
+
+- degree/update/:id: :patch :protected
+
+```js
+{
+    qualificationId: Number,
+    description: String,
+    alias: String,
+}
+```

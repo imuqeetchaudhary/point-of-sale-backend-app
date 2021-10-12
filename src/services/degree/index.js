@@ -37,6 +37,39 @@ exports.findById = ({ id }) => {
   return db.Degree.findByPk(id, _prop.hideFieldsCondition());
 };
 
+exports.updateDegree = async ({
+  degreeId,
+  qualificationId,
+  description,
+  alias,
+  actionperformedBy,
+}) => {
+  const degree = {
+    qualificationId,
+    description,
+    alias,
+    updatedBy: actionperformedBy,
+  };
+
+  try {
+    const updateDegree = await db.Degree.update(
+      { ...degree },
+      { where: { degreeId } }
+    );
+
+    if (dbUtils.isRecordFound(updateDegree)) {
+      throw new Exceptions.NotFound({ message: "Degree Not Found" });
+    }
+  } catch (err) {
+    if (dbUtils.isRecordDuplicate(err)) {
+      throw new Exceptions.BadRequest({
+        message: "Degree Already Exists",
+      });
+    }
+    throw err;
+  }
+};
+
 const _prop = {
   HIDDEN_FIELDS: ["createdAt", "updatedAt"],
   hideFieldsCondition: function (...args) {
