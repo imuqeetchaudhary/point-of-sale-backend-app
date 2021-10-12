@@ -70,6 +70,24 @@ exports.updateQUALevels = async ({
   }
 };
 
+exports.deleteQUALevels = async ({ quaLevelsId }) => {
+  try {
+    const deleteQUALevels = await db.QUALevels.destroy({
+      where: { quaLevelsId },
+    });
+    if (dbUtils.isRecordFound(deleteQUALevels)) {
+      throw new Exceptions.NotFound({ message: "QUA Levels not found" });
+    }
+  } catch (err) {
+    if (dbUtils.isFkFailed(err)) {
+      throw new Exceptions.BadRequest({
+        message: "Can't delete QUA Levels unless delete all its reference",
+      });
+    }
+    throw err;
+  }
+};
+
 const _prop = {
   HIDDEN_FIELDS: ["createdAt", "updatedAt"],
   hideFieldsCondition: function (...args) {

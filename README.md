@@ -451,3 +451,7 @@
     level: String
 }
 ```
+
+### to delete a qua level
+
+- qua-levels/delete/:id: :delete :protected

@@ -26,4 +26,10 @@ router.patch(
   quaLevelsController.updateQUALevels
 );
 
+router.delete(
+  "/delete/:id",
+  authentication,
+  quaLevelsController.deleteQUALevels
+);
+
 module.exports = router;

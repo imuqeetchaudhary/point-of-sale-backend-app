@@ -47,3 +47,13 @@ exports.updateQUALevels = promise(async (req, res) => {
 
   res.status(200).json({ message: "Successfully updated QUA Levels" });
 });
+
+exports.deleteQUALevels = promise(async (req, res) => {
+  const { id } = req.params;
+  const quaLevelsId = id;
+
+  const deleteQUALevels = await quaLevelsService.deleteQUALevels({
+    quaLevelsId,
+  });
+  res.status(200).json({ message: "Successfully deleted QUA Levels" });
+});
