@@ -38,7 +38,7 @@
 
 ### to get user profile
 
-- user/profile/:id: :get :protected
+- user/profile :get :protected
 
 ### to update a user
 
