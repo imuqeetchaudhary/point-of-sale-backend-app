@@ -455,3 +455,17 @@
 ### to delete a qua level
 
 - qua-levels/delete/:id: :delete :protected
+
+## Routes for Qualification
+
+### to create a new qualification
+
+- qualification/create :post :protected
+
+```js
+{
+    quaLevelsId: Number,
+    description: String,
+    alias: String,
+}
+```

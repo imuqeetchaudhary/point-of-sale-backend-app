@@ -14,6 +14,7 @@ const relationTypeRoute = require("../routes/relation-type");
 const countryRoute = require("../routes/country");
 const cityRoute = require("../routes/city");
 const quaLevelsRoute = require("../routes/qua-levels");
+const qualificationRoute = require("../routes/qualification");
 
 router.get("/", (req, res) =>
   res.send({ message: "Point Of Sale Backend App RestApi" })
@@ -32,5 +33,6 @@ router.use("/relation-type", relationTypeRoute);
 router.use("/country", countryRoute);
 router.use("/city", cityRoute);
 router.use("/qua-levels", quaLevelsRoute);
+router.use("/qualification", qualificationRoute);
 
 module.exports = router;
