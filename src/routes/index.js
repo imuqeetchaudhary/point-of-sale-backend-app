@@ -15,6 +15,7 @@ const countryRoute = require("../routes/country");
 const cityRoute = require("../routes/city");
 const quaLevelsRoute = require("../routes/qua-levels");
 const qualificationRoute = require("../routes/qualification");
+const degreeRoute = require("../routes/degree");
 
 router.get("/", (req, res) =>
   res.send({ message: "Point Of Sale Backend App RestApi" })
@@ -34,5 +35,6 @@ router.use("/country", countryRoute);
 router.use("/city", cityRoute);
 router.use("/qua-levels", quaLevelsRoute);
 router.use("/qualification", qualificationRoute);
+router.use("/degree", degreeRoute);
 
 module.exports = router;

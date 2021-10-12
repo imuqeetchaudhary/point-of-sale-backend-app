@@ -493,3 +493,15 @@
 ### to delete a qualification
 
 - qualification/delete/:id: :delete :protected
+
+## Routes for Degree
+
+### to create a new degree
+
+```js
+{
+    qualificationId: Number,
+    description: String,
+    alias: String,
+}
+```
