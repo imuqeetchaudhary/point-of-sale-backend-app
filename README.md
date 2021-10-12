@@ -505,3 +505,7 @@
     alias: String,
 }
 ```
+
+### to get all degree
+
+- degree/get-all :get :protected

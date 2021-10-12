@@ -14,3 +14,8 @@ exports.createDegree = promise(async (req, res) => {
   });
   res.status(200).json({ message: "Successfully created degree", degree });
 });
+
+exports.getAllDegree = promise(async (req, res) => {
+  const degree = await degreeService.listAllDegree();
+  res.status(200).json({ degree });
+});

@@ -26,3 +26,16 @@ exports.saveDegree = async ({
     throw err;
   }
 };
+
+exports.listAllDegree = async () => {
+  return db.Degree.findAll({
+    ..._prop.hideFieldsCondition(),
+  });
+};
+
+const _prop = {
+  HIDDEN_FIELDS: ["createdAt", "updatedAt"],
+  hideFieldsCondition: function (...args) {
+    return { attributes: { exclude: [...this.HIDDEN_FIELDS, ...args] } };
+  },
+};
