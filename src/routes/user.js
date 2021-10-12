@@ -18,7 +18,7 @@ router.post(
 
 router.post("/login", validation(loginSchema), userController.login);
 
-router.get("/profile/:id", authentication, userController.profile);
+router.get("/profile", authentication, userController.profile);
 
 router.get("/get-all", authentication, userController.getAllUsers);
 

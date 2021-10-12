@@ -66,7 +66,7 @@ exports.login = promise(async (req, res) => {
 });
 
 exports.profile = promise(async (req, res) => {
-  const { id } = req.params;
+  const id = req.user.userId;
 
   const user = await userService.findById({ id });
 
