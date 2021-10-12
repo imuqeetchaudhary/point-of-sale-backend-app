@@ -19,3 +19,10 @@ exports.getAllDegree = promise(async (req, res) => {
   const degree = await degreeService.listAllDegree();
   res.status(200).json({ degree });
 });
+
+exports.getSingleDegree = promise(async (req, res) => {
+  const { id } = req.params;
+
+  const degree = await degreeService.findById({ id });
+  res.status(200).json({ degree });
+});

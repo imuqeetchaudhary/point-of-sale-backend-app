@@ -33,6 +33,10 @@ exports.listAllDegree = async () => {
   });
 };
 
+exports.findById = ({ id }) => {
+  return db.Degree.findByPk(id, _prop.hideFieldsCondition());
+};
+
 const _prop = {
   HIDDEN_FIELDS: ["createdAt", "updatedAt"],
   hideFieldsCondition: function (...args) {

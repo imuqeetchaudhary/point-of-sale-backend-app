@@ -509,3 +509,7 @@
 ### to get all degree
 
 - degree/get-all :get :protected
+
+### to get a single degree
+
+- degree/get/:id: :get :protected

@@ -14,4 +14,6 @@ router.post(
 
 router.get("/get-all", authentication, degreeController.getAllDegree);
 
+router.get("/get/:id", authentication, degreeController.getSingleDegree);
+
 module.exports = router;
