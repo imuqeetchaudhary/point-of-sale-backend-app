@@ -415,3 +415,18 @@
 ### to delete a city
 
 - city/delete/:id :delete :protected
+
+## Routes for QUA Levels
+
+### to create a new qua level
+
+- qua-levels/create :post :protected
+
+```js
+{
+    description: String,
+    alias: String,
+    descDegree: String,
+    level: String
+}
+```
