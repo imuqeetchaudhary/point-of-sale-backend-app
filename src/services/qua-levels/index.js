@@ -37,6 +37,39 @@ exports.findByPk = async ({ id }) => {
   return db.QUALevels.findByPk(id, _prop.hideFieldsCondition());
 };
 
+exports.updateQUALevels = async ({
+  quaLevelsId,
+  description,
+  alias,
+  descDegree,
+  level,
+  actionperformedBy,
+}) => {
+  const quaLevels = {
+    description,
+    alias,
+    descDegree,
+    level,
+    updatedBy: actionperformedBy,
+  };
+
+  try {
+    const updateQUALevels = await db.QUALevels.update(
+      { ...quaLevels },
+      { where: { quaLevelsId } }
+    );
+
+    if (dbUtils.isRecordFound(updateQUALevels)) {
+      throw new Exceptions.NotFound({ message: "QUA Levels Not Found" });
+    }
+  } catch (err) {
+    if (dbUtils.isRecordDuplicate(err)) {
+      throw new Exceptions.BadRequest({ message: "QUA Levels Already Exists" });
+    }
+    throw err;
+  }
+};
+
 const _prop = {
   HIDDEN_FIELDS: ["createdAt", "updatedAt"],
   hideFieldsCondition: function (...args) {

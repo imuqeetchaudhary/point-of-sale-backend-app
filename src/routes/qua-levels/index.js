@@ -3,7 +3,10 @@ const router = express.Router();
 const quaLevelsController = require("../../controllers/qua-levels");
 const { validation } = require("../../middlewares/validation");
 const { authentication } = require("../../middlewares/isAuth");
-const { createQUALevelsSchema } = require("../../validations/qua-levels");
+const {
+  createQUALevelsSchema,
+  updateQUALevelsSchema,
+} = require("../../validations/qua-levels");
 
 router.post(
   "/create",
@@ -15,5 +18,12 @@ router.post(
 router.get("/get-all", authentication, quaLevelsController.getAllQUALevels);
 
 router.get("/get/:id", authentication, quaLevelsController.getSingleQUALevel);
+
+router.patch(
+  "/update/:id",
+  authentication,
+  validation(updateQUALevelsSchema),
+  quaLevelsController.updateQUALevels
+);
 
 module.exports = router;

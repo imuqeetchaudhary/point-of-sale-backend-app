@@ -438,3 +438,16 @@
 ### to get a single qua level
 
 - qua-levels/get/:id: :get :protected
+
+### to update a qua level
+
+- qua-levels/update/:id: :patch :protected
+
+```js
+{
+    description: String,
+    alias: String,
+    descDegree: String,
+    level: String
+}
+```

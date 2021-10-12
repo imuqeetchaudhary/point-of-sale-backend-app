@@ -29,3 +29,21 @@ exports.getSingleQUALevel = promise(async (req, res) => {
   const quaLevel = await quaLevelsService.findByPk({ id });
   res.status(200).json({ quaLevel });
 });
+
+exports.updateQUALevels = promise(async (req, res) => {
+  const { id } = req.params;
+  const quaLevelsId = id;
+  const { description, alias, descDegree, level } = req.body;
+  const actionperformedBy = req.user.userId;
+
+  const updatequaLevels = await quaLevelsService.updateQUALevels({
+    quaLevelsId,
+    description,
+    alias,
+    descDegree,
+    level,
+    actionperformedBy,
+  });
+
+  res.status(200).json({ message: "Successfully updated QUA Levels" });
+});

@@ -6,3 +6,10 @@ exports.createQUALevelsSchema = yup.object({
   descDegree: yup.string(),
   level: yup.string(),
 });
+
+exports.updateQUALevelsSchema = yup.object({
+  description: yup.string(),
+  alias: yup.string(),
+  descDegree: yup.string(),
+  level: yup.string(),
+});
