@@ -527,3 +527,7 @@
     alias: String,
 }
 ```
+
+### to delete a degree
+
+- degree/delete/:id :delete :protected

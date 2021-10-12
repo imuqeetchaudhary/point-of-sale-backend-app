@@ -43,3 +43,13 @@ exports.updateDegree = promise(async (req, res) => {
 
   res.status(200).json({ message: "Successfully updated degree" });
 });
+
+exports.deleteDegree = promise(async (req, res) => {
+  const { id } = req.params;
+  const degreeId = id;
+
+  const deleteDegree = await degreeService.deleteDegree({
+    degreeId,
+  });
+  res.status(200).json({ message: "Successfully deleted degree" });
+});

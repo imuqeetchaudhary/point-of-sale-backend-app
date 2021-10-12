@@ -70,6 +70,21 @@ exports.updateDegree = async ({
   }
 };
 
+exports.deleteDegree = async ({ degreeId }) => {
+  try {
+    const deleteDegree = await db.Degree.destroy({
+      where: { degreeId },
+    });
+  } catch (err) {
+    if (dbUtils.isFkFailed(err)) {
+      throw new Exceptions.BadRequest({
+        message: "Can't delete degree unless delete all its reference",
+      });
+    }
+    throw err;
+  }
+};
+
 const _prop = {
   HIDDEN_FIELDS: ["createdAt", "updatedAt"],
   hideFieldsCondition: function (...args) {

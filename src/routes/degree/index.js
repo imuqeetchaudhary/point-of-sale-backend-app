@@ -26,4 +26,6 @@ router.patch(
   degreeController.updateDegree
 );
 
+router.delete("/delete/:id", authentication, degreeController.deleteDegree);
+
 module.exports = router;
