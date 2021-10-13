@@ -3,8 +3,12 @@ const { promise } = require("../../middlewares/promise");
 const Exceptions = require("../../utils/custom-exceptions");
 
 exports.createItemCategory = promise(async (req, res) => {
-  const { description, categoryCode, customCode, parentId } = req.body;
+  let { description, categoryCode, customCode, parentId } = req.body;
   const actionPerformBy = req.user.userId;
+
+  if (parentId == 0) {
+    parentId = null;
+  }
 
   const itemCategory = await itemCategoryService.saveItemCategory({
     description,
