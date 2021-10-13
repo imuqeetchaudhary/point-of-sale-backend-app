@@ -530,4 +530,4 @@
 
 ### to delete a degree
 
-- degree/delete/:id :delete :protected
+- degree/delete/:id: :delete :protected
