@@ -22,6 +22,8 @@ router.get("/profile", authentication, userController.profile);
 
 router.get("/get-all", authentication, userController.getAllUsers);
 
+router.get("/get/:id", authentication, userController.getSingleUser);
+
 router.get("/role/:id", authentication, userController.getSingleUserRoles);
 
 router.patch(

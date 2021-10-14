@@ -32,6 +32,10 @@
 
 - user/get-all :get :protected
 
+### to get a single user
+
+- user/get/:id: :get :protected
+
 ### to get single user roles
 
 - user/role/:id: :get :protected (where id stands for userId)
