@@ -30,6 +30,12 @@ router.get(
   menuController.getMenuForSingleRole
 );
 
+router.get(
+  "/get-all-assigned-role/:id",
+  authentication,
+  menuController.getAllAssignedMenuForSingleRole
+);
+
 router.get("/get/:id", authentication, menuController.getSingleMenu);
 
 module.exports = router;

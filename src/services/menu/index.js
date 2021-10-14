@@ -17,6 +17,10 @@ async function listAllMenusForRole({ roleId }) {
   );
 }
 
+async function listAllAssignedMenusForRole({ roleId }) {
+  return db.MenuAccessRoles.findAll({ where: { roleId } });
+}
+
 async function findById({ menuId }) {
   return db.Menu.findByPk(menuId, { attributes: menuUtils.INCLUDED_FIELDS });
 }
@@ -64,6 +68,7 @@ async function updateMenu({
 module.exports = {
   listAllMenus,
   listAllMenusForRole,
+  listAllAssignedMenusForRole,
   findById,
   saveMenu,
   updateMenu,

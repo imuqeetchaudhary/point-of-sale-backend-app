@@ -53,6 +53,14 @@ exports.getMenuForSingleRole = promise(async (req, res) => {
   res.status(200).json({ menu });
 });
 
+exports.getAllAssignedMenuForSingleRole = promise(async (req, res) => {
+  const { id } = req.params;
+
+  const menu = await menuService.listAllAssignedMenusForRole({ roleId: id });
+
+  res.status(200).json({ menu });
+});
+
 exports.getSingleMenu = promise(async (req, res) => {
   const { id } = req.params;
   const menuId = id;

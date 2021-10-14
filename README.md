@@ -77,7 +77,11 @@
 
 ### to get all menu for a specific role id
 
-- menu/get-all-for-role/:id :get :protected (where id stands for roleId)
+- menu/get-all-for-role/:id: :get :protected (where id stands for roleId)
+
+### to get all assigned menus for a specific role id
+
+- menu/get-all-assigned-role/:id: :get :protected (where id stands for roleId)
 
 ### to update a new menu
 
