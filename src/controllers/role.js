@@ -47,3 +47,10 @@ exports.getUserRoles = promise(async (req, res) => {
   const roles = await roleService.listAllRolesForUser({ userId });
   res.status(200).json({ roles });
 });
+
+exports.getSingleRole = promise(async (req, res) => {
+  const { id } = req.params;
+
+  const role = await roleService.findById({ id });
+  res.status(200).json({ role });
+});

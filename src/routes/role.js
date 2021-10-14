@@ -14,6 +14,8 @@ router.post(
 
 router.get("/get-all", authentication, roleController.getAllRoles);
 
+router.get("/get/:id", authentication, roleController.getSingleRole);
+
 router.patch(
   "/update/:id",
   authentication,

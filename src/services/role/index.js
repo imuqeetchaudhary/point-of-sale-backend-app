@@ -10,6 +10,10 @@ async function listAllRoles() {
   });
 }
 
+async function findById({ id }) {
+  return db.Role.findByPk(id, _prop.hideFieldsCondition());
+}
+
 async function listAllRolesForUser({ userId }) {
   return db.sequelize.query(
     roleUtils.queryForGetAndCheckRoleExistsForUser(userId),
@@ -97,4 +101,17 @@ async function updateRole({ roleId, description, updatedBy, menus }) {
   }
 }
 
-module.exports = { listAllRoles, listAllRolesForUser, saveRole, updateRole };
+module.exports = {
+  listAllRoles,
+  listAllRolesForUser,
+  saveRole,
+  updateRole,
+  findById,
+};
+
+const _prop = {
+  HIDDEN_FIELDS: ["createdAt", "updatedAt"],
+  hideFieldsCondition: function (...args) {
+    return { attributes: { exclude: [...this.HIDDEN_FIELDS, ...args] } };
+  },
+};
