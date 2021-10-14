@@ -4,7 +4,7 @@ exports.registerSchema = yup.object().shape({
   email: yup.string().email().required(),
   password: yup.string().required(),
   displayName: yup.string().required(),
-  roleIds: yup.number().required(),
+  roleIds: yup.number(),
 });
 
 exports.loginSchema = yup.object().shape({

@@ -1,4 +1,5 @@
 const userService = require("../services/user");
+const roleService = require("../services/role");
 const { promise } = require("../middlewares/promise");
 const Exceptions = require("../utils/custom-exceptions");
 const bcrypt = require("bcryptjs");
@@ -16,7 +17,7 @@ exports.register = promise(async (req, res) => {
     password: hashPassword,
     displayName,
     createdBy,
-    roleIds,
+    roleIds: roleIds ?? [],
   });
 
   res.status(200).json({
@@ -54,14 +55,18 @@ exports.login = promise(async (req, res) => {
     config.get("jwt.secret")
   );
 
+  const userId = user.userId;
+  const roles = await roleService.listAllRolesForUser({ userId });
+
   res.status(200).json({
     token,
-    userId: user.userId,
+    userId,
     username: user.username,
     displayName: user.displayName,
     isActive: user.isActive,
     isAdmin: user.isAdmin,
     isSuperuser: user.isSuperuser,
+    roles,
   });
 });
 
