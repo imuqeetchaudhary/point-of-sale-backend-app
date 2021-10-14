@@ -64,7 +64,7 @@ async function updateRole({ roleId, description, updatedBy, menus }) {
   const _deleteAllRoleMenus = async (transaction) => {
     await db.MenuAccessRoles.destroy({ where: { roleId } }, { transaction });
   };
-  const _update = async () => {
+  const _update = async (transaction) => {
     const role = await db.Role.update(
       { description, updatedBy },
       { where: { roleId } },
@@ -74,7 +74,7 @@ async function updateRole({ roleId, description, updatedBy, menus }) {
       throw new Exceptions.NotFound({ message: "Role is not found" });
     return role;
   };
-  const _createRoleMenus = async () => {
+  const _createRoleMenus = async (transaction) => {
     const _roleMenus = menus.map((menu) => {
       return {
         menuId: menu,

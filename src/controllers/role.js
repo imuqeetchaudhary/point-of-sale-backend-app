@@ -34,7 +34,7 @@ exports.updateRole = promise(async (req, res) => {
     roleId,
     description,
     updatedBy,
-    menus,
+    menus: menuIds ?? [],
   });
 
   res.status(200).json({ message: "Successfully updated role" });
