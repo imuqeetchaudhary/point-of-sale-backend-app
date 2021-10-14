@@ -1,5 +1,4 @@
 const userService = require("../services/user");
-const roleService = require("../services/role");
 const { promise } = require("../middlewares/promise");
 const Exceptions = require("../utils/custom-exceptions");
 const bcrypt = require("bcryptjs");
@@ -56,7 +55,8 @@ exports.login = promise(async (req, res) => {
   );
 
   const userId = user.userId;
-  const roles = await roleService.listAllRolesForUser({ userId });
+  // const roles = await roleService.listAllRolesForUser({ userId });
+  const roles = await userService.listUserRoles({ userId });
 
   res.status(200).json({
     token,
