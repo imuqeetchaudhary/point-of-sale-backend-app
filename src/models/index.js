@@ -27,6 +27,7 @@ const city = require("./city");
 const qua_levels = require("./qua-levels");
 const qualification = require("./qualification");
 const degree = require("./degree");
+const paymentTerm = require("./payment-term");
 
 const User = user.init(dbClient, DataTypes);
 const Role = role.init(dbClient, DataTypes, { User });
@@ -51,6 +52,7 @@ const City = city.init(dbClient, DataTypes);
 const QUALevels = qua_levels.init(dbClient, DataTypes);
 const Qualification = qualification.init(dbClient, DataTypes);
 const Degree = degree.init(dbClient, DataTypes);
+const PaymentTerm = paymentTerm.init(dbClient, DataTypes);
 
 db.User = User;
 db.Role = Role;
@@ -68,5 +70,6 @@ db.City = City;
 db.QUALevels = QUALevels;
 db.Qualification = Qualification;
 db.Degree = Degree;
+db.PaymentTerm = PaymentTerm;
 
 module.exports = db;
