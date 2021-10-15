@@ -18,7 +18,16 @@ async function listAllMenusForRole({ roleId }) {
 }
 
 async function listAllAssignedMenusForRole({ roleId }) {
-  return db.MenuAccessRoles.findAll({ where: { roleId } });
+  return db.MenuAccessRoles.findAll({
+    attributes: ["roleId"],
+    include: [
+      {
+        model: db.Menu,
+        attributes: ["menuId", "description", "link", "icon", "parentId"],
+      },
+    ],
+    where: { roleId },
+  });
 }
 
 async function findById({ menuId }) {
