@@ -29,9 +29,13 @@ exports.getAllMenu = promise(async (req, res) => {
 
 exports.updateMenu = promise(async (req, res) => {
   const menuId = req.params.id;
-  const { description, link, parentId, icon } = req.body;
+  let { description, link, parentId, icon } = req.body;
   const updatedBy = req.user.userId;
   // const icon = req.file.filename;
+
+  if (parentId == 0) {
+    parentId = null;
+  }
 
   const updateMenu = await menuService.updateMenu({
     menuId,
