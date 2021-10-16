@@ -18,6 +18,52 @@ USE `pos`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `ad_customer`
+--
+
+DROP TABLE IF EXISTS `ad_customer`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `ad_customer` (
+  `customer_id` int unsigned NOT NULL AUTO_INCREMENT,
+  `description` varchar(255) NOT NULL,
+  `alias` varchar(255) DEFAULT NULL,
+  `address` varchar(255) DEFAULT NULL,
+  `country_id` int unsigned NOT NULL,
+  `city_id` int unsigned NOT NULL,
+  `s_reg_st_no` varchar(255) DEFAULT NULL,
+  `s_it_no` varchar(255) DEFAULT NULL,
+  `phone` varchar(255) DEFAULT NULL,
+  `fax` varchar(255) DEFAULT NULL,
+  `cell` varchar(255) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `is_wht` tinyint NOT NULL,
+  `wht_tax` float NOT NULL,
+  `i_wht_tax` float NOT NULL,
+  `is_credit_limit` tinyint NOT NULL,
+  `credit_amount` float NOT NULL,
+  `contact_person` varchar(255) DEFAULT NULL,
+  `i_account_id` int DEFAULT NULL,
+  `is_default` tinyint NOT NULL DEFAULT '1',
+  `is_active` tinyint NOT NULL DEFAULT '1',
+  `created_by` int unsigned NOT NULL,
+  `updated_by` int unsigned NOT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL,
+  PRIMARY KEY (`customer_id`),
+  UNIQUE KEY `description_UNIQUE` (`description`),
+  KEY `fk_customer_created_idx` (`created_by`),
+  KEY `fk_customer_updated_idx` (`updated_by`),
+  KEY `fk_customer_country_id_idx` (`country_id`),
+  KEY `fk_customer_city_id_idx` (`city_id`),
+  CONSTRAINT `fk_customer_city_id` FOREIGN KEY (`city_id`) REFERENCES `city` (`city_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fk_customer_country_id` FOREIGN KEY (`country_id`) REFERENCES `country` (`country_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fk_customer_created` FOREIGN KEY (`created_by`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fk_customer_updated` FOREIGN KEY (`updated_by`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Table structure for table `ad_delivery_term`
 --
 
@@ -540,4 +586,4 @@ CREATE TABLE `user` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-10-15 23:56:53
+-- Dump completed on 2021-10-16  1:36:18
