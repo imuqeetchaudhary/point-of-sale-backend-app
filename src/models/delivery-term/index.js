@@ -1,8 +1,8 @@
 exports.init = (sequelize, DataTypes) => {
-  const PaymentTerm = sequelize.define(
-    "PaymentTerm",
+  const DeliveryTerm = sequelize.define(
+    "DeliveryTerm",
     {
-      paymentTermId: {
+      deliveryTermId: {
         type: DataTypes.INTEGER.UNSIGNED,
         primaryKey: true,
         autoIncrement: true,
@@ -32,7 +32,7 @@ exports.init = (sequelize, DataTypes) => {
         allowNull: false,
       },
     },
-    { underscored: true, tableName: "ad_payment_term" }
+    { underscored: true, tableName: "ad_delivery_term" }
   );
-  return PaymentTerm;
+  return DeliveryTerm;
 };

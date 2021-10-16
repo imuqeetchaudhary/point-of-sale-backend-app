@@ -29,6 +29,7 @@ const qualification = require("./qualification");
 const degree = require("./degree");
 const paymentTerm = require("./payment-term");
 const measuringUnit = require("./measuring-unit");
+const deliveryTerm = require("./delivery-term");
 
 const User = user.init(dbClient, DataTypes);
 const Role = role.init(dbClient, DataTypes, { User });
@@ -55,6 +56,7 @@ const Qualification = qualification.init(dbClient, DataTypes);
 const Degree = degree.init(dbClient, DataTypes);
 const PaymentTerm = paymentTerm.init(dbClient, DataTypes);
 const MeasuringUnit = measuringUnit.init(dbClient, DataTypes);
+const DeliveryTerm = deliveryTerm.init(dbClient, DataTypes);
 
 db.User = User;
 db.Role = Role;
@@ -74,5 +76,6 @@ db.Qualification = Qualification;
 db.Degree = Degree;
 db.PaymentTerm = PaymentTerm;
 db.MeasuringUnit = MeasuringUnit;
+db.DeliveryTerm = DeliveryTerm;
 
 module.exports = db;
