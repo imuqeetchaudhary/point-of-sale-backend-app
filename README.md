@@ -723,3 +723,71 @@
 ### to delete a customer
 
 - customer/delete/:id: :delete :protected
+
+## Routes for Vendor
+
+### to create a new vendor
+
+- vendor/create :post :protected
+
+```js
+{
+    description: String(*),
+    alias: String,
+    address: String,
+    countryId: Number(*),
+    cityId: Number(*),
+    sRegStNo: String,
+    sItNo: String,
+    phone: String,
+    fax: String,
+    cell: String,
+    email: String,
+    isWht: Boolean(*),
+    whtTax: Number(*),
+    iWhtTax: Number(*),
+    isCreditLimit: Boolean(*),
+    creditAmount: Number(*),
+    contactPerson: String,
+    iAccountId: Number,
+}
+```
+
+### to get all vendor
+
+- vendor/get-all :get :protected
+
+### to get a single vendor
+
+- vendor/get/:id: :get :protected
+
+### to update a vendor
+
+- vendor/update/:id: :patch :protected
+
+```js
+{
+    description: String,
+    alias: String,
+    address: String,
+    countryId: Number,
+    cityId: Number,
+    sRegStNo: String,
+    sItNo: String,
+    phone: String,
+    fax: String,
+    cell: String,
+    email: String,
+    isWht: Boolean,
+    whtTax: Number,
+    iWhtTax: Number,
+    isCreditLimit: Boolean,
+    creditAmount: Number,
+    contactPerson: String,
+    iAccountId: Number,
+}
+```
+
+### to delete a vendor
+
+- vendor/delete/:id: :delete :protected
