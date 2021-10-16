@@ -25,11 +25,11 @@ DROP TABLE IF EXISTS `ad_delivery_term`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `ad_delivery_term` (
-  `delivery_term_id` int unsigned NOT NULL,
+  `delivery_term_id` int unsigned NOT NULL AUTO_INCREMENT,
   `description` varchar(255) NOT NULL,
   `alias` varchar(255) DEFAULT NULL,
-  `is_default` tinyint DEFAULT NULL,
-  `is_active` tinyint DEFAULT NULL,
+  `is_default` tinyint DEFAULT '1',
+  `is_active` tinyint DEFAULT '1',
   `i_days` int unsigned DEFAULT NULL,
   `created_by` int unsigned NOT NULL,
   `updated_by` int unsigned NOT NULL,
@@ -41,7 +41,7 @@ CREATE TABLE `ad_delivery_term` (
   KEY `fk_delivery_updated_idx` (`updated_by`),
   CONSTRAINT `fk_delivery_created` FOREIGN KEY (`created_by`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `fk_delivery_updated` FOREIGN KEY (`updated_by`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -540,4 +540,4 @@ CREATE TABLE `user` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-10-15 23:45:45
+-- Dump completed on 2021-10-15 23:56:53
