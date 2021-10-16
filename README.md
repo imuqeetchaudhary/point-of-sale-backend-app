@@ -544,7 +544,7 @@
 
 - degree/delete/:id: :delete :protected
 
-## Routes for Tayment Term
+## Routes for Payment Term
 
 ### to create a new payment term
 
@@ -552,7 +552,7 @@
 
 ```js
 {
-    description: String(*), 
+    description: String(*),
     alias: String,
     iDays: Number,
 }
@@ -581,3 +581,39 @@
 ### to delete a payment term
 
 - payment-term/delete/:id: :delete :protected
+
+## Routes for Measuring Unit
+
+### to create a new measuring unit
+
+- measuring-unit/create :post :protected
+
+```js
+{
+    description: String(*),
+    alias: String,
+}
+```
+
+### to get all measuring unit
+
+- measuring-unit/get-all :get :protected
+
+### to get a single measuring unit
+
+- measuring-unit/get/:id: :get :protected
+
+### to update a measuring unit
+
+- measuring-unit/update/:id: :patch :protected
+
+```js
+{
+    description: String,
+    alias: String,
+}
+```
+
+### to delete a measuring unit
+
+- measuring-unit/delete/:id: :delete :protected

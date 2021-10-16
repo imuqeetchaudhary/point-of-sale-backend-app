@@ -17,7 +17,7 @@ exports.init = (sequelize, DataTypes) => {
       isDefault: {
         type: DataTypes.BOOLEAN,
       },
-      iActive: {
+      isActive: {
         type: DataTypes.BOOLEAN,
       },
       createdBy: {
