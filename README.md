@@ -617,3 +617,41 @@
 ### to delete a measuring unit
 
 - measuring-unit/delete/:id: :delete :protected
+
+## Routes for Delivery Term
+
+### to create a new delivery term
+
+- delivery-term/create :post :protected
+
+```js
+{
+    description: String(*),
+    alias: String,
+    iDays: Number,
+}
+```
+
+### to get all delivery term
+
+- delivery-term/get-all :get :protected
+
+### to get a single delivery term
+
+- delivery-term/get/:id: :get :protected
+
+### to update a delivery term
+
+- delivery-term/update/:id: :patch :protected
+
+```js
+{
+    description: String,
+    alias: String,
+    iDays: Number,
+}
+```
+
+### to delete a delivery term
+
+- delivery-term/delete/:id: :delete :protected
