@@ -655,3 +655,71 @@
 ### to delete a delivery term
 
 - delivery-term/delete/:id: :delete :protected
+
+## Routes for Customer
+
+### to create a new customer
+
+- customer/create :post :protected
+
+```js
+{
+    description: String(*),
+    alias: String,
+    address: String,
+    countryId: Number(*),
+    cityId: Number(*),
+    sRegStNo: String,
+    sItNo: String,
+    phone: String,
+    fax: String,
+    cell: String,
+    email: String,
+    isWht: Boolean(*),
+    whtTax: Number(*),
+    iWhtTax: Number(*),
+    isCreditLimit: Boolean(*),
+    creditAmount: Number(*),
+    contactPerson: String,
+    iAccountId: Number,
+}
+```
+
+### to get all customer
+
+- customer/get-all :get :protected
+
+### to get a single customer
+
+- customer/get/:id: :get :protected
+
+### to update a customer
+
+- customer/update/:id: :patch :protected
+
+```js
+{
+    description: String,
+    alias: String,
+    address: String,
+    countryId: Number,
+    cityId: Number,
+    sRegStNo: String,
+    sItNo: String,
+    phone: String,
+    fax: String,
+    cell: String,
+    email: String,
+    isWht: Boolean,
+    whtTax: Number,
+    iWhtTax: Number,
+    isCreditLimit: Boolean,
+    creditAmount: Number,
+    contactPerson: String,
+    iAccountId: Number,
+}
+```
+
+### to delete a customer
+
+- customer/delete/:id: :delete :protected

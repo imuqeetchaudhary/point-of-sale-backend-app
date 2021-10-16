@@ -19,6 +19,7 @@ const degreeRoute = require("../routes/degree");
 const paymentTermRoute = require("../routes/payment-term");
 const measuringUnitRoute = require("../routes/measuring-unit");
 const deliveryTermRoute = require("../routes/delivery-term");
+const customerRoute = require("../routes/customer");
 
 router.get("/", (req, res) =>
   res.send({ message: "Point Of Sale Backend App RestApi" })
@@ -42,5 +43,6 @@ router.use("/degree", degreeRoute);
 router.use("/payment-term", paymentTermRoute);
 router.use("/measuring-unit", measuringUnitRoute);
 router.use("/delivery-term", deliveryTermRoute);
+router.use("/customer", customerRoute);
 
 module.exports = router;
