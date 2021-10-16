@@ -543,3 +543,41 @@
 ### to delete a degree
 
 - degree/delete/:id: :delete :protected
+
+## Routes for Tayment Term
+
+### to create a new payment term
+
+- payment-term/create :post :protected
+
+```js
+{
+    description: String(*), 
+    alias: String,
+    iDays: Number,
+}
+```
+
+### to get all payment term
+
+- payment-term/get-all :get :protected
+
+### to get a single payment term
+
+- payment-term/get/:id: :get :protected
+
+### to update a payment term
+
+- payment-term/update/:id: :patch :protected
+
+```js
+{
+    description: String,
+    alias: String,
+    iDays: Number,
+}
+```
+
+### to delete a payment term
+
+- payment-term/delete/:id: :delete :protected
