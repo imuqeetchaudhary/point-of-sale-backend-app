@@ -229,7 +229,7 @@
 
 ### to update a blood group
 
-- blood-group/update/:id :patch :protected
+- blood-group/update/:id: :patch :protected
 
 ```js
 {
@@ -240,7 +240,7 @@
 
 ### to delete a blood group
 
-- blood-group/delete/:id :delete :protected
+- blood-group/delete/:id: :delete :protected
 
 ## Routes for Currency
 
@@ -262,11 +262,11 @@
 
 ### to get single currency
 
-- currency/get/:id :get :protected
+- currency/get/:id: :get :protected
 
 ### to update a currency
 
-- currency/update/:id :patch :protected
+- currency/update/:id: :patch :protected
 
 ```js
 {
@@ -278,7 +278,7 @@
 
 ### to delete a currency
 
-- currency/delete/:id :delete :protected
+- currency/delete/:id: :delete :protected
 
 ## Routes for Religion
 
@@ -299,11 +299,11 @@
 
 ### to get a single religion
 
-- religion/get/:id :get :protected
+- religion/get/:id: :get :protected
 
 ### to update a religion
 
-- religion/update/:id :patch :protected
+- religion/update/:id: :patch :protected
 
 ```js
 {
@@ -314,7 +314,7 @@
 
 ### to delete a religion
 
-- religion/delete/:id :delete :protected
+- religion/delete/:id: :delete :protected
 
 ## Routes for Relation Type
 
@@ -335,11 +335,11 @@
 
 ### to get single relation type
 
-- relation-type/get/:id :get :protected
+- relation-type/get/:id: :get :protected
 
 ### to update a relation type
 
-- relation-type/update/:id :patch :protected
+- relation-type/update/:id: :patch :protected
 
 ```js
 {
@@ -350,7 +350,7 @@
 
 ### to delete a relation type
 
-- relation-type/delete/:id :delete :protected
+- relation-type/delete/:id: :delete :protected
 
 ## Routes for Country
 
@@ -434,7 +434,7 @@
 
 ### to delete a city
 
-- city/delete/:id :delete :protected
+- city/delete/:id: :delete :protected
 
 ## Routes for QUA Levels
 
