@@ -359,11 +359,13 @@
 - country/create :post :protected
 
 ```js
+{
     currencyId: Number,
     description: String,
     alias: String,
     capital: String,
     dailCode: String,
+}
 ```
 
 ### to get all countries
@@ -379,11 +381,13 @@
 - country/update/:id: :patch :protected
 
 ```js
+{
     currencyId: Number,
     description: String,
     alias: String,
     capital: String,
     dailCode: String,
+}
 ```
 
 ### to delete a country
@@ -397,11 +401,13 @@
 - city/create :post :protected
 
 ```js
+{
     countryId: Number,
     description: String,
     alias: String,
     province: String,
     dailCode: String,
+}
 ```
 
 ### to get all cities
@@ -417,11 +423,13 @@
 - city/update/:id: :patch :protected
 
 ```js
+{
     countryId: Number,
     description: String,
     alias: String,
     province: String,
     dailCode: String,
+}
 ```
 
 ### to delete a city
