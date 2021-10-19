@@ -799,3 +799,4 @@
 ### to delete a vendor
 
 - vendor/delete/:id: :delete :protected
+
