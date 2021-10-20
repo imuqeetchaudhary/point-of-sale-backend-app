@@ -32,6 +32,7 @@ const measuringUnit = require("./measuring-unit");
 const deliveryTerm = require("./delivery-term");
 const customer = require("./customer");
 const vendor = require("./vendor");
+const productType = require("./product-type");
 
 const User = user.init(dbClient, DataTypes);
 const Role = role.init(dbClient, DataTypes, { User });
@@ -61,6 +62,7 @@ const MeasuringUnit = measuringUnit.init(dbClient, DataTypes);
 const DeliveryTerm = deliveryTerm.init(dbClient, DataTypes);
 const Customer = customer.init(dbClient, DataTypes);
 const Vendor = vendor.init(dbClient, DataTypes);
+const ProductType = productType.init(dbClient, DataTypes);
 
 db.User = User;
 db.Role = Role;
@@ -83,5 +85,6 @@ db.MeasuringUnit = MeasuringUnit;
 db.DeliveryTerm = DeliveryTerm;
 db.Customer = Customer;
 db.Vendor = Vendor;
+db.ProductType = ProductType;
 
 module.exports = db;
