@@ -198,6 +198,32 @@ CREATE TABLE `ad_payment_term` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Table structure for table `ad_product_type`
+--
+
+DROP TABLE IF EXISTS `ad_product_type`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `ad_product_type` (
+  `product_type_id` int unsigned NOT NULL AUTO_INCREMENT,
+  `description` varchar(255) NOT NULL,
+  `alias` varchar(255) DEFAULT NULL,
+  `is_default` tinyint(1) DEFAULT '1',
+  `is_active` tinyint(1) DEFAULT '1',
+  `created_by` int unsigned NOT NULL,
+  `updated_by` int unsigned NOT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL,
+  PRIMARY KEY (`product_type_id`),
+  UNIQUE KEY `description` (`description`),
+  KEY `ad_product_type_created_idx` (`created_by`),
+  KEY `ad_product_type_updated_idx` (`updated_by`),
+  CONSTRAINT `fk_product_type_created` FOREIGN KEY (`created_by`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fk_product_type_updated` FOREIGN KEY (`updated_by`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Table structure for table `ad_role`
 --
 
@@ -289,7 +315,7 @@ CREATE TABLE `ad_vendor` (
   CONSTRAINT `fk_vendor_country_id` FOREIGN KEY (`country_id`) REFERENCES `country` (`country_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `fk_vendor_created` FOREIGN KEY (`created_by`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `fk_vendor_updated` FOREIGN KEY (`updated_by`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -489,6 +515,27 @@ CREATE TABLE `item_category` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Table structure for table `product_type`
+--
+
+DROP TABLE IF EXISTS `product_type`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `product_type` (
+  `product_type_id` int unsigned NOT NULL AUTO_INCREMENT,
+  `description` varchar(150) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `alias` varchar(6) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `is_default` tinyint(1) NOT NULL DEFAULT '1',
+  `created_by` int unsigned NOT NULL,
+  `updated_by` int unsigned NOT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL,
+  PRIMARY KEY (`product_type_id`),
+  UNIQUE KEY `description` (`description`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Table structure for table `qua_levels`
 --
 
@@ -632,4 +679,4 @@ CREATE TABLE `user` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-10-16  3:19:32
+-- Dump completed on 2021-10-20  5:55:47
