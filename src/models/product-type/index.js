@@ -31,7 +31,7 @@ exports.init = (sequelize, DataTypes) => {
         allowNull: false,
       },
     },
-    { underscored: true, tableName: "product_type" }
+    { underscored: true, tableName: "ad_product_type" }
   );
   return ProductType;
 };
