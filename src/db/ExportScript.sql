@@ -198,6 +198,67 @@ CREATE TABLE `ad_payment_term` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Table structure for table `ad_product`
+--
+
+DROP TABLE IF EXISTS `ad_product`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `ad_product` (
+  `product_id` int unsigned NOT NULL AUTO_INCREMENT,
+  `description` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `alias` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `category_id` int unsigned NOT NULL,
+  `unit_in_id` int unsigned NOT NULL,
+  `unit_out_id` int unsigned NOT NULL,
+  `barcode` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `is_default` tinyint DEFAULT '1',
+  `is_active` tinyint DEFAULT '1',
+  `picture` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `it_head_urdu` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `it_min_level` float DEFAULT '0',
+  `it_max_level` float DEFAULT '0',
+  `it_ro_level` float DEFAULT '0',
+  `it_ro_qty` float DEFAULT '0',
+  `it_rate` float DEFAULT '0',
+  `is_serialized` tinyint DEFAULT '0',
+  `s_tax_rate` float DEFAULT '0',
+  `in_unit` float DEFAULT '0',
+  `out_unit` float DEFAULT '0',
+  `p_type` varchar(255) COLLATE utf8mb4_general_ci DEFAULT 'own',
+  `p_type_1` varchar(255) COLLATE utf8mb4_general_ci DEFAULT 'parts',
+  `bargen` tinyint DEFAULT '0',
+  `brand_id` int unsigned NOT NULL,
+  `is_stocked` tinyint DEFAULT '1',
+  `is_finished` tinyint DEFAULT '0',
+  `product_type_id` int unsigned NOT NULL,
+  `int_code` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `open_bal` float DEFAULT '0',
+  `hs_code` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `created_by` int unsigned NOT NULL,
+  `updated_by` int unsigned NOT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`product_id`),
+  UNIQUE KEY `description_UNIQUE` (`description`),
+  KEY `ad_product_created_idx` (`created_by`),
+  KEY `fk_product_updated_idx` (`updated_by`),
+  KEY `fk_product_type_id_idx` (`product_type_id`),
+  KEY `fk_product_category_id_idx` (`category_id`),
+  KEY `fk_unit_in_id_idx` (`unit_in_id`),
+  KEY `fk_unit_out_id_idx` (`unit_out_id`),
+  KEY `fk_product_brand_id_idx` (`brand_id`),
+  CONSTRAINT `ad_product_created` FOREIGN KEY (`created_by`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fk_product_brand_id` FOREIGN KEY (`brand_id`) REFERENCES `brand` (`brand_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fk_product_category_id` FOREIGN KEY (`category_id`) REFERENCES `item_category` (`category_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fk_product_type_id` FOREIGN KEY (`product_type_id`) REFERENCES `ad_product_type` (`product_type_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fk_product_updated` FOREIGN KEY (`updated_by`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fk_unit_in_id` FOREIGN KEY (`unit_in_id`) REFERENCES `ad_measuring_unit` (`measuring_unit_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fk_unit_out_id` FOREIGN KEY (`unit_out_id`) REFERENCES `ad_measuring_unit` (`measuring_unit_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Table structure for table `ad_product_type`
 --
 
@@ -220,7 +281,7 @@ CREATE TABLE `ad_product_type` (
   KEY `ad_product_type_updated_idx` (`updated_by`),
   CONSTRAINT `fk_product_type_created` FOREIGN KEY (`created_by`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `fk_product_type_updated` FOREIGN KEY (`updated_by`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -428,7 +489,7 @@ CREATE TABLE `country` (
   CONSTRAINT `fk_country_created_by` FOREIGN KEY (`created_by`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `fk_country_currency` FOREIGN KEY (`currency_id`) REFERENCES `currency` (`currency_id`),
   CONSTRAINT `fk_country_updated_by` FOREIGN KEY (`updated_by`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -454,7 +515,7 @@ CREATE TABLE `currency` (
   KEY `fk_currency_updated_by_idx` (`updated_by`),
   CONSTRAINT `fk_currency_created_by` FOREIGN KEY (`created_by`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `fk_currency_updated_by` FOREIGN KEY (`updated_by`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -679,4 +740,4 @@ CREATE TABLE `user` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-10-20  5:55:47
+-- Dump completed on 2021-10-21  5:23:15
