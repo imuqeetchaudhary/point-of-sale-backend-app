@@ -21,6 +21,7 @@ const measuringUnitRoute = require("../routes/measuring-unit");
 const deliveryTermRoute = require("../routes/delivery-term");
 const customerRoute = require("../routes/customer");
 const vendorRoute = require("../routes/vendor");
+const productTypeRoute = require("../routes/product-type");
 
 router.get("/", (req, res) =>
   res.send({ message: "Point Of Sale Backend App RestApi" })
@@ -46,5 +47,6 @@ router.use("/measuring-unit", measuringUnitRoute);
 router.use("/delivery-term", deliveryTermRoute);
 router.use("/customer", customerRoute);
 router.use("/vendor", vendorRoute);
+router.use("/product-type", productTypeRoute);
 
 module.exports = router;

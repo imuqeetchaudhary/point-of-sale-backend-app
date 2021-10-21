@@ -799,3 +799,39 @@
 ### to delete a vendor
 
 - vendor/delete/:id: :delete :protected
+
+## Routes for product Type
+
+### to create a new product type
+
+- product-type/create :post :protected
+
+```js
+{
+    description: String,
+    alias: String,
+}
+```
+
+### to get all product type
+
+- product-type/get-all :get :protected
+
+### to get single product type
+
+- product-type/get/:id: :get :protected
+
+### to update a product type
+
+- product-type/update/:id: :patch :protected
+
+```js
+{
+    description: String,
+    alias: String,
+}
+```
+
+### to delete a product type
+
+- product-type/delete/:id: :delete :protected
