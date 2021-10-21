@@ -808,7 +808,7 @@
 
 ```js
 {
-    description: String,
+    description: String(*),
     alias: String,
 }
 ```
