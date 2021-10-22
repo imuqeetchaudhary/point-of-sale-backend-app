@@ -8,6 +8,7 @@ function queryForGetAndCheckMenuExistsForRole(roleId) {
       SELECT 
         m.menu_id AS menuId,
         m.description,
+        m.parent_id AS parentId,
         (
         SELECT COUNT(menu_id)
             FROM ad_menu_access_roles mr
