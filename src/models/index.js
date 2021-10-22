@@ -33,6 +33,7 @@ const deliveryTerm = require("./delivery-term");
 const customer = require("./customer");
 const vendor = require("./vendor");
 const productType = require("./product-type");
+const product = require("./product");
 
 const User = user.init(dbClient, DataTypes);
 const Role = role.init(dbClient, DataTypes, { User });
@@ -63,6 +64,7 @@ const DeliveryTerm = deliveryTerm.init(dbClient, DataTypes);
 const Customer = customer.init(dbClient, DataTypes);
 const Vendor = vendor.init(dbClient, DataTypes);
 const ProductType = productType.init(dbClient, DataTypes);
+const Product = product.init(dbClient, DataTypes);
 
 db.User = User;
 db.Role = Role;
@@ -86,5 +88,6 @@ db.DeliveryTerm = DeliveryTerm;
 db.Customer = Customer;
 db.Vendor = Vendor;
 db.ProductType = ProductType;
+db.Product = Product;
 
 module.exports = db;
