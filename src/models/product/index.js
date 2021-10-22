@@ -18,15 +18,15 @@ exports.init = (sequelize, DataTypes) => {
         allowNull: true,
       },
       categoryId: {
-        type: DataTypes.BOOLEAN,
+        type: DataTypes.INTEGER.UNSIGNED,
         allowNull: false,
       },
       unitInId: {
-        type: DataTypes.BOOLEAN,
+        type: DataTypes.INTEGER.UNSIGNED,
         allowNull: false,
       },
       unitOutId: {
-        type: DataTypes.BOOLEAN,
+        type: DataTypes.INTEGER.UNSIGNED,
         allowNull: false,
       },
       barcode: {

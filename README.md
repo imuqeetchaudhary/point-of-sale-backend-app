@@ -835,3 +835,89 @@
 ### to delete a product type
 
 - product-type/delete/:id: :delete :protected
+
+## Routes for Product
+
+### to created a new product
+
+- product/create :post :protected
+
+```js
+{
+    description: String(*),
+    alias: String,
+    categoryId: Number(*),
+    unitInId: Number(*),
+    unitOutId: Number(*),
+    barcode: String(*),
+    picture: String,
+    itHeadUrdu: String(*),
+    itMinLevel: Number,
+    itMaxLevel: Number,
+    itRoLevel: Number,
+    itRoQty: Number,
+    itRate: Number,
+    isSerialized: Boolean,
+    sTaxRate: Number,
+    inUnit: Number(*),
+    outUnit: Number(*),
+    pType: String,
+    pType1: String,
+    bargen: Boolean,
+    brandId: Number(*),
+    isStocked: Boolean,
+    isFinished: Boolean,
+    productTypeId: Number(*),
+    intCode: String,
+    openBal: Number,
+    hsCode: String,
+}
+```
+
+### to get all product
+
+- product/get-all :get :protected
+
+### to get single product
+
+- product/get/:id: :get :protected
+
+### to update a product
+
+- product/update/:id: :patch :protected
+
+```js
+{
+    description: String,
+    alias: String,
+    categoryId: Number,
+    unitInId: Number,
+    unitOutId: Number,
+    barcode: String,
+    picture: String,
+    itHeadUrdu: String,
+    itMinLevel: Number,
+    itMaxLevel: Number,
+    itRoLevel: Number,
+    itRoQty: Number,
+    itRate: Number,
+    isSerialized: Boolean,
+    sTaxRate: Number,
+    inUnit: Number,
+    outUnit: Number,
+    pType: String,
+    pType1: String,
+    bargen: Boolean,
+    brandId: Number,
+    isStocked: Boolean,
+    isFinished: Boolean,
+    productTypeId: Number,
+    intCode: String,
+    openBal: Number,
+    hsCode: String,
+}
+```
+
+### to delete a product
+
+- product/delete/:id: :delete :protected

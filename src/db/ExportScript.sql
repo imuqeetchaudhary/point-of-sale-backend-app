@@ -226,7 +226,7 @@ CREATE TABLE `ad_product` (
   `in_unit` float DEFAULT '0',
   `out_unit` float DEFAULT '0',
   `p_type` varchar(255) COLLATE utf8mb4_general_ci DEFAULT 'own',
-  `p_type_1` varchar(255) COLLATE utf8mb4_general_ci DEFAULT 'parts',
+  `p_type1` varchar(255) COLLATE utf8mb4_general_ci DEFAULT 'parts',
   `bargen` tinyint DEFAULT '0',
   `brand_id` int unsigned NOT NULL,
   `is_stocked` tinyint DEFAULT '1',
@@ -255,7 +255,7 @@ CREATE TABLE `ad_product` (
   CONSTRAINT `fk_product_updated` FOREIGN KEY (`updated_by`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `fk_unit_in_id` FOREIGN KEY (`unit_in_id`) REFERENCES `ad_measuring_unit` (`measuring_unit_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `fk_unit_out_id` FOREIGN KEY (`unit_out_id`) REFERENCES `ad_measuring_unit` (`measuring_unit_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -572,7 +572,7 @@ CREATE TABLE `item_category` (
   CONSTRAINT `item_category_created_by` FOREIGN KEY (`created_by`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `item_category_parent` FOREIGN KEY (`parent_id`) REFERENCES `item_category` (`category_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `item_category_updated_by` FOREIGN KEY (`updated_by`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -740,4 +740,4 @@ CREATE TABLE `user` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-10-21  5:23:15
+-- Dump completed on 2021-10-21 23:33:53
