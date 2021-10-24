@@ -921,3 +921,4 @@
 ### to delete a product
 
 - product/delete/:id: :delete :protected
+
