@@ -80,7 +80,19 @@ exports.listAllProduct = async () => {
 };
 
 exports.findByPk = async ({ id }) => {
-  return db.Product.findByPk(id, _prop.hideFieldsCondition());
+  return db.Product.findByPk(
+    id,
+    {
+      include: [
+        db.ItemCategory,
+        db.ProductType,
+        db.Brand,
+        { model: db.MeasuringUnit, as: "unitIn" },
+        { model: db.MeasuringUnit, as: "unitOut" },
+      ],
+    },
+    _prop.hideFieldsCondition()
+  );
 };
 
 exports.updateProduct = async ({

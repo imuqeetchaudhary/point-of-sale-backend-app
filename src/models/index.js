@@ -64,7 +64,12 @@ const DeliveryTerm = deliveryTerm.init(dbClient, DataTypes);
 const Customer = customer.init(dbClient, DataTypes);
 const Vendor = vendor.init(dbClient, DataTypes);
 const ProductType = productType.init(dbClient, DataTypes);
-const Product = product.init(dbClient, DataTypes);
+const Product = product.init(dbClient, DataTypes, {
+  ItemCategory,
+  ProductType,
+  Brand,
+  MeasuringUnit,
+});
 
 db.User = User;
 db.Role = Role;
@@ -89,5 +94,8 @@ db.Customer = Customer;
 db.Vendor = Vendor;
 db.ProductType = ProductType;
 db.Product = Product;
+
+// db.ItemCategory.hasOne(db.Product, { foreignKey: "category_id" });
+// db.Product.belongsTo(db.ItemCategory, { foreignKey: "category_id" });
 
 module.exports = db;

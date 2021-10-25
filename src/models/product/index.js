@@ -1,4 +1,8 @@
-exports.init = (sequelize, DataTypes) => {
+exports.init = (
+  sequelize,
+  DataTypes,
+  { ItemCategory, ProductType, Brand, MeasuringUnit }
+) => {
   const Product = sequelize.define(
     "Product",
     {
@@ -132,5 +136,27 @@ exports.init = (sequelize, DataTypes) => {
     },
     { underscored: true, tableName: "ad_product" }
   );
+
+  ItemCategory.hasOne(Product, { foreignKey: "category_id" });
+  Product.belongsTo(ItemCategory, { foreignKey: "category_id" });
+
+  ProductType.hasOne(Product, { foreignKey: "product_type_id" });
+  Product.belongsTo(ProductType, { foreignKey: "product_type_id" });
+
+  Brand.hasOne(Product, { foreignKey: "brand_id" });
+  Product.belongsTo(Brand, { foreignKey: "brand_id" });
+
+  MeasuringUnit.hasOne(Product, { foreignKey: "unit_in_id" });
+  Product.belongsTo(MeasuringUnit, {
+    foreignKey: "unit_in_id",
+    as: "unitIn",
+  });
+
+  MeasuringUnit.hasOne(Product, { foreignKey: "unit_out_id" });
+  Product.belongsTo(MeasuringUnit, {
+    foreignKey: "unit_out_id",
+    as: "unitOut",
+  });
+
   return Product;
 };
