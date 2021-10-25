@@ -51,10 +51,53 @@ exports.updateMenu = promise(async (req, res) => {
 
 exports.getMenuForSingleRole = promise(async (req, res) => {
   const { id } = req.params;
+  const roleId = id;
+  let menusArray = [];
+  let assignedMenusArray = [];
 
-  const menu = await menuService.listAllMenusForRole({ roleId: id });
+  const menu = await menuService.listAllMenus();
 
-  res.status(200).json({ menu });
+  const assignedMenu = await menuService.listAllAssignedMenusForRole({
+    roleId,
+  });
+
+  menu.forEach((menu) => {
+    menusArray.push({
+      id: menu.menuId,
+      description: menu.description,
+    });
+  });
+  // console.log(menusArray);
+
+  console.log("--------------------------------");
+
+  assignedMenu.forEach((menu) => {
+    assignedMenusArray.push({
+      id: menu.Menu.menuId,
+      description: menu.Menu.description,
+    });
+  });
+  // console.log(assignedMenusArray);
+
+  const find = () => {
+    const _ = [];
+
+    menusArray.forEach((menuObj) => {
+      const menu = { ...menuObj };
+
+      const menuFound = assignedMenusArray.filter(
+        (selectedMenu) => selectedMenu.id == menu.id
+      );
+      menu.found = menuFound !== null && menuFound.length > 0;
+
+      _.push(menu);
+    });
+    return _;
+  };
+
+  const totalMenu = find();
+
+  res.status(200).json({ menu: totalMenu });
 });
 
 exports.getAllAssignedMenuForSingleRole = promise(async (req, res) => {
