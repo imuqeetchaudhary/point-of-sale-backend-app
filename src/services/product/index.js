@@ -76,7 +76,16 @@ exports.saveProduct = async ({
 };
 
 exports.listAllProduct = async () => {
-  return db.Product.findAll({ ..._prop.hideFieldsCondition() });
+  return db.Product.findAll({
+    include: [
+      db.ItemCategory,
+      db.ProductType,
+      db.Brand,
+      { model: db.MeasuringUnit, as: "unitIn" },
+      { model: db.MeasuringUnit, as: "unitOut" },
+    ],
+    ..._prop.hideFieldsCondition(),
+  });
 };
 
 exports.findByPk = async ({ id }) => {
