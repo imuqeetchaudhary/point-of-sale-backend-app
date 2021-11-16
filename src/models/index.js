@@ -34,6 +34,7 @@ const customer = require("./customer");
 const vendor = require("./vendor");
 const productType = require("./product-type");
 const product = require("./product");
+const stOpening = require("./st-opening");
 
 const User = user.init(dbClient, DataTypes);
 const Role = role.init(dbClient, DataTypes, { User });
@@ -70,6 +71,7 @@ const Product = product.init(dbClient, DataTypes, {
   Brand,
   MeasuringUnit,
 });
+const StOpening = stOpening.init(dbClient, DataTypes);
 
 db.User = User;
 db.Role = Role;
@@ -94,6 +96,7 @@ db.Customer = Customer;
 db.Vendor = Vendor;
 db.ProductType = ProductType;
 db.Product = Product;
+db.StOpening = StOpening;
 
 // db.ItemCategory.hasOne(db.Product, { foreignKey: "category_id" });
 // db.Product.belongsTo(db.ItemCategory, { foreignKey: "category_id" });
