@@ -1,4 +1,5 @@
 const productService = require("../../services/product");
+const stOpeningService = require("../../services/st-opening");
 const { promise } = require("../../middlewares/promise");
 const Exceptions = require("../../utils/custom-exceptions");
 
@@ -64,6 +65,16 @@ exports.createProduct = promise(async (req, res) => {
     hsCode,
     actionperformedBy,
   });
+
+  if (openBal > 0) {
+    const stOpening = await stOpeningService.saveStOpening({
+      productId: product.productId,
+      quantity: openBal,
+      price: itRate,
+      date: Date.now(),
+      actionperformedBy,
+    });
+  }
   res.status(200).json({ message: "Successfully created product", product });
 });
 
